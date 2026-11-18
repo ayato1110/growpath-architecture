@@ -2,6 +2,8 @@
 
 Panduan ini untuk semua anggota Kelompok 6. Tujuannya agar setiap update dari masing-masing peran masuk melalui GitHub dan bisa dilacak lewat commit, pull request, review, dan kartu papan kerja.
 
+Versi Word ada di `06_Governance/Panduan Kontribusi GitHub - Kelompok 6.docx`.
+
 Repositori: <https://github.com/ayato1110/growpath-architecture>
 
 ## Aturan utama
