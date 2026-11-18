@@ -31,6 +31,12 @@ Repositori arsitektur Kelompok 6 untuk proyek Growpath, platform advisory UMKM b
 - Keputusan teknologi dicatat sebagai ADR.
 - Bukti kontribusi berupa commit, pull request, kartu papan kerja, dan notulen.
 
+## Kontribusi
+
+Setiap anggota memperbarui file peran melalui branch fitur dan pull request ke `dev`. Jangan push langsung ke `main` atau `dev`.
+
+Panduan lengkap ada di [CONTRIBUTING.md](CONTRIBUTING.md). Template pull request otomatis tersedia di `.github/pull_request_template.md`.
+
 ## Sumber
 
 - `Progress Pertemuan 12 Kelompok 6 - Growpath.docx`

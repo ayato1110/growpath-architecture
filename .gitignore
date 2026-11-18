@@ -5,3 +5,10 @@ Thumbs.db
 __pycache__/
 node_modules/
 .env
+
+~$*
+.venv/
+.pytest_cache/
+coverage/
+dist/
+build/
