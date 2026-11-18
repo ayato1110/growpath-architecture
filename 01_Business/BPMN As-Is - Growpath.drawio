@@ -1,0 +1,71 @@
+<mxfile host="app.diagrams.net"><diagram id="bpmn-asis" name="BPMN As-Is">
+    <mxGraphModel dx="626" dy="522" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" parent="1" style="text;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;whiteSpace=wrap;html=1;" value="BPMN As-Is: Proses Pembinaan Manual" vertex="1">
+          <mxGeometry height="24" width="460" x="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pool" parent="1" style="swimlane;horizontal=0;startSize=40;container=1;collapsible=0;fillColor=#ffffff;strokeColor=#111111;fontSize=12;fontStyle=1;whiteSpace=wrap;html=1;" value="Program Pembinaan UMKM" vertex="1">
+          <mxGeometry height="400" width="760" x="20" y="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="lane1" parent="pool" style="swimlane;horizontal=1;startSize=26;container=1;collapsible=0;fillColor=#f8fafc;strokeColor=#555555;fontSize=11;fontStyle=1;align=left;spacingLeft=8;whiteSpace=wrap;html=1;" value="UMKM" vertex="1">
+          <mxGeometry height="185" width="680" x="40" y="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="start" parent="lane1" style="ellipse;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=1.5;fontSize=9;whiteSpace=wrap;html=1;" value="Mulai" vertex="1">
+          <mxGeometry height="40" width="40" x="20" y="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="isi" parent="lane1" style="rounded=1;arcSize=20;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;whiteSpace=wrap;html=1;" value="Isi formulir" vertex="1">
+          <mxGeometry height="60" width="150" x="100" y="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="terima" parent="lane1" style="rounded=1;arcSize=20;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;whiteSpace=wrap;html=1;" value="Terima saran" vertex="1">
+          <mxGeometry height="60" width="150" x="455" y="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="end" parent="lane1" style="ellipse;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=3;fontSize=8;whiteSpace=wrap;html=1;" value="Selesai" vertex="1">
+          <mxGeometry height="40" width="40" x="625" y="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="form" parent="lane1" style="shape=document;boundedLbl=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;whiteSpace=wrap;html=1;" value="Formulir" vertex="1">
+          <mxGeometry height="45" width="90" x="280" y="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="note" parent="lane1" style="rounded=0;dashed=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;spacing=4;fontSize=9;whiteSpace=wrap;html=1;" value="Tidak ada catatan progres dan laporan masih manual" vertex="1">
+          <mxGeometry height="45" width="190" x="250" y="135" as="geometry"/>
+        </mxCell>
+        <mxCell id="f1" edge="1" parent="lane1" source="start" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;exitX=1;exitY=0.5;entryX=0;entryY=0.5;html=1;" target="isi">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f6" edge="1" parent="lane1" source="terima" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;exitX=1;exitY=0.5;entryX=0;entryY=0.5;html=1;" target="end">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f7" edge="1" parent="lane1" source="form" style="dashed=1;endArrow=open;exitX=0;exitY=0.5;entryX=1;entryY=0.5;html=1;" target="isi">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f8" edge="1" parent="lane1" source="note" style="dashed=1;endArrow=none;exitX=1;exitY=0.5;entryX=0;entryY=1;html=1;" target="terima">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="lane2" parent="pool" style="swimlane;horizontal=1;startSize=26;container=1;collapsible=0;fillColor=#f8fafc;strokeColor=#555555;fontSize=11;fontStyle=1;align=left;spacingLeft=8;whiteSpace=wrap;html=1;" value="Fasilitator" vertex="1">
+          <mxGeometry height="185" width="680" x="40" y="215" as="geometry"/>
+        </mxCell>
+        <mxCell id="hitung" parent="lane2" style="rounded=1;arcSize=20;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;whiteSpace=wrap;html=1;" value="Hitung 31 kriteria" vertex="1">
+          <mxGeometry height="60" width="180" x="85" y="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="tentukan" parent="lane2" style="rounded=1;arcSize=20;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;whiteSpace=wrap;html=1;" value="Tentukan segmen" vertex="1">
+          <mxGeometry height="60" width="140" x="285" y="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="beri" parent="lane2" style="rounded=1;arcSize=20;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;whiteSpace=wrap;html=1;" value="Beri saran" vertex="1">
+          <mxGeometry height="60" width="150" x="455" y="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="f3" edge="1" parent="lane2" source="hitung" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;exitX=1;exitY=0.5;entryX=0;entryY=0.5;html=1;" target="tentukan">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f4" edge="1" parent="lane2" source="tentukan" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;exitX=1;exitY=0.5;entryX=0;entryY=0.5;html=1;" target="beri">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f2" edge="1" parent="1" source="isi" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;html=1;" target="hitung">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f5" edge="1" parent="1" source="beri" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;exitX=0.5;exitY=0;entryX=0.5;entryY=1;html=1;" target="terima">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram></mxfile>

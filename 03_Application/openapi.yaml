@@ -1,0 +1,2856 @@
+openapi: 3.1.0
+info:
+  title: Growpath API
+  version: 1.0.0
+  description: Kontrak API Growpath untuk alur inti profiling, assessment, scoring, roadmap, progress, knowledge, dashboard B2G, dan admin. Memakai REST, JSON, OpenAPI 3.1.0, serta error RFC 9457.
+  contact:
+    name: Tim Growpath
+    email: halo@growpath.id
+  license:
+    name: Proprietary
+servers:
+- url: https://api.growpath.id/v1
+  description: Produksi
+- url: https://staging-api.growpath.id/v1
+  description: Staging
+security:
+- bearerAuth: []
+tags:
+- name: Auth
+- name: Profile
+- name: Assessment
+- name: Scoring
+- name: Roadmap
+- name: Progress
+- name: Knowledge
+- name: B2G
+- name: Admin
+- name: Mentor
+- name: Billing
+- name: Notification
+- name: System
+paths:
+  /auth/register:
+    post:
+      tags:
+      - Auth
+      summary: Registrasi pengguna UMKM
+      description: Membuat akun, tenant platform bila belum ada, dan profil awal. Mengembalikan access token dan refresh token.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '201':
+          description: Dibuat
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '400': &id001
+          description: Request tidak valid
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '409': &id008
+          description: Konflik status atau data duplikat
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '422': &id007
+          description: Validasi gagal
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '429': &id002
+          description: Rate limit terlampaui
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '500': &id003
+          description: Kesalahan internal
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+  /auth/login:
+    post:
+      tags:
+      - Auth
+      summary: Login
+      description: Menukar email dan password dengan access token dan refresh token.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '400': *id001
+        '401': &id004
+          description: Token tidak ada atau kedaluwarsa
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '403': &id005
+          description: Peran tidak berwenang
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '429': *id002
+        '500': *id003
+  /auth/refresh:
+    post:
+      tags:
+      - Auth
+      summary: Perbarui access token
+      description: Menukar refresh token yang masih valid dengan access token baru.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshRequest'
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '400': *id001
+        '401': *id004
+        '429': *id002
+        '500': *id003
+  /auth/logout:
+    post:
+      tags:
+      - Auth
+      summary: Logout
+      description: Mencabut refresh token aktif.
+      responses:
+        '204':
+          description: Tidak ada isi
+        '401': *id004
+        '500': *id003
+  /auth/me:
+    get:
+      tags:
+      - Auth
+      summary: Profil akun aktif
+      description: Mengembalikan identitas, peran, dan tenant dari token.
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401': *id004
+        '500': *id003
+  /me/profile:
+    get:
+      tags:
+      - Profile
+      summary: Baca profil UMKM
+      description: Mengembalikan profil milik pengguna aktif.
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UMKMProfile'
+        '401': *id004
+        '403': *id005
+        '404': &id006
+          description: Sumber daya tidak ditemukan
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '500': *id003
+    put:
+      tags:
+      - Profile
+      summary: Ganti profil UMKM
+      description: Mengganti seluruh field profil. Perubahan menghitung ulang completeness_pct.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileRequest'
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UMKMProfile'
+        '400': *id001
+        '401': *id004
+        '403': *id005
+        '404': *id006
+        '422': *id007
+        '500': *id003
+    patch:
+      tags:
+      - Profile
+      summary: Perbarui sebagian profil
+      description: Memperbarui field yang dikirim saja.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileRequest'
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UMKMProfile'
+        '400': *id001
+        '401': *id004
+        '403': *id005
+        '404': *id006
+        '422': *id007
+        '500': *id003
+  /me/dashboard:
+    get:
+      tags:
+      - Profile
+      - Progress
+      summary: Ringkasan dashboard UMKM
+      description: Mengembalikan skor terakhir, segmen, progres roadmap, dan milestone berikutnya.
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UMKMDashboard'
+        '401': *id004
+        '403': *id005
+        '500': *id003
+  /assessments:
+    post:
+      tags:
+      - Assessment
+      summary: Buat asesmen
+      description: Membuat draft asesmen untuk profil pengguna. Mengembalikan 31 kriteria aktif.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssessmentCreateRequest'
+      responses:
+        '201':
+          description: Dibuat
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssessmentDraft'
+        '400': *id001
+        '401': *id004
+        '403': *id005
+        '409': *id008
+        '422': *id007
+        '429': *id002
+        '500': *id003
+    get:
+      tags:
+      - Assessment
+      summary: Daftar asesmen
+      description: Mengembalikan asesmen milik pengguna dengan pagination.
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+      - name: status
+        in: query
+        description: Filter status
+        schema:
+          type: string
+          enum:
+          - draft
+          - submitted
+          - scored
+          - archived
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssessmentList'
+        '401': *id004
+        '403': *id005
+        '500': *id003
+  /assessments/{assessment_id}:
+    get:
+      tags:
+      - Assessment
+      summary: Detail asesmen
+      description: Mengembalikan status, jawaban, dan skor bila sudah dinilai.
+      parameters:
+      - name: assessment_id
+        in: path
+        required: true
+        description: ID asesmen
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssessmentDetail'
+        '401': *id004
+        '403': *id005
+        '404': *id006
+        '500': *id003
+  /assessments/{assessment_id}/answers:
+    put:
+      tags:
+      - Assessment
+      summary: Simpan jawaban
+      description: Batch upsert jawaban 31 kriteria. Validasi tipe dan rentang per kriteria.
+      parameters:
+      - name: assessment_id
+        in: path
+        required: true
+        description: ID asesmen
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnswersRequest'
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssessmentDraft'
+        '400': *id001
+        '401': *id004
+        '403': *id005
+        '404': *id006
+        '409': *id008
+        '422': *id007
+        '500': *id003
+  /assessments/{assessment_id}/submit:
+    post:
+      tags:
+      - Assessment
+      summary: Kirim asesmen
+      description: Mengunci jawaban dan memicu scoring. Mengembalikan 202 dengan job_id.
+      parameters:
+      - name: assessment_id
+        in: path
+        required: true
+        description: ID asesmen
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '202':
+          description: Diterima untuk diproses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobAccepted'
+        '400': *id001
+        '401': *id004
+        '403': *id005
+        '404': *id006
+        '409': *id008
+        '422': *id007
+        '500': *id003
+  /assessments/{assessment_id}/scores:
+    get:
+      tags:
+      - Scoring
+      summary: Baca skor
+      description: Mengembalikan skor total, segmen, dan enam skor dimensi.
+      parameters:
+      - name: assessment_id
+        in: path
+        required: true
+        description: ID asesmen
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreResult'
+        '401': *id004
+        '403': *id005
+        '404': *id006
+        '500': *id003
+  /assessments/{assessment_id}/recompute:
+    post:
+      tags:
+      - Scoring
+      summary: Hitung ulang skor
+      description: Menghitung ulang skor dengan versi aturan aktif. Hanya admin platform.
+      parameters:
+      - name: assessment_id
+        in: path
+        required: true
+        description: ID asesmen
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '202':
+          description: Diterima untuk diproses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobAccepted'
+        '401': *id004
+        '403': *id005
+        '404': *id006
+        '409': *id008
+        '500': *id003
+  /assessments/{assessment_id}/roadmap:
+    get:
+      tags:
+      - Roadmap
+      summary: Baca roadmap aktif
+      description: Mengembalikan roadmap aktif beserta milestone.
+      parameters:
+      - name: assessment_id
+        in: path
+        required: true
+        description: ID asesmen
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Roadmap'
+        '401': *id004
+        '403': *id005
+        '404': *id006
+        '500': *id003
+    post:
+      tags:
+      - Roadmap
+      summary: Buat roadmap
+      description: Memicu pembuatan roadmap dari skor, gap, dan konteks. Operasi asinkron.
+      parameters:
+      - name: assessment_id
+        in: path
+        required: true
+        description: ID asesmen
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoadmapGenerateRequest'
+      responses:
+        '202':
+          description: Diterima untuk diproses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobAccepted'
+        '400': *id001
+        '401': *id004
+        '403': *id005
+        '404': *id006
+        '409': *id008
+        '429': *id002
+        '500': *id003
+  /roadmaps/{roadmap_id}:
+    get:
+      tags:
+      - Roadmap
+      summary: Detail roadmap
+      description: Mengembalikan roadmap, versi, dan status.
+      parameters:
+      - name: roadmap_id
+        in: path
+        required: true
+        description: ID roadmap
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Roadmap'
+        '401': *id004
+        '403': *id005
+        '404': *id006
+        '500': *id003
+  /roadmaps/{roadmap_id}/milestones:
+    get:
+      tags:
+      - Roadmap
+      summary: Daftar milestone
+      description: Mengembalikan milestone berurutan.
+      parameters:
+      - name: roadmap_id
+        in: path
+        required: true
+        description: ID roadmap
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MilestoneList'
+        '401': *id004
+        '403': *id005
+        '404': *id006
+        '500': *id003
+  /milestones/{milestone_id}:
+    patch:
+      tags:
+      - Progress
+      summary: Perbarui status milestone
+      description: Mengubah status milestone. Hanya pemilik atau admin.
+      parameters:
+      - name: milestone_id
+        in: path
+        required: true
+        description: ID milestone
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MilestoneUpdateRequest'
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Milestone'
+        '400': *id001
+        '401': *id004
+        '403': *id005
+        '404': *id006
+        '422': *id007
+        '500': *id003
+  /milestones/{milestone_id}/progress:
+    get:
+      tags:
+      - Progress
+      summary: Riwayat progres
+      description: Mengembalikan log progres milestone.
+      parameters:
+      - name: milestone_id
+        in: path
+        required: true
+        description: ID milestone
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProgressList'
+        '401': *id004
+        '403': *id005
+        '404': *id006
+        '500': *id003
+    post:
+      tags:
+      - Progress
+      summary: Catat progres
+      description: Menambah log progres append-only.
+      parameters:
+      - name: milestone_id
+        in: path
+        required: true
+        description: ID milestone
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgressRequest'
+      responses:
+        '201':
+          description: Dibuat
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProgressLog'
+        '400': *id001
+        '401': *id004
+        '403': *id005
+        '404': *id006
+        '422': *id007
+        '500': *id003
+  /knowledge/documents:
+    get:
+      tags:
+      - Knowledge
+      summary: Daftar dokumen
+      description: Mengembalikan dokumen published yang dapat diakses tenant.
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+      - name: q
+        in: query
+        description: Pencarian judul
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: Tipe dokumen
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KnowledgeList'
+        '401': *id004
+        '500': *id003
+  /knowledge/documents/{document_id}:
+    get:
+      tags:
+      - Knowledge
+      summary: Detail dokumen
+      description: Mengembalikan metadata dan isi ringkas dokumen.
+      parameters:
+      - name: document_id
+        in: path
+        required: true
+        description: ID dokumen
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KnowledgeDocument'
+        '401': *id004
+        '404': *id006
+        '500': *id003
+  /knowledge/search:
+    post:
+      tags:
+      - Knowledge
+      summary: Cari pengetahuan
+      description: Retrieval RAG dengan sitasi. Rate limit 10 request per menit per pengguna.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KnowledgeSearchRequest'
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KnowledgeSearchResponse'
+        '400': *id001
+        '401': *id004
+        '403': *id005
+        '422': *id007
+        '429': *id002
+        '500': *id003
+  /b2g/dashboard/summary:
+    get:
+      tags:
+      - B2G
+      summary: Ringkasan dashboard B2G
+      description: Mengembalikan agregat UMKM binaan, skor rata-rata, distribusi segmen, dan progres.
+      parameters:
+      - name: period
+        in: query
+        description: Periode, format YYYY-MM
+        schema:
+          type: string
+          pattern: ^[0-9]{4}-[0-9]{2}$
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2GSummary'
+        '401': *id004
+        '403': *id005
+        '500': *id003
+  /b2g/umkm:
+    get:
+      tags:
+      - B2G
+      summary: Daftar UMKM binaan
+      description: Mengembalikan daftar agregat tanpa jawaban mentah.
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+      - name: segment
+        in: query
+        description: Filter segmen
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: Filter status
+        schema:
+          type: string
+      - name: q
+        in: query
+        description: Cari nama usaha
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2GUMKMList'
+        '401': *id004
+        '403': *id005
+        '500': *id003
+  /b2g/umkm/{umkm_profile_id}:
+    get:
+      tags:
+      - B2G
+      summary: Detail agregat UMKM
+      description: Mengembalikan riwayat skor, segmen, progres, dan jumlah sesi mentor. Tidak memuat jawaban mentah.
+      parameters:
+      - name: umkm_profile_id
+        in: path
+        required: true
+        description: ID profil UMKM
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2GUMKMDetail'
+        '401': *id004
+        '403': *id005
+        '404': *id006
+        '500': *id003
+  /b2g/reports:
+    get:
+      tags:
+      - B2G
+      summary: Daftar laporan
+      description: Mengembalikan laporan yang pernah dibuat tenant.
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportList'
+        '401': *id004
+        '403': *id005
+        '500': *id003
+    post:
+      tags:
+      - B2G
+      summary: Buat laporan
+      description: Memicu pembuatan laporan agregat. Operasi asinkron.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportCreateRequest'
+      responses:
+        '202':
+          description: Diterima untuk diproses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+        '400': *id001
+        '401': *id004
+        '403': *id005
+        '409': *id008
+        '422': *id007
+        '429': *id002
+        '500': *id003
+  /b2g/reports/{report_id}:
+    get:
+      tags:
+      - B2G
+      summary: Status laporan
+      description: Mengembalikan status dan file_url bila siap.
+      parameters:
+      - name: report_id
+        in: path
+        required: true
+        description: ID laporan
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+        '401': *id004
+        '403': *id005
+        '404': *id006
+        '500': *id003
+  /admin/tenants:
+    get:
+      tags:
+      - Admin
+      summary: Daftar tenant
+      description: Hanya admin platform.
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantList'
+        '401': *id004
+        '403': *id005
+        '500': *id003
+    post:
+      tags:
+      - Admin
+      summary: Buat tenant
+      description: Membuat institusi B2G baru.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TenantCreateRequest'
+      responses:
+        '201':
+          description: Dibuat
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+        '400': *id001
+        '401': *id004
+        '403': *id005
+        '409': *id008
+        '422': *id007
+        '500': *id003
+  /admin/users:
+    get:
+      tags:
+      - Admin
+      summary: Daftar pengguna
+      description: Admin platform melihat semua; admin B2G hanya tenant sendiri.
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+      - name: role
+        in: query
+        description: Filter peran
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: Filter status
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserList'
+        '401': *id004
+        '403': *id005
+        '500': *id003
+  /admin/criteria:
+    get:
+      tags:
+      - Admin
+      summary: Daftar kriteria
+      description: Mengembalikan 31 kriteria dan bobotnya.
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CriterionList'
+        '401': *id004
+        '403': *id005
+        '500': *id003
+    post:
+      tags:
+      - Admin
+      summary: Tambah kriteria
+      description: Menambah kriteria baru. Hanya admin platform.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CriterionRequest'
+      responses:
+        '201':
+          description: Dibuat
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Criterion'
+        '400': *id001
+        '401': *id004
+        '403': *id005
+        '409': *id008
+        '422': *id007
+        '500': *id003
+  /admin/knowledge/documents:
+    post:
+      tags:
+      - Admin
+      summary: Unggah dokumen pengetahuan
+      description: Mendaftarkan dokumen dan memicu chunking serta embedding.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KnowledgeDocumentRequest'
+      responses:
+        '201':
+          description: Dibuat
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KnowledgeDocument'
+        '400': *id001
+        '401': *id004
+        '403': *id005
+        '409': *id008
+        '422': *id007
+        '500': *id003
+  /admin/knowledge/documents/{document_id}/publish:
+    post:
+      tags:
+      - Admin
+      summary: Publikasikan dokumen
+      description: Mengubah status menjadi published dan memicu indeks RAG.
+      parameters:
+      - name: document_id
+        in: path
+        required: true
+        description: ID dokumen
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '202':
+          description: Diterima untuk diproses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobAccepted'
+        '401': *id004
+        '403': *id005
+        '404': *id006
+        '409': *id008
+        '500': *id003
+  /admin/audit-logs:
+    get:
+      tags:
+      - Admin
+      summary: Daftar audit log
+      description: Hanya admin platform. Filter berdasarkan aktor, aksi, dan tanggal.
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+      - name: actor_user_id
+        in: query
+        description: ID aktor
+        schema:
+          type: string
+      - name: action
+        in: query
+        description: Aksi
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: Tanggal awal
+        schema:
+          type: string
+      - name: to
+        in: query
+        description: Tanggal akhir
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditList'
+        '401': *id004
+        '403': *id005
+        '500': *id003
+  /mentors:
+    get:
+      tags:
+      - Mentor
+      summary: Daftar mentor
+      description: Fase 2. Mengembalikan mentor aktif dan keahliannya.
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MentorList'
+        '401': *id004
+        '403': *id005
+        '500': *id003
+  /mentor-sessions:
+    get:
+      tags:
+      - Mentor
+      summary: Daftar sesi mentor
+      description: Fase 2. Sesi milik pengguna atau mentor.
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MentorSessionList'
+        '401': *id004
+        '403': *id005
+        '500': *id003
+    post:
+      tags:
+      - Mentor
+      summary: Pesan sesi mentor
+      description: Fase 2. Membuat permintaan sesi pada slot yang tersedia.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MentorSessionRequest'
+      responses:
+        '201':
+          description: Dibuat
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MentorSession'
+        '400': *id001
+        '401': *id004
+        '403': *id005
+        '409': *id008
+        '422': *id007
+        '500': *id003
+  /subscriptions:
+    get:
+      tags:
+      - Billing
+      summary: Daftar langganan
+      description: Fase 2. Admin B2G melihat langganan tenant sendiri.
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionList'
+        '401': *id004
+        '403': *id005
+        '500': *id003
+    post:
+      tags:
+      - Billing
+      summary: Buat langganan
+      description: Fase 2. Membuat langganan tenant atau pengguna.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionRequest'
+      responses:
+        '201':
+          description: Dibuat
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '400': *id001
+        '401': *id004
+        '403': *id005
+        '409': *id008
+        '422': *id007
+        '500': *id003
+  /invoices:
+    get:
+      tags:
+      - Billing
+      summary: Daftar invoice
+      description: Fase 2. Invoice milik tenant.
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceList'
+        '401': *id004
+        '403': *id005
+        '500': *id003
+  /notifications:
+    get:
+      tags:
+      - Notification
+      summary: Daftar notifikasi
+      description: Notifikasi milik pengguna aktif.
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationList'
+        '401': *id004
+        '500': *id003
+  /notifications/{notification_id}/read:
+    patch:
+      tags:
+      - Notification
+      summary: Tandai sudah dibaca
+      description: Mengubah status menjadi read.
+      parameters:
+      - name: notification_id
+        in: path
+        required: true
+        description: ID notifikasi
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notification'
+        '401': *id004
+        '403': *id005
+        '404': *id006
+        '500': *id003
+  /health:
+    get:
+      tags:
+      - System
+      summary: Health check
+      description: Status API dan dependensi utama.
+      security: []
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Access token Supabase Auth dengan klaim sub, tenant_id, dan role.
+  schemas:
+    Problem:
+      type: object
+      properties:
+        type:
+          type: string
+          description: URI tipe masalah
+        title:
+          type: string
+        status:
+          type: integer
+          minimum: 400
+          maximum: 599
+        detail:
+          type: string
+        instance:
+          type: string
+        code:
+          type: string
+          description: Kode error internal, misalnya AUTH_INVALID_CREDENTIALS
+        trace_id:
+          type: string
+          format: uuid
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+      required:
+      - type
+      - title
+      - status
+      - code
+      description: RFC 9457 Problem Details
+    RegisterRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 8
+          maxLength: 128
+        full_name:
+          type: string
+          minLength: 1
+          maxLength: 120
+        phone:
+          type: string
+          maxLength: 20
+        tenant_slug:
+          type: string
+          maxLength: 80
+      required:
+      - email
+      - password
+      - full_name
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+      required:
+      - email
+      - password
+    RefreshRequest:
+      type: object
+      properties:
+        refresh_token:
+          type: string
+      required:
+      - refresh_token
+    AuthResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+        token_type:
+          type: string
+          const: Bearer
+        expires_in:
+          type: integer
+          minimum: 1
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+      - access_token
+      - refresh_token
+      - token_type
+      - expires_in
+      - user
+    Tenant:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        slug:
+          type: string
+        type:
+          type: string
+          enum:
+          - platform
+          - institution
+          - partner
+        status:
+          type: string
+          enum:
+          - active
+          - suspended
+          - inactive
+        plan_id:
+          type:
+          - integer
+          - 'null'
+      required:
+      - id
+      - name
+      - slug
+      - type
+      - status
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        tenant_id:
+          type: string
+          format: uuid
+        email:
+          type: string
+          format: email
+        full_name:
+          type: string
+        phone:
+          type:
+          - string
+          - 'null'
+        role:
+          type: string
+          enum:
+          - umkm
+          - pendamping
+          - mentor
+          - admin_b2g
+          - admin_platform
+        status:
+          type: string
+          enum:
+          - active
+          - invited
+          - suspended
+          - deleted
+        last_login_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - id
+      - tenant_id
+      - email
+      - full_name
+      - role
+      - status
+    UMKMProfile:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        tenant_id:
+          type: string
+          format: uuid
+        business_name:
+          type: string
+        owner_name:
+          type: string
+        sector:
+          type: string
+          enum:
+          - kuliner
+          - fashion
+          - lainnya
+        city:
+          type: string
+        province:
+          type: string
+        established_year:
+          type: integer
+          minimum: 1900
+          maximum: 2100
+        operation_months:
+          type: integer
+          minimum: 0
+        monthly_revenue_band:
+          type:
+          - string
+          - 'null'
+          enum:
+          - <1jt
+          - 1-5jt
+          - 5-25jt
+          - '>25jt'
+          - null
+        employees_count:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+        business_description:
+          type:
+          - string
+          - 'null'
+        completeness_pct:
+          type: number
+          minimum: 0
+          maximum: 100
+      required:
+      - id
+      - user_id
+      - tenant_id
+      - business_name
+      - owner_name
+      - sector
+      - city
+      - province
+    ProfileRequest:
+      type: object
+      properties:
+        business_name:
+          type: string
+          maxLength: 160
+        owner_name:
+          type: string
+          maxLength: 120
+        sector:
+          type: string
+          enum:
+          - kuliner
+          - fashion
+          - lainnya
+        city:
+          type: string
+          maxLength: 80
+        province:
+          type: string
+          maxLength: 80
+        established_year:
+          type: integer
+          minimum: 1900
+          maximum: 2100
+        operation_months:
+          type: integer
+          minimum: 0
+        monthly_revenue_band:
+          type: string
+          enum:
+          - <1jt
+          - 1-5jt
+          - 5-25jt
+          - '>25jt'
+        employees_count:
+          type: integer
+          minimum: 0
+        business_description:
+          type: string
+      required:
+      - business_name
+      - owner_name
+      - sector
+      - city
+      - province
+      - established_year
+      - operation_months
+    UMKMDashboard:
+      type: object
+      properties:
+        latest_assessment:
+          type:
+          - object
+          - 'null'
+          properties:
+            id:
+              type: string
+              format: uuid
+            total_score:
+              type: number
+            segment:
+              type: string
+            scored_at:
+              type: string
+              format: date-time
+        roadmap:
+          type:
+          - object
+          - 'null'
+          properties:
+            id:
+              type: string
+              format: uuid
+            status:
+              type: string
+            completed_milestones:
+              type: integer
+            total_milestones:
+              type: integer
+        next_milestone:
+          type:
+          - object
+          - 'null'
+          properties:
+            id:
+              type: string
+              format: uuid
+            title:
+              type: string
+            due_date:
+              type: string
+              format: date
+    AssessmentCreateRequest:
+      type: object
+      properties:
+        profile_id:
+          type: string
+          format: uuid
+    Assessment:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        tenant_id:
+          type: string
+          format: uuid
+        umkm_profile_id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum:
+          - draft
+          - submitted
+          - scored
+          - archived
+        scoring_version:
+          type: string
+        total_score:
+          type:
+          - number
+          - 'null'
+        segment_id:
+          type:
+          - integer
+          - 'null'
+        submitted_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        scored_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - id
+      - status
+      - scoring_version
+    AssessmentDraft:
+      type: object
+      properties:
+        assessment:
+          $ref: '#/components/schemas/Assessment'
+        criteria:
+          type: array
+          items:
+            $ref: '#/components/schemas/Criterion'
+      required:
+      - assessment
+      - criteria
+    AssessmentDetail:
+      type: object
+      properties:
+        assessment:
+          $ref: '#/components/schemas/Assessment'
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentAnswer'
+        scores:
+          type: array
+          items:
+            $ref: '#/components/schemas/DimensionScore'
+        segment:
+          type:
+          - object
+          - 'null'
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            code:
+              type: string
+    AssessmentAnswer:
+      type: object
+      properties:
+        criterion_id:
+          type: integer
+        raw_value: {}
+        numeric_value:
+          type:
+          - number
+          - 'null'
+        score:
+          type:
+          - number
+          - 'null'
+      required:
+      - criterion_id
+      - raw_value
+    AnswersRequest:
+      type: object
+      properties:
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentAnswer'
+      required:
+      - answers
+    Criterion:
+      type: object
+      properties:
+        id:
+          type: integer
+        dimension_id:
+          type: integer
+        code:
+          type: string
+        question:
+          type: string
+        input_type:
+          type: string
+          enum:
+          - boolean
+          - scale
+          - enum
+          - number
+          - text
+        weight:
+          type: number
+        is_active:
+          type: boolean
+        version:
+          type: string
+      required:
+      - id
+      - dimension_id
+      - code
+      - question
+      - input_type
+      - weight
+    DimensionScore:
+      type: object
+      properties:
+        dimension_id:
+          type: integer
+        raw_score:
+          type:
+          - number
+          - 'null'
+        weighted_score:
+          type: number
+        is_scored:
+          type: boolean
+    ScoreResult:
+      type: object
+      properties:
+        assessment_id:
+          type: string
+          format: uuid
+        total_score:
+          type: number
+        segment:
+          $ref: '#/components/schemas/Segment'
+        dimensions:
+          type: array
+          items:
+            $ref: '#/components/schemas/DimensionScore'
+      required:
+      - assessment_id
+      - total_score
+      - segment
+      - dimensions
+    Segment:
+      type: object
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+        name:
+          type: string
+        min_score:
+          type: number
+        max_score:
+          type: number
+      required:
+      - id
+      - code
+      - name
+      - min_score
+      - max_score
+    AssessmentList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Assessment'
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+      required:
+      - items
+      - page
+      - limit
+      - total
+    JobAccepted:
+      type: object
+      properties:
+        job_id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum:
+          - queued
+          - running
+        resource_id:
+          type: string
+          format: uuid
+      required:
+      - job_id
+      - status
+    RoadmapGenerateRequest:
+      type: object
+      properties:
+        force:
+          type: boolean
+          default: false
+        prompt_version:
+          type: string
+    Roadmap:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        assessment_id:
+          type: string
+          format: uuid
+        version:
+          type: integer
+        status:
+          type: string
+          enum:
+          - draft
+          - active
+          - completed
+          - superseded
+        title:
+          type: string
+        summary:
+          type:
+          - string
+          - 'null'
+        generated_by:
+          type: string
+          enum:
+          - rule
+          - llm
+          - hybrid
+          - manual
+        milestones:
+          type: array
+          items:
+            $ref: '#/components/schemas/Milestone'
+      required:
+      - id
+      - assessment_id
+      - version
+      - status
+      - title
+      - generated_by
+    Milestone:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        roadmap_id:
+          type: string
+          format: uuid
+        order_no:
+          type: integer
+        title:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        action_items:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        due_date:
+          type:
+          - string
+          - 'null'
+          format: date
+        estimated_cost:
+          type:
+          - number
+          - 'null'
+        status:
+          type: string
+          enum:
+          - pending
+          - in_progress
+          - done
+          - skipped
+      required:
+      - id
+      - roadmap_id
+      - order_no
+      - title
+      - status
+    MilestoneList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Milestone'
+      required:
+      - items
+    MilestoneUpdateRequest:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - pending
+          - in_progress
+          - done
+          - skipped
+      required:
+      - status
+    ProgressRequest:
+      type: object
+      properties:
+        progress_pct:
+          type: integer
+          minimum: 0
+          maximum: 100
+        note:
+          type: string
+          maxLength: 2000
+        evidence_url:
+          type: string
+          format: uri
+      required:
+      - progress_pct
+    ProgressLog:
+      type: object
+      properties:
+        id:
+          type: integer
+        milestone_id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        progress_pct:
+          type: integer
+        note:
+          type:
+          - string
+          - 'null'
+        evidence_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        logged_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - milestone_id
+      - user_id
+      - progress_pct
+      - logged_at
+    ProgressList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProgressLog'
+      required:
+      - items
+    KnowledgeDocument:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        source_name:
+          type: string
+        source_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        document_type:
+          type: string
+          enum:
+          - regulation
+          - guideline
+          - faq
+          - template
+          - other
+        version:
+          type: string
+        effective_date:
+          type:
+          - string
+          - 'null'
+          format: date
+        expiry_date:
+          type:
+          - string
+          - 'null'
+          format: date
+        status:
+          type: string
+          enum:
+          - draft
+          - review
+          - published
+          - archived
+      required:
+      - id
+      - title
+      - source_name
+      - document_type
+      - version
+      - status
+    KnowledgeList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/KnowledgeDocument'
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+      required:
+      - items
+      - page
+      - limit
+      - total
+    KnowledgeSearchRequest:
+      type: object
+      properties:
+        query:
+          type: string
+          minLength: 3
+          maxLength: 500
+        top_k:
+          type: integer
+          minimum: 1
+          maximum: 10
+          default: 5
+        document_type:
+          type: string
+          enum:
+          - regulation
+          - guideline
+          - faq
+          - template
+          - other
+      required:
+      - query
+    KnowledgeSearchResult:
+      type: object
+      properties:
+        document_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        section_label:
+          type:
+          - string
+          - 'null'
+        snippet:
+          type: string
+        score:
+          type: number
+        source_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        effective_date:
+          type:
+          - string
+          - 'null'
+          format: date
+      required:
+      - document_id
+      - title
+      - snippet
+      - score
+    KnowledgeSearchResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/KnowledgeSearchResult'
+        query:
+          type: string
+      required:
+      - results
+      - query
+    KnowledgeDocumentRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          maxLength: 200
+        source_name:
+          type: string
+          maxLength: 160
+        source_url:
+          type: string
+          format: uri
+        document_type:
+          type: string
+          enum:
+          - regulation
+          - guideline
+          - faq
+          - template
+          - other
+        version:
+          type: string
+          maxLength: 32
+        effective_date:
+          type: string
+          format: date
+        expiry_date:
+          type: string
+          format: date
+        file_url:
+          type: string
+          format: uri
+      required:
+      - title
+      - source_name
+      - document_type
+      - version
+      - file_url
+    CriterionRequest:
+      type: object
+      properties:
+        dimension_id:
+          type: integer
+        code:
+          type: string
+          maxLength: 16
+        question:
+          type: string
+        input_type:
+          type: string
+          enum:
+          - boolean
+          - scale
+          - enum
+          - number
+          - text
+        weight:
+          type: number
+          minimum: 0
+          maximum: 100
+        scoring_rule: {}
+        version:
+          type: string
+          maxLength: 16
+      required:
+      - dimension_id
+      - code
+      - question
+      - input_type
+      - weight
+      - scoring_rule
+    CriterionList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Criterion'
+      required:
+      - items
+    B2GSummary:
+      type: object
+      properties:
+        period:
+          type: string
+        total_umkm:
+          type: integer
+        active_umkm:
+          type: integer
+        average_score:
+          type: number
+        segment_distribution:
+          type: array
+          items:
+            type: object
+            properties:
+              segment:
+                type: string
+              count:
+                type: integer
+        milestone_completion_pct:
+          type: number
+      required:
+      - period
+      - total_umkm
+      - active_umkm
+      - average_score
+      - segment_distribution
+    B2GUMKM:
+      type: object
+      properties:
+        umkm_profile_id:
+          type: string
+          format: uuid
+        business_name:
+          type: string
+        sector:
+          type: string
+        city:
+          type: string
+        latest_score:
+          type:
+          - number
+          - 'null'
+        segment:
+          type:
+          - string
+          - 'null'
+        progress_pct:
+          type: number
+        last_activity_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - umkm_profile_id
+      - business_name
+      - sector
+      - city
+    B2GUMKMList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/B2GUMKM'
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+      required:
+      - items
+      - page
+      - limit
+      - total
+    B2GUMKMDetail:
+      type: object
+      properties:
+        profile:
+          $ref: '#/components/schemas/B2GUMKM'
+        score_history:
+          type: array
+          items:
+            type: object
+            properties:
+              assessment_id:
+                type: string
+                format: uuid
+              total_score:
+                type: number
+              scored_at:
+                type: string
+                format: date-time
+        milestones:
+          type: array
+          items:
+            $ref: '#/components/schemas/Milestone'
+        mentor_sessions_count:
+          type: integer
+      required:
+      - profile
+      - score_history
+    ReportCreateRequest:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - monthly
+          - quarterly
+          - impact
+          - custom
+        period_start:
+          type: string
+          format: date
+        period_end:
+          type: string
+          format: date
+        parameters:
+          type: object
+          additionalProperties: true
+      required:
+      - type
+      - period_start
+      - period_end
+    Report:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        tenant_id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+          - monthly
+          - quarterly
+          - impact
+          - custom
+        period_start:
+          type: string
+          format: date
+        period_end:
+          type: string
+          format: date
+        status:
+          type: string
+          enum:
+          - queued
+          - generating
+          - ready
+          - failed
+        file_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+      required:
+      - id
+      - type
+      - period_start
+      - period_end
+      - status
+    ReportList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Report'
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+      required:
+      - items
+      - page
+      - limit
+      - total
+    TenantCreateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 160
+        slug:
+          type: string
+          maxLength: 80
+        type:
+          type: string
+          enum:
+          - institution
+          - partner
+        contact_email:
+          type: string
+          format: email
+        plan_id:
+          type: integer
+      required:
+      - name
+      - slug
+      - type
+    TenantList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tenant'
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+      required:
+      - items
+      - page
+      - limit
+      - total
+    UserList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+      required:
+      - items
+      - page
+      - limit
+      - total
+    AuditLog:
+      type: object
+      properties:
+        id:
+          type: integer
+        tenant_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        actor_user_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        action:
+          type: string
+        entity_type:
+          type: string
+        entity_id:
+          type:
+          - string
+          - 'null'
+        created_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - action
+      - entity_type
+      - created_at
+    AuditList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuditLog'
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+      required:
+      - items
+      - page
+      - limit
+      - total
+    Mentor:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        full_name:
+          type: string
+        expertise:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+      required:
+      - id
+      - full_name
+      - status
+    MentorList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Mentor'
+      required:
+      - items
+    MentorSessionRequest:
+      type: object
+      properties:
+        mentor_id:
+          type: string
+          format: uuid
+        scheduled_at:
+          type: string
+          format: date-time
+        duration_min:
+          type: integer
+          minimum: 15
+          maximum: 180
+        topic:
+          type: string
+          maxLength: 160
+      required:
+      - mentor_id
+      - scheduled_at
+      - duration_min
+    MentorSession:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        mentor_id:
+          type: string
+          format: uuid
+        umkm_profile_id:
+          type: string
+          format: uuid
+        scheduled_at:
+          type: string
+          format: date-time
+        duration_min:
+          type: integer
+        status:
+          type: string
+          enum:
+          - requested
+          - confirmed
+          - completed
+          - cancelled
+          - no_show
+      required:
+      - id
+      - mentor_id
+      - umkm_profile_id
+      - scheduled_at
+      - duration_min
+      - status
+    MentorSessionList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/MentorSession'
+      required:
+      - items
+    SubscriptionRequest:
+      type: object
+      properties:
+        tenant_id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        plan_id:
+          type: integer
+        period_start:
+          type: string
+          format: date
+        period_end:
+          type: string
+          format: date
+        auto_renew:
+          type: boolean
+      required:
+      - plan_id
+      - period_start
+      - period_end
+    Subscription:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        tenant_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        user_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        plan_id:
+          type: integer
+        status:
+          type: string
+          enum:
+          - trialing
+          - active
+          - past_due
+          - cancelled
+          - expired
+        period_start:
+          type: string
+          format: date
+        period_end:
+          type: string
+          format: date
+        price:
+          type: number
+      required:
+      - id
+      - plan_id
+      - status
+      - period_start
+      - period_end
+      - price
+    SubscriptionList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subscription'
+      required:
+      - items
+    Invoice:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        subscription_id:
+          type: string
+          format: uuid
+        number:
+          type: string
+        amount:
+          type: number
+        status:
+          type: string
+          enum:
+          - draft
+          - issued
+          - paid
+          - void
+          - overdue
+        issued_at:
+          type: string
+          format: date
+        due_at:
+          type: string
+          format: date
+      required:
+      - id
+      - subscription_id
+      - number
+      - amount
+      - status
+      - issued_at
+      - due_at
+    InvoiceList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Invoice'
+      required:
+      - items
+    Notification:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          type: string
+        channel:
+          type: string
+          enum:
+          - in_app
+          - email
+          - whatsapp
+        title:
+          type: string
+        body:
+          type: string
+        status:
+          type: string
+          enum:
+          - queued
+          - sent
+          - failed
+          - read
+        created_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - type
+      - channel
+      - title
+      - body
+      - status
+      - created_at
+    NotificationList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Notification'
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+      required:
+      - items
+      - page
+      - limit
+      - total
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - ok
+          - degraded
+        version:
+          type: string
+        dependencies:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - version
