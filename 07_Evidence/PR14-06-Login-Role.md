@@ -46,6 +46,7 @@ Bukti ini hanya mencakup dua hal: aplikasi lokal dengan login, role `umkm`, rout
 | `07_Evidence/PR14-06/app-1440.png` | Halaman `/app`, desktop 1440 | Sesi aktif, email dan peran UMKM tampil, tombol Keluar tersedia |
 | `07_Evidence/PR14-06/login-390.png` | Halaman Masuk, mobile 390 | Layout mobile sendiri, input dan tombol penuh selebar kartu |
 | `07_Evidence/PR14-06/app-390.png` | Halaman `/app`, mobile 390 | Data akun terbaca di 390 tanpa geser horizontal |
+| `07_Evidence/PR14-06/app-mentor-1440.png` | Halaman `/app` setelah login mentor, desktop 1440 | Email dan peran dibaca dari akun itu sendiri, bukan dari satu akun global |
 
 Screenshot diambil dari `npm run start` dengan hasil `npm run build`, bukan dari dev server, supaya penanda dev Next.js tidak ikut tampil.
 
