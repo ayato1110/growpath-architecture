@@ -1,0 +1,55 @@
+:root {
+  --ground: #f3f7f5;
+  --surface: #ffffff;
+  --raised: #f7f8f5;
+  --active: #e7ede7;
+  --border: #dce3db;
+  --rule: #edf0eb;
+  --control: #c7cec7;
+  --text: #16211b;
+  --muted: #58645c;
+  --accent: #087f5b;
+  --accent-soft: #e4f3ec;
+  --positive: #1e7b4f;
+  --negative: #b42318;
+  --warning: #8a5a12;
+  --chart-1: #087f5b;
+  --chart-2: #527a67;
+  --chart-3: #8b6a32;
+  --focus: #087f5b;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+
+  --radius-control: 6px;
+  --radius-sheet: 16px;
+
+  --text-h1: 32px;
+  --leading-h1: 38px;
+  --text-h2: 22px;
+  --leading-h2: 28px;
+  --text-h3: 16px;
+  --leading-h3: 22px;
+  --text-body: 15px;
+  --leading-body: 24px;
+  --text-small: 12px;
+  --leading-small: 18px;
+
+  --font-ui: var(--font-plex-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-id: var(--font-plex-mono), ui-monospace, "Cascadia Mono", monospace;
+}
+
+@media (max-width: 480px) {
+  :root {
+    --text-h1: 26px;
+    --leading-h1: 32px;
+    --text-h2: 20px;
+    --leading-h2: 26px;
+  }
+}
