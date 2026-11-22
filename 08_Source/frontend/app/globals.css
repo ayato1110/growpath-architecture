@@ -117,9 +117,9 @@
     font: inherit;
     font-weight: 600;
     justify-content: center;
-    justify-self: start;
     min-height: 36px;
     padding: 0 var(--space-4);
+    width: 100%;
   }
 
   .button-primary:hover {
@@ -158,10 +158,6 @@
     .button-secondary {
       min-height: 44px;
       width: 100%;
-    }
-
-    .button-primary {
-      justify-self: stretch;
     }
   }
 }

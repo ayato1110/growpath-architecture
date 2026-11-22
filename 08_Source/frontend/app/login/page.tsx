@@ -13,7 +13,7 @@ export default async function LoginPage() {
   if (session) redirect("/app");
 
   return (
-    <main className="flex min-h-dvh items-start justify-center px-5 py-10 sm:items-center sm:px-6">
+    <main className="flex min-h-dvh items-center justify-center px-5 py-10 sm:px-6">
       <div className="sheet w-full max-w-[420px] p-6 sm:p-8">
         <p className="brand">Growpath</p>
         <h1 className="h1 mt-4">Masuk</h1>
