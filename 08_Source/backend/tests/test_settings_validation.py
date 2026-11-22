@@ -1,7 +1,10 @@
 import pytest
+from pydantic import ValidationError
 
 from app.core.config import Settings
 from app.main import validate_settings
+
+TENANT = "11111111-1111-4111-8111-111111111111"
 
 
 def make_settings(**overrides) -> Settings:
@@ -9,28 +12,61 @@ def make_settings(**overrides) -> Settings:
         "app_env": "development",
         "auth_mode": "local",
         "local_auth_secret": "x" * 32,
-        "local_user_email": "umkm@growpath.id",
-        "local_user_password": "rahasia-uji",
-        "local_user_tenant_id": "11111111-1111-4111-8111-111111111111",
-        "local_user_role": "umkm",
+        "local_users": [
+            {
+                "email": "umkm@growpath.id",
+                "password": "rahasia-uji",
+                "role": "umkm",
+                "tenant_id": TENANT,
+                "full_name": "Sari UMKM",
+            }
+        ],
     }
     values.update(overrides)
     return Settings(**values)
 
 
+def test_local_users_tidak_boleh_kosong():
+    with pytest.raises(RuntimeError, match="LOCAL_USERS"):
+        validate_settings(make_settings(local_users=[]))
+
+
+def test_email_ganda_ditolak():
+    user = {
+        "email": "umkm@growpath.id",
+        "password": "rahasia-uji",
+        "role": "umkm",
+        "tenant_id": TENANT,
+        "full_name": "Sari UMKM",
+    }
+
+    with pytest.raises(RuntimeError, match="ganda"):
+        validate_settings(make_settings(local_users=[user, user]))
+
+
+def test_secret_lokal_minimal_32_karakter():
+    with pytest.raises(RuntimeError, match="32 karakter"):
+        validate_settings(make_settings(local_auth_secret="pendek"))
+
+
+def test_role_tidak_dikenal_ditolak_pydantic():
+    with pytest.raises(ValidationError):
+        make_settings(
+            local_users=[
+                {
+                    "email": "raja@growpath.id",
+                    "password": "rahasia-uji",
+                    "role": "raja",
+                    "tenant_id": TENANT,
+                    "full_name": "Raja",
+                }
+            ]
+        )
+
+
 def test_supabase_mode_requires_url_and_anon_key():
     with pytest.raises(RuntimeError, match="SUPABASE_URL"):
         validate_settings(make_settings(auth_mode="supabase"))
-
-
-def test_local_tenant_id_must_be_uuid():
-    with pytest.raises(RuntimeError, match="LOCAL_USER_TENANT_ID"):
-        validate_settings(make_settings(local_user_tenant_id="bukan-uuid"))
-
-
-def test_local_role_must_be_known():
-    with pytest.raises(RuntimeError, match="LOCAL_USER_ROLE"):
-        validate_settings(make_settings(local_user_role="raja"))
 
 
 def test_production_refuses_local_mode():

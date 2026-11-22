@@ -14,7 +14,7 @@ Bukti ini hanya mencakup dua hal: aplikasi lokal dengan login, role `umkm`, rout
 
 | Perintah | Hasil |
 |---|---|
-| `.venv\Scripts\python -m pytest -q` di `08_Source/backend` | 13 passed |
+| `.venv\Scripts\python -m pytest -q` di `08_Source/backend` | 23 passed |
 | `.venv\Scripts\python -m ruff check .` di `08_Source/backend` | All checks passed |
 | `npm run lint` di `08_Source/frontend` | 0 error, 0 warning |
 | `npm run build` di `08_Source/frontend` | Build sukses, rute `/`, `/app`, `/login`, `/api/login`, `/api/logout` |
@@ -22,6 +22,8 @@ Bukti ini hanya mencakup dua hal: aplikasi lokal dengan login, role `umkm`, rout
 | `curl http://127.0.0.1:8000/health` | `{"status":"ok","version":"0.1.0","dependencies":{"auth":"local"}}` |
 | `curl -i http://127.0.0.1:8000/auth/me` tanpa token | 401, `content-type: application/problem+json`, `code: AUTH_TOKEN_MISSING` |
 | `POST /auth/login` dengan akun uji | 200, `token_type: Bearer`, `expires_in: 3600`, `user.role: umkm` |
+| `POST /auth/login` untuk lima akun lokal | 200 semua, `user.role` sesuai akun: `umkm`, `pendamping`, `mentor`, `admin_b2g`, `admin_platform` |
+| `POST /auth/login` dengan kata sandi salah | 401 `AUTH_INVALID_CREDENTIALS` |
 | `GET /auth/me` dengan Bearer token | 200, `email`, `tenant_id`, dan `role` akun uji |
 
 ## Alur yang diuji di browser
@@ -34,6 +36,7 @@ Bukti ini hanya mencakup dua hal: aplikasi lokal dengan login, role `umkm`, rout
 6. Pada lebar 390, `scrollWidth` sama dengan `clientWidth`, jadi tidak ada geser horizontal.
 7. Backend dimatikan, `/app` menampilkan "Sesi tidak dapat diperiksa" tanpa menghapus cookie. Setelah backend menyala, tautan Coba lagi mengembalikan akun.
 8. Konfigurasi yang salah menolak start. `AUTH_MODE=supabase` tanpa `SUPABASE_URL`, tenant bukan UUID, dan peran di luar daftar semuanya gagal dengan pesan yang menyebut variabelnya.
+9. Login `mentor@growpath.id` sampai di `/app` dengan label peran Mentor, dan `/auth/me` mengembalikan role `mentor`. Kelima akun lokal diuji dengan cara yang sama.
 
 ## Screenshot
 

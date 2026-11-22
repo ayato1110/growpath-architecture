@@ -1,12 +1,9 @@
-from uuid import UUID
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.v1.router import api_router
 from app.core.config import Settings, get_settings
 from app.core.errors import register_error_handlers
-from app.schemas.auth import ROLES
 
 API_VERSION = "0.1.0"
 
@@ -35,23 +32,15 @@ def validate_settings(settings: Settings) -> None:
     if settings.app_env.lower() == "production" and mode == "local":
         raise RuntimeError("AUTH_MODE=local tidak boleh dipakai saat APP_ENV=production.")
     if mode == "local":
-        _require(
-            {
-                "LOCAL_AUTH_SECRET": settings.local_auth_secret,
-                "LOCAL_USER_EMAIL": settings.local_user_email,
-                "LOCAL_USER_PASSWORD": settings.local_user_password,
-                "LOCAL_USER_TENANT_ID": settings.local_user_tenant_id,
-            },
-            "AUTH_MODE=local",
-        )
-        try:
-            UUID(settings.local_user_tenant_id)
-        except ValueError as exc:
-            raise RuntimeError("LOCAL_USER_TENANT_ID harus UUID yang valid.") from exc
-        if settings.local_user_role not in ROLES:
+        _require({"LOCAL_AUTH_SECRET": settings.local_auth_secret}, "AUTH_MODE=local")
+        if not settings.local_users:
             raise RuntimeError(
-                "LOCAL_USER_ROLE harus salah satu dari: " + ", ".join(ROLES)
+                "LOCAL_USERS wajib berisi minimal satu akun untuk AUTH_MODE=local."
             )
+        emails = [str(account.email).lower() for account in settings.local_users]
+        duplicates = sorted({email for email in emails if emails.count(email) > 1})
+        if duplicates:
+            raise RuntimeError("LOCAL_USERS memuat email ganda: " + ", ".join(duplicates))
         if len(settings.local_auth_secret) < 32:
             raise RuntimeError("LOCAL_AUTH_SECRET minimal 32 karakter.")
     else:

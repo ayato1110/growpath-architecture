@@ -1,6 +1,18 @@
 from functools import lru_cache
+from uuid import UUID
 
+from pydantic import BaseModel, EmailStr, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+from app.schemas.auth import Role
+
+
+class LocalAccount(BaseModel):
+    email: EmailStr
+    password: str = Field(min_length=1, max_length=128)
+    role: Role
+    tenant_id: UUID
+    full_name: str = Field(min_length=1, max_length=120)
 
 
 class Settings(BaseSettings):
@@ -18,11 +30,7 @@ class Settings(BaseSettings):
 
     local_auth_secret: str = ""
     local_token_ttl_minutes: int = 60
-    local_user_email: str = ""
-    local_user_password: str = ""
-    local_user_name: str = "Pengguna UMKM"
-    local_user_tenant_id: str = ""
-    local_user_role: str = "umkm"
+    local_users: list[LocalAccount] = []
 
     @property
     def cors_origin_list(self) -> list[str]:

@@ -3,7 +3,7 @@ from uuid import NAMESPACE_URL, uuid5
 import httpx
 from fastapi import APIRouter, Depends
 
-from app.core.config import Settings, get_settings
+from app.core.config import LocalAccount, Settings, get_settings
 from app.core.errors import ApiError
 from app.core.security import create_local_token, decode_access_token
 from app.dependencies import get_current_user, user_from_claims
@@ -26,32 +26,38 @@ def me(user: User = Depends(get_current_user)) -> User:
     return user
 
 
-def _local_user(settings: Settings) -> User:
+def _local_user(account: LocalAccount) -> User:
     user_id = uuid5(
         NAMESPACE_URL,
-        f"growpath-local:{settings.local_user_tenant_id}:{settings.local_user_email}",
+        f"growpath-local:{account.tenant_id}:{account.email}",
     )
     return User(
         id=user_id,
-        tenant_id=settings.local_user_tenant_id,
-        email=settings.local_user_email,
-        full_name=settings.local_user_name,
-        role=settings.local_user_role,
+        tenant_id=account.tenant_id,
+        email=account.email,
+        full_name=account.full_name,
+        role=account.role,
         status="active",
     )
 
 
 def _local_login(payload: LoginRequest, settings: Settings) -> AuthResponse:
-    email_match = payload.email.lower() == settings.local_user_email.lower()
-    password_match = payload.password == settings.local_user_password
-    if not (email_match and password_match):
+    account = next(
+        (
+            item
+            for item in settings.local_users
+            if str(item.email).lower() == payload.email.lower()
+        ),
+        None,
+    )
+    if account is None or payload.password != account.password:
         raise ApiError(
             401,
             "AUTH_INVALID_CREDENTIALS",
             "Kredensial tidak valid",
             "Email atau kata sandi salah.",
         )
-    user = _local_user(settings)
+    user = _local_user(account)
     token, expires_in = create_local_token(
         settings,
         {

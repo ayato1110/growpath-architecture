@@ -90,11 +90,7 @@ Buka `http://localhost:3000`. Halaman `/` mengarah ke `/app`, dan `/app` mengara
 | `SUPABASE_JWT_SECRET` | Opsional, cadangan HS256 untuk proyek Supabase lama. |
 | `LOCAL_AUTH_SECRET` | Kunci HS256 token lokal. Ganti dengan nilai acak. |
 | `LOCAL_TOKEN_TTL_MINUTES` | Umur token lokal dalam menit. |
-| `LOCAL_USER_EMAIL` | Email akun uji. |
-| `LOCAL_USER_PASSWORD` | Kata sandi akun uji. |
-| `LOCAL_USER_NAME` | Nama tampilan akun uji. |
-| `LOCAL_USER_TENANT_ID` | UUID tenant akun uji. |
-| `LOCAL_USER_ROLE` | Peran akun uji, bawaan `umkm`. |
+| `LOCAL_USERS` | Daftar akun uji dalam JSON, satu objek per peran. |
 
 ### Variabel lingkungan frontend
 
@@ -107,7 +103,19 @@ Buka `http://localhost:3000`. Halaman `/` mengarah ke `/app`, dan `/app` mengara
 
 ### Mode local untuk pengembangan
 
-Mode ini dipakai bila kredensial Supabase belum tersedia. Isi `AUTH_MODE=local` di kedua `.env`, lalu masuk dengan akun dari `LOCAL_USER_EMAIL` dan `LOCAL_USER_PASSWORD`. Ganti kredensial dengan mengubah kedua variabel itu di `backend/.env` lalu menyalakan ulang backend. Token yang diterbitkan hanya HS256 lokal, bertanda `iss=growpath-local`, dan backend menolak membuatnya saat `APP_ENV=production`.
+Mode ini dipakai bila kredensial Supabase belum tersedia. Isi `AUTH_MODE=local` di kedua `.env`, lalu masuk dengan salah satu akun dari `LOCAL_USERS`. Setiap akun punya email, kata sandi, peran, tenant, dan nama sendiri. Backend menolak start bila `LOCAL_USERS` kosong, ada email ganda di dalamnya, atau `LOCAL_AUTH_SECRET` kurang dari 32 karakter. Token yang diterbitkan hanya HS256 lokal, bertanda `iss=growpath-local`, dan backend menolak membuatnya saat `APP_ENV=production`.
+
+Akun bawaan di `.env.example`, semuanya dengan kata sandi `change-me-password`:
+
+| Email | Peran |
+|---|---|
+| `umkm@growpath.id` | `umkm` |
+| `pendamping@growpath.id` | `pendamping` |
+| `mentor@growpath.id` | `mentor` |
+| `admin.b2g@growpath.id` | `admin_b2g` |
+| `admin.platform@growpath.id` | `admin_platform` |
+
+Untuk mengganti atau menambah akun, sunting array JSON di `LOCAL_USERS` lalu restart backend. Semua akun memakai tenant yang sama selama pengujian. Peran yang berbeda belum mengubah isi layar, karena fitur per peran baru ada bersama asesmen dan konsultasi.
 
 ### Mode Supabase Auth
 
@@ -156,7 +164,8 @@ Tes frontend otomatis (Vitest dan Playwright sesuai TRD) belum ada di PR ini. Al
 
 | Gejala | Penyebab dan perbaikan |
 |---|---|
-| `Variabel wajib untuk AUTH_MODE=local belum diisi` | `backend/.env` belum dibuat atau masih kosong. Salin dari `.env.example`. |
+| `LOCAL_USERS wajib berisi minimal satu akun` | `backend/.env` belum dibuat atau `LOCAL_USERS` kosong. Salin dari `.env.example`. |
+| `LOCAL_USERS memuat email ganda` | Ada email yang sama dua kali di array JSON. Hapus salah satunya. |
 | UI menampilkan `Tidak dapat menghubungi server` | Backend belum jalan atau `BACKEND_URL` salah. Cek `http://127.0.0.1:8000/health`. |
 | `/app` selalu kembali ke `/login` | Cookie sesi tidak ada atau token kedaluwarsa. Masuk ulang. Periksa juga `LOCAL_AUTH_SECRET` yang berubah. |
 | Browser menolak permintaan dengan pesan CORS | Frontend harus dibuka dari `http://localhost:3000` atau `http://127.0.0.1:3000`, sesuai `CORS_ORIGINS`. |
