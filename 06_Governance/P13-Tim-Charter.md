@@ -95,4 +95,3 @@ CEO tidak boleh mengeluarkan anggota. Konflik yang dicatat dan diselesaikan just
 | Bagas Adinata | Programmer | | |
 | Moch Haikal Ramadhan | Network / DevOps | | |
 
-Status: belum ditandatangani. Ini syarat Gate 1 yang harus diselesaikan sebelum P14.
