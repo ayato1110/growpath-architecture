@@ -1,6 +1,11 @@
 # DATA DICTIONARY GROWPATH
 
-Dokumen ini memuat definisi entitas, atribut, kunci, constraint, dan catatan normalisasi untuk model data Growpath. Jumlah entitas 21: 14 entitas wajib dan 7 entitas pendukung. Tipe data mengikuti PostgreSQL 15+ dengan `uuid`, `citext`, `jsonb`, `timestamptz`, dan `vector(768)` dari pgvector.
+- **Fase:** P13 · Pembekuan Arsitektur & Desain Sistem (Pembaruan 24 Entitas)
+- **Disusun oleh:** Wisnu Nugroho (F1E124032) — Database Architect
+- **Direview oleh:** Bagas Adinata (Programmer), Ripa Bagaskara (CEO / AI Engineer)
+- **Tanggal:** 22 November 2026
+
+Dokumen ini memuat definisi entitas, atribut, kunci, constraint, dan catatan normalisasi untuk model data Growpath. Jumlah entitas 24: 14 entitas inti Progress 12, 7 entitas pendukung Progress 12, dan 3 entitas AI (P13–P14 Kelompok 6: `AIConsultation`, `AIResponseLog`, `AIUsageQuota`). Tipe data mengikuti PostgreSQL 15+ dengan `uuid`, `citext`, `jsonb`, `timestamptz`, dan `vector(768)` dari pgvector.
 
 ## Ringkasan entitas
 
@@ -27,6 +32,9 @@ Dokumen ini memuat definisi entitas, atribut, kunci, constraint, dan catatan nor
 | Report | Laporan agregat B2G untuk periode tertentu. | id | tenant_id -> Tenant.id; generated_by -> User.id | 5 tahun. |
 | Notification | Notifikasi email atau in-app untuk pengguna. | id | tenant_id -> Tenant.id; user_id -> User.id | 12 bulan. |
 | AuditLog | Catatan peristiwa keamanan dan perubahan data yang append-only. | id | tenant_id -> Tenant.id; actor_user_id -> User.id | 24 bulan. |
+| AIConsultation | Sesi konsultasi AI berbasis konteks profil usaha dan asesmen UMKM. | id | tenant_id -> Tenant.id; umkm_profile_id -> UMKMProfile.id; user_id -> User.id; assessment_id -> Assessment.id | 5 tahun. |
+| AIResponseLog | Log append-only tanya-jawab AI beserta penafian wajib, sitasi, status guardrail, dan rating UAT. | id | tenant_id -> Tenant.id; consultation_id -> AIConsultation.id; user_id -> User.id | 24 bulan. |
+| AIUsageQuota | Pelacakan batas kuota konsultasi dan token AI per pengguna per periode. | id | tenant_id -> Tenant.id; user_id -> User.id | 24 bulan. |
 
 ## Relasi dan kardinalitas
 
@@ -61,6 +69,14 @@ Dokumen ini memuat definisi entitas, atribut, kunci, constraint, dan catatan nor
 | User | Notification | 1..* | menerima | Notification.user_id |
 | Tenant | AuditLog | 1..* | mencatat | AuditLog.tenant_id |
 | User | AuditLog | 1..* | menjadi aktor | AuditLog.actor_user_id |
+| Tenant | AIConsultation | 1..* | menaungi sesi AI | AIConsultation.tenant_id |
+| UMKMProfile | AIConsultation | 1..* | berkonsultasi | AIConsultation.umkm_profile_id |
+| User | AIConsultation | 1..* | memulai sesi | AIConsultation.user_id |
+| Assessment | AIConsultation | 1..0..* | menjadi konteks | AIConsultation.assessment_id |
+| AIConsultation | AIResponseLog | 1..* | merekam jawaban | AIResponseLog.consultation_id |
+| User | AIResponseLog | 1..* | mengirim prompt | AIResponseLog.user_id |
+| Tenant | AIUsageQuota | 1..* | membatasi kuota | AIUsageQuota.tenant_id |
+| User | AIUsageQuota | 1..* | memiliki kuota | AIUsageQuota.user_id |
 
 ## Atribut per entitas
 
@@ -481,13 +497,80 @@ Catatan peristiwa keamanan dan perubahan data yang append-only.
 
 **PK:** id. **FK:** tenant_id -> Tenant.id; actor_user_id -> User.id. **Constraint:** append-only; tidak ada grant update atau delete.. **Normalisasi:** Partisi bulanan saat skala besar; entity_id polimorfik tanpa FK..
 
+
+### AIConsultation
+
+Sesi konsultasi AI berbasis data usaha dan konteks asesmen UMKM (Fitur Must #2).
+
+| Atribut | Tipe | Kunci | Null | Constraint |
+|---|---|---|---|---|
+| id | uuid | PK | NOT NULL | default gen_random_uuid() |
+| tenant_id | uuid | FK | NOT NULL | Tenant.id |
+| umkm_profile_id | uuid | FK | NOT NULL | UMKMProfile.id |
+| user_id | uuid | FK | NOT NULL | User.id |
+| assessment_id | uuid | FK | NULL | Assessment.id |
+| topic | varchar(160) | - | NOT NULL | - |
+| category | enum | - | NOT NULL | operasional, pemasaran, keuangan, legalitas, strategi, lainnya |
+| status | enum | - | NOT NULL | active, closed, escalated, archived |
+| created_at | timestamptz | - | NOT NULL | default now() |
+| updated_at | timestamptz | - | NOT NULL | default now() |
+
+**PK:** id. **FK:** tenant_id -> Tenant.id; umkm_profile_id -> UMKMProfile.id; user_id -> User.id; assessment_id -> Assessment.id. **Constraint:** category dan status dibatasi enum. **Normalisasi:** Memisahkan metadata sesi konsultasi dari riwayat giliran percakapan di `AIResponseLog` (3NF).
+
+### AIResponseLog
+
+Catatan append-only setiap prompt pengguna dan jawaban AI, lengkap dengan penafian wajib, sitasi RAG, status guardrail, dan rating UAT (Fitur Must #4).
+
+| Atribut | Tipe | Kunci | Null | Constraint |
+|---|---|---|---|---|
+| id | bigint | PK | NOT NULL | GENERATED ALWAYS AS IDENTITY |
+| tenant_id | uuid | FK | NOT NULL | Tenant.id |
+| consultation_id | uuid | FK | NOT NULL | AIConsultation.id |
+| user_id | uuid | FK | NOT NULL | User.id |
+| user_prompt | text | - | NOT NULL | - |
+| ai_response | text | - | NOT NULL | - |
+| disclaimer_text | text | - | NOT NULL | - |
+| disclaimer_shown | boolean | - | NOT NULL | default true; CHECK (disclaimer_shown = true) |
+| citations | jsonb | - | NOT NULL | default '[]' |
+| guardrail_status | enum | - | NOT NULL | passed, flagged, blocked, escalated_to_mentor |
+| guardrail_reason | varchar(200) | - | NULL | - |
+| model_name | varchar(80) | - | NOT NULL | - |
+| prompt_version | varchar(32) | - | NOT NULL | - |
+| tokens_input | integer | - | NOT NULL | >= 0, default 0 |
+| tokens_output | integer | - | NOT NULL | >= 0, default 0 |
+| latency_ms | integer | - | NULL | >= 0 |
+| user_rating | smallint | - | NULL | 1-5 (mendukung evaluasi UAT P15) |
+| created_at | timestamptz | - | NOT NULL | default now() |
+
+**PK:** id. **FK:** tenant_id -> Tenant.id; consultation_id -> AIConsultation.id; user_id -> User.id. **Constraint:** append-only; `disclaimer_shown = true`; `user_rating` 1-5. **Normalisasi:** Tidak ada `updated_at`; daftar sitasi dokumen resmi disimpan di JSONB `citations`.
+
+### AIUsageQuota
+
+Kontrol kuota konsultasi dan pemakaian token AI per pengguna per periode untuk pengendalian biaya Gemini API.
+
+| Atribut | Tipe | Kunci | Null | Constraint |
+|---|---|---|---|---|
+| id | uuid | PK | NOT NULL | default gen_random_uuid() |
+| tenant_id | uuid | FK | NOT NULL | Tenant.id |
+| user_id | uuid | FK | NOT NULL | User.id |
+| period_start | date | - | NOT NULL | - |
+| period_end | date | - | NOT NULL | period_start <= period_end |
+| quota_limit | integer | - | NOT NULL | > 0 |
+| used_count | integer | - | NOT NULL | 0 <= used_count <= quota_limit |
+| token_limit | integer | - | NULL | > 0 |
+| tokens_used | integer | - | NOT NULL | >= 0 |
+| created_at | timestamptz | - | NOT NULL | default now() |
+| updated_at | timestamptz | - | NOT NULL | default now() |
+
+**PK:** id. **FK:** tenant_id -> Tenant.id; user_id -> User.id. **Constraint:** unik (user_id, period_start, period_end); `used_count <= quota_limit`; `period_start <= period_end`. **Normalisasi:** Memisahkan histori kuota per periode dari tabel `User` agar sesuai 3NF.
+
 ## Catatan normalisasi umum
 
 1. Tabel transaksional mengikuti 3NF. Tabel referensi Dimension, Criterion, Segment, dan Plan memisahkan nilai berulang.
 2. Kolom turunan yang disimpan adalah `Assessment.total_score`, `Assessment.segment_id`, `DimensionScore.weighted_score`, `UMKMProfile.completeness_pct`, dan `Milestone.status`. Nilai ini dihitung ulang oleh layanan terkait dan tidak diedit manual.
 3. `tenant_id` diulang pada tabel yang terikat tenant untuk row-level security dan query agregat. Konsistensi dijaga oleh trigger atau layanan aplikasi.
 4. JSONB hanya dipakai untuk payload yang bentuknya berubah: `Criterion.scoring_rule`, `Milestone.action_items`, `Report.parameters`, `AuditLog.before_data`, `AuditLog.after_data`, dan `AssessmentAnswer.raw_value`.
-5. `ProgressLog` dan `AuditLog` append-only. `ProgressLog` tidak memiliki `updated_at`. `AuditLog` tidak memiliki grant update atau delete.
+5. `ProgressLog`, `AIResponseLog`, dan `AuditLog` append-only. `AIResponseLog` mewajibkan `disclaimer_shown = true`. `ProgressLog` tidak memiliki `updated_at`. `AuditLog` tidak memiliki grant update atau delete.
 6. `Subscription` memakai owner polimorfik dengan check constraint tepat satu dari `tenant_id` atau `user_id`.
 7. `KnowledgeDocument.tenant_id` NULL berarti dokumen global. RLS mengizinkan dokumen global dan dokumen milik tenant.
 
