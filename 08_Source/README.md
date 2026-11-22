@@ -21,7 +21,7 @@ Bagian ini mencakup PR14-06 dan PR14-07: kerangka aplikasi lokal, login, dan rol
 
 ### Prasyarat
 
-- Node.js 20 atau lebih baru dan npm. Diuji pada Node 24.14.1 dan npm 11.11.0.
+- Node.js 20.9 atau lebih baru dan npm. Diuji pada Node 24.14.1 dan npm 11.11.0.
 - Python 3.12 dan pip. Diuji pada Python 3.12.5.
 - Git dan akses ke repositori ini.
 
@@ -114,7 +114,7 @@ Mode ini dipakai bila kredensial Supabase belum tersedia. Isi `AUTH_MODE=local` 
 1. Isi `NEXT_PUBLIC_SUPABASE_URL` dan `NEXT_PUBLIC_SUPABASE_ANON_KEY` di `frontend/.env.local`.
 2. Isi `SUPABASE_URL` dan `SUPABASE_ANON_KEY` di `backend/.env`.
 3. Set `AUTH_MODE=supabase` di kedua file.
-4. Buat pengguna di Supabase Auth, lalu isi `app_metadata` pengguna dengan `tenant_id` (UUID) dan `role` (misalnya `umkm`).
+4. Buat pengguna di Supabase Auth, lalu isi `app_metadata` pengguna dengan `tenant_id` (UUID) dan `app_role` (misalnya `umkm`). Jangan memakai kunci `role`, karena Supabase memakainya untuk peran Postgres (`authenticated`).
 5. Backend memverifikasi token lewat JWKS `{SUPABASE_URL}/auth/v1/.well-known/jwks.json`. Bila proyek memakai HS256 lama, isi `SUPABASE_JWT_SECRET`.
 
 Jalur Supabase sudah ditulis tetapi belum diuji di mesin ini karena tidak ada kredensial. Yang terbukti berjalan adalah mode local, dan bukti di `07_Evidence/PR14-06/` berasal dari mode local.
@@ -176,4 +176,6 @@ Tes frontend otomatis (Vitest dan Playwright sesuai TRD) belum ada di PR ini. Al
 ### Batas scope
 
 PR ini hanya PR14-06 dan PR14-07: aplikasi lokal dengan login, role `umkm`, route `/app` terlindungi, dan README ini. Belum ada dashboard, data usaha, asesmen, skor, konsultasi, AI, atau log. Belum ada UAT dan belum ada pengukuran SUS.
+
+Backend menyediakan dependency `require_role` untuk endpoint yang membatasi peran. Pada PR ini endpoint yang ada, `/auth/me`, memang terbuka untuk semua peran yang sah, jadi pembatasan peran baru terpakai saat endpoint asesmen dan konsultasi datang.
 

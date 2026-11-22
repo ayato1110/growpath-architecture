@@ -6,6 +6,14 @@ from pydantic import BaseModel, EmailStr, Field
 
 Role = Literal["umkm", "pendamping", "mentor", "admin_b2g", "admin_platform"]
 
+ROLES: tuple[Role, ...] = (
+    "umkm",
+    "pendamping",
+    "mentor",
+    "admin_b2g",
+    "admin_platform",
+)
+
 
 class LoginRequest(BaseModel):
     email: EmailStr

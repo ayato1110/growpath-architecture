@@ -6,19 +6,24 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from app.core.config import Settings, get_settings
 from app.core.errors import ApiError
 from app.core.security import decode_access_token
-from app.schemas.auth import Role, User
+from app.schemas.auth import ROLES, Role, User
 
 bearer_scheme = HTTPBearer(auto_error=False)
 
 
 def user_from_claims(claims: dict) -> User:
+    metadata = claims.get("app_metadata") or {}
+    claim_role = claims.get("role")
+    role = claim_role if claim_role in ROLES else metadata.get("app_role")
+    tenant_id = claims.get("tenant_id") or metadata.get("tenant_id")
+    email = claims.get("email")
     try:
         return User(
             id=UUID(str(claims["sub"])),
-            tenant_id=UUID(str(claims["tenant_id"])),
-            email=claims["email"],
-            full_name=claims.get("full_name") or claims["email"],
-            role=claims["role"],
+            tenant_id=UUID(str(tenant_id)),
+            email=email,
+            full_name=claims.get("full_name") or metadata.get("full_name") or email,
+            role=role,
             status=claims.get("status", "active"),
         )
     except (KeyError, ValueError, TypeError) as exc:

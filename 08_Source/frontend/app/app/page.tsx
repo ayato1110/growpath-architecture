@@ -1,4 +1,6 @@
-import { requireUser } from "@/lib/auth";
+import { redirect } from "next/navigation";
+
+import { getSession } from "@/lib/auth";
 import type { Role } from "@/types/api";
 
 export const dynamic = "force-dynamic";
@@ -12,7 +14,29 @@ const ROLE_LABELS: Record<Role, string> = {
 };
 
 export default async function AppPage() {
-  const user = await requireUser();
+  const session = await getSession();
+
+  if (session.status === "unauthenticated") redirect("/login");
+
+  if (session.status === "unavailable") {
+    return (
+      <main className="flex min-h-dvh items-start justify-center px-5 py-8 sm:items-center sm:px-6 sm:py-12">
+        <div className="sheet w-full max-w-[720px] p-6 sm:p-8">
+          <p className="eyebrow">Sesi</p>
+          <h1 className="h1 mt-2">Sesi tidak dapat diperiksa</h1>
+          <p className="muted mt-2">
+            Server tidak merespons. Sesi Anda tidak dihapus. Coba lagi setelah
+            backend berjalan.
+          </p>
+          <a className="button-secondary mt-6" href="/app">
+            Coba lagi
+          </a>
+        </div>
+      </main>
+    );
+  }
+
+  const user = session.user;
 
   return (
     <main className="flex min-h-dvh items-start justify-center px-5 py-8 sm:items-center sm:px-6 sm:py-12">

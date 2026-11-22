@@ -14,10 +14,11 @@ Bukti ini hanya mencakup dua hal: aplikasi lokal dengan login, role `umkm`, rout
 
 | Perintah | Hasil |
 |---|---|
-| `.venv\Scripts\python -m pytest -q` di `08_Source/backend` | 7 passed |
+| `.venv\Scripts\python -m pytest -q` di `08_Source/backend` | 13 passed |
 | `.venv\Scripts\python -m ruff check .` di `08_Source/backend` | All checks passed |
 | `npm run lint` di `08_Source/frontend` | 0 error, 0 warning |
 | `npm run build` di `08_Source/frontend` | Build sukses, rute `/`, `/app`, `/login`, `/api/login`, `/api/logout` |
+| `curl -I http://localhost:3000/app` | CSP, `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, dan `Referrer-Policy` ada, `X-Powered-By` tidak ada |
 | `curl http://127.0.0.1:8000/health` | `{"status":"ok","version":"0.1.0","dependencies":{"auth":"local"}}` |
 | `curl -i http://127.0.0.1:8000/auth/me` tanpa token | 401, `content-type: application/problem+json`, `code: AUTH_TOKEN_MISSING` |
 | `POST /auth/login` dengan akun uji | 200, `token_type: Bearer`, `expires_in: 3600`, `user.role: umkm` |
@@ -31,6 +32,8 @@ Bukti ini hanya mencakup dua hal: aplikasi lokal dengan login, role `umkm`, rout
 4. Buka `/app` lagi. Dialihkan ke `/login`, jadi route benar-benar terlindungi.
 5. `document.cookie` kosong setelah login, karena token disimpan di cookie `httpOnly`.
 6. Pada lebar 390, `scrollWidth` sama dengan `clientWidth`, jadi tidak ada geser horizontal.
+7. Backend dimatikan, `/app` menampilkan "Sesi tidak dapat diperiksa" tanpa menghapus cookie. Setelah backend menyala, tautan Coba lagi mengembalikan akun.
+8. Konfigurasi yang salah menolak start. `AUTH_MODE=supabase` tanpa `SUPABASE_URL`, tenant bukan UUID, dan peran di luar daftar semuanya gagal dengan pesan yang menyebut variabelnya.
 
 ## Screenshot
 

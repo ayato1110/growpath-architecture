@@ -39,7 +39,7 @@ def decode_access_token(token: str, settings: Settings) -> dict[str, Any]:
                 settings.local_auth_secret,
                 algorithms=["HS256"],
                 issuer=LOCAL_ISSUER,
-                options={"verify_aud": False},
+                options={"verify_aud": False, "require": ["exp", "iat", "sub"]},
             )
         return _decode_supabase_token(token, settings)
     except jwt.PyJWTError as exc:
@@ -61,7 +61,7 @@ def _decode_supabase_token(token: str, settings: Settings) -> dict[str, Any]:
             token,
             signing_key.key,
             algorithms=["RS256", "ES256"],
-            options={"verify_aud": False},
+            options={"verify_aud": False, "require": ["exp", "iat", "sub"]},
         )
     except jwt.PyJWTError:
         if settings.supabase_jwt_secret:
@@ -69,6 +69,6 @@ def _decode_supabase_token(token: str, settings: Settings) -> dict[str, Any]:
                 token,
                 settings.supabase_jwt_secret,
                 algorithms=["HS256"],
-                options={"verify_aud": False},
+                options={"verify_aud": False, "require": ["exp", "iat", "sub"]},
             )
         raise
