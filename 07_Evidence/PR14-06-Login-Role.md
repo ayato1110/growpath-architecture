@@ -4,7 +4,7 @@
 **Pemilik:** Bagas
 **Disusun oleh:** Sesi implementasi P14, 23 November 2026
 **Status:** Ada, menunggu review
-**Pull request:** belum ada saat file ini ditulis
+**Pull request:** https://github.com/ayato1110/growpath-architecture/pull/14
 
 ## Lingkup
 
