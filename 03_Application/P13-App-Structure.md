@@ -194,14 +194,16 @@ SUPABASE_URL
 SUPABASE_JWT_SECRET
 SUPABASE_SERVICE_ROLE_KEY
 DATABASE_URL
-GEMINI_API_KEY
+DEEPSEEK_API_KEY
+DEEPSEEK_BASE_URL
+DEEPSEEK_MODEL
 SENTRY_DSN
 ```
 
 - Hanya nama variabel yang masuk `.env.example`.
 - `.env` tidak pernah di-commit.
-- Rahasia disimpan di Railway dan Supabase.
-- `SUPABASE_SERVICE_ROLE_KEY` dan `GEMINI_API_KEY` hanya di backend.
+- Rahasia disimpan di Render dan Supabase.
+- `SUPABASE_SERVICE_ROLE_KEY` dan `DEEPSEEK_API_KEY` hanya di backend.
 
 ## 8. Penamaan
 
