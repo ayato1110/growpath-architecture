@@ -1,0 +1,102 @@
+<mxfile host="localhost">
+  <diagram id="kcbyf895-2q08" name="Page-1">
+    <mxGraphModel dx="769" dy="703" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="browser" parent="1" style="rounded=1;fillColor=#f7f8f5;strokeColor=#58645c;whiteSpace=wrap;html=1;" value="«Node»&lt;br&gt;&lt;b&gt;Browser UMKM&lt;/b&gt;" vertex="1">
+          <mxGeometry height="50" width="130" x="320" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="next" parent="1" style="rounded=1;fillColor=#e4f3ec;strokeColor=#087f5b;whiteSpace=wrap;html=1;" value="«Application Component»&lt;br&gt;&lt;b&gt;Next.js Web App&lt;/b&gt;" vertex="1">
+          <mxGeometry height="55" width="130" x="320" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="api" parent="1" style="rounded=1;fillColor=#e4f3ec;strokeColor=#087f5b;whiteSpace=wrap;html=1;" value="«Application Component»&lt;br&gt;&lt;b&gt;FastAPI Backend&lt;/b&gt;" vertex="1">
+          <mxGeometry height="55" width="130" x="320" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="context" parent="1" style="rounded=1;fillColor=#e4f3ec;strokeColor=#087f5b;whiteSpace=wrap;html=1;" value="«Application Component»&lt;br&gt;&lt;b&gt;Context Builder&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="150" x="110" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="consult" parent="1" style="rounded=1;fillColor=#e4f3ec;strokeColor=#087f5b;whiteSpace=wrap;html=1;" value="«Application Component»&lt;br&gt;&lt;b&gt;Consultation Service&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="150" x="300" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="prompt" parent="1" style="rounded=1;fillColor=#e4f3ec;strokeColor=#087f5b;whiteSpace=wrap;html=1;" value="«Application Component»&lt;br&gt;&lt;b&gt;Prompt Registry&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="150" x="535" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="retrieval" parent="1" style="rounded=1;fillColor=#e4f3ec;strokeColor=#087f5b;whiteSpace=wrap;html=1;" value="«Application Component»&lt;br&gt;&lt;b&gt;Retrieval Service&lt;/b&gt;&lt;br&gt;RAG ringan" vertex="1">
+          <mxGeometry height="60" width="140" x="30" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="scoring" parent="1" style="rounded=1;fillColor=#e4f3ec;strokeColor=#087f5b;whiteSpace=wrap;html=1;" value="«Application Component»&lt;br&gt;&lt;b&gt;Scoring Service&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="130" x="190" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="gemini" parent="1" style="rounded=1;fillColor=#ffffff;strokeColor=#58645c;dashed=1;whiteSpace=wrap;html=1;" value="«Technology Service»&lt;br&gt;&lt;b&gt;Gemini API&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="140" x="340" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="guard" parent="1" style="rounded=1;fillColor=#e4f3ec;strokeColor=#087f5b;whiteSpace=wrap;html=1;" value="«Application Component»&lt;br&gt;&lt;b&gt;Guardrail Service&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="150" x="555" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="db" parent="1" style="rounded=1;fillColor=#f7f8f5;strokeColor=#58645c;whiteSpace=wrap;html=1;" value="«Technology Service»&lt;br&gt;&lt;b&gt;Supabase PostgreSQL&lt;/b&gt;&lt;br&gt;pgvector, Auth, Storage" vertex="1">
+          <mxGeometry height="70" width="200" x="60" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="obj" parent="1" style="shape=note;fillColor=#ffffff;strokeColor=#58645c;size=12;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="«Data Object»&lt;br&gt;&lt;b&gt;Consultation&lt;br&gt;AIAnswerLog&lt;br&gt;KnowledgeDocument&lt;br&gt;KnowledgeChunk&lt;/b&gt;" vertex="1">
+          <mxGeometry height="70" width="260" x="330" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="browser" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#58645c;fontSize=10;html=1;" target="next">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="next" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#58645c;fontSize=10;html=1;" target="api" value="REST + JWT">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="api" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;strokeColor=#58645c;fontSize=10;html=1;entryX=0.56667;entryY=0;entryDx=0;entryDy=0;" target="consult" value="kirim pertanyaan">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="consult" style="edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.5;entryX=1;entryY=0.5;strokeColor=#58645c;fontSize=10;html=1;" target="context" value="konteks">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="context" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#58645c;fontSize=10;html=1;" target="scoring" value="skor dan segmen">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="context" style="edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=1;entryX=0.5;entryY=0;strokeColor=#58645c;fontSize=10;html=1;" target="retrieval" value="potongan dokumen">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="consult" style="edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#58645c;fontSize=10;html=1;" target="prompt" value="template prompt">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="consult" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#58645c;fontSize=10;html=1;" target="gemini" value="prompt + konteks">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="gemini" style="edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#58645c;fontSize=10;html=1;" target="guard" value="jawaban">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="guard" style="strokeColor=#58645c;fontSize=10;html=1;labelBackgroundColor=default;edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.16667;exitDx=0;exitDy=0;entryX=1;entryY=0.83333;entryDx=0;entryDy=0;" target="consult" value="lolos atau ditolak">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="510" y="390" />
+              <mxPoint x="510" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="consult" style="edgeStyle=orthogonalEdgeStyle;exitX=0.2;exitY=1;entryX=0.6;entryY=0;strokeColor=#58645c;fontSize=10;html=1;" target="db" value="simpan log">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="330" y="365" />
+              <mxPoint x="180" y="365" />
+              <mxPoint x="180" y="480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="retrieval" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.2;entryY=0;strokeColor=#58645c;fontSize=10;html=1;" target="db" value="embedding">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" edge="1" parent="1" source="scoring" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.8;entryY=0;strokeColor=#58645c;fontSize=10;html=1;" target="db" value="skor">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" edge="1" parent="1" source="db" style="edgeStyle=orthogonalEdgeStyle;startArrow=none;endArrow=none;dashed=1;strokeColor=#58645c;exitX=1;exitY=0.5;entryX=0;entryY=0.5;html=1;" target="obj">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" style="text;align=left;verticalAlign=top;fontSize=10;fontColor=#58645c;whiteSpace=wrap;html=1;" value="ArchiMate 3.2 ringkas. «Application Component», «Technology Service», «Data Object». Garis putus-putus menandai objek data yang disimpan di PostgreSQL." vertex="1">
+          <mxGeometry height="30" width="740" x="30" y="565" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

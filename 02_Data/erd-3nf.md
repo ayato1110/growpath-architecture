@@ -150,6 +150,6 @@ Kolom turunan tidak diedit manual. Nilainya dihitung ulang oleh layanan terkait.
 
 ## 7. Aturan perubahan
 
-- Perubahan entitas harus memperbarui `kamus-data-p13.md`, `sql/ddl.sql`, dan traceability.
+- Perubahan entitas harus memperbarui `kamus-data-p13.md`, `../08_Source/db/migrations/001_init.sql`, dan traceability.
 - Jangan menambah entitas baru tanpa Change Request dan alasan yang bisa diuji.
 - Jangan memindahkan data turunan menjadi sumber kebenaran.

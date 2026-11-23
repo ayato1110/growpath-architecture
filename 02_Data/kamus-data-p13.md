@@ -12,7 +12,7 @@ Kamus data 21 entitas di `../../ARCHITECTURE_REPOSITORY/02_Data/Data Dictionary 
 1. Menambah dua entitas baru, `Consultation` dan `AIAnswerLog`.
 2. Mencatat perubahan kolom pada entitas lama.
 3. Menetapkan enum dan aturan null.
-4. Menjadi rujukan `sql/ddl.sql`.
+4. Menjadi rujukan `../08_Source/db/migrations/001_init.sql`.
 
 Jika ada perbedaan antara dokumen ini dan kamus lama, dokumen ini yang dipakai untuk P13 dan P14. Kamus lama diperbarui di session repo terpisah.
 
@@ -215,4 +215,4 @@ Data pribadi yang tidak diperlukan tidak masuk log AI. Nomor WhatsApp dan alamat
 | Notification | notification |
 | AuditLog | audit_log |
 
-DDL: `sql/ddl.sql`. Seed: `sql/seed.sql`, penjelasan di `seed-data.md`.
+DDL: `../08_Source/db/migrations/001_init.sql`. Seed: `../08_Source/db/seed/seed.sql`, penjelasan di `seed-data.md`.

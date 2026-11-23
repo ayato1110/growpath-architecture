@@ -9,7 +9,7 @@
 
 Seed adalah data uji, bukan data mitra, bukan data pengguna nyata, dan bukan bukti UAT. Semua nama orang dan usaha bersifat sintetis. Email memakai domain `.invalid` yang tidak dapat dikirimi surat.
 
-File: `sql/seed.sql`.
+File: `../08_Source/db/seed/seed.sql`.
 
 ## 2. Jumlah baris
 
@@ -66,8 +66,8 @@ Jawaban asesmen uji mengikuti profil yang sama dengan dataset desain: skor renda
 ## 4. Cara menjalankan
 
 ```bash
-psql "$DATABASE_URL" -f sql/ddl.sql
-psql "$DATABASE_URL" -f sql/seed.sql
+psql "$DATABASE_URL" -f ../08_Source/db/migrations/001_init.sql
+psql "$DATABASE_URL" -f ../08_Source/db/seed/seed.sql
 ```
 
 Prasyarat:
@@ -124,7 +124,7 @@ Hasil yang diharapkan:
 
 ## 7. Hubungan ke DDL
 
-- DDL: `sql/ddl.sql`.
+- DDL: `../08_Source/db/migrations/001_init.sql`.
 - Kamus data: `kamus-data-p13.md`.
-- Aturan skor: `../../P13-31-KRITERIA.md`.
+- Aturan skor: `P13-31-Kriteria.md`.
 - Seed tidak mengubah aturan skor. Seed hanya menyediakan input.

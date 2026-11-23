@@ -101,14 +101,13 @@ do_restore() {
 
     echo "[INFO] Memverifikasi jumlah tabel dan baris inti hasil restore..."
     psql "$RESTORE_DATABASE_URL" -c "
-        SELECT 'tenants' AS tabel, count(*) AS baris FROM tenants
-        UNION ALL SELECT 'users', count(*) FROM users
-        UNION ALL SELECT 'umkm_profiles', count(*) FROM umkm_profiles
-        UNION ALL SELECT 'criteria', count(*) FROM criteria
-        UNION ALL SELECT 'assessments', count(*) FROM assessments
-        UNION ALL SELECT 'ai_consultations', count(*) FROM ai_consultations
-        UNION ALL SELECT 'ai_response_logs', count(*) FROM ai_response_logs
-        UNION ALL SELECT 'ai_usage_quotas', count(*) FROM ai_usage_quotas
+        SELECT 'tenant' AS tabel, count(*) AS baris FROM tenant
+        UNION ALL SELECT 'user', count(*) FROM "user"
+        UNION ALL SELECT 'umkm_profile', count(*) FROM umkm_profile
+        UNION ALL SELECT 'criterion', count(*) FROM criterion
+        UNION ALL SELECT 'assessment', count(*) FROM assessment
+        UNION ALL SELECT 'consultation', count(*) FROM consultation
+        UNION ALL SELECT 'ai_answer_log', count(*) FROM ai_answer_log
         ORDER BY tabel;
     "
 
