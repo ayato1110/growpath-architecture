@@ -9,6 +9,7 @@
 | SUS | Belum | Dijadwalkan P15 |
 | Foto dan rekaman | Belum | Dikumpulkan P15 |
 | Login dan role lokal (PR14-06, PR14-07) | Ada, sudah merge | `07_Evidence/PR14-06/` dan `07_Evidence/PR14-06-Login-Role.md` |
+| Kontribusi P13 Bagas | Ada, sudah merge | PR #26, `07_Evidence/P13-BAGAS/`, `08_Source/backend/tests/test_roles_matrix.py` |
 | Use case dan BPMN P13 | Ada, sudah merge | PR #9, `01_Business/` |
 | Governance, BMC, dan AI P13 | Ada, sudah merge | PR #11, `00_Vision/`, `01_Business/P13-Business-Model-Canvas.md`, `03_Application/ai/` |
 | Tim Charter bertanda tangan | Selesai, 23 November 2026 | `06_Governance/P13-Tim-Charter-Signed.pdf` |

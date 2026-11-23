@@ -62,4 +62,4 @@ Live deployment bukan PR14; itu P14/P15.
 - **PR14:** selesai; konfirmasi mitra dan jadwal UAT sudah ada.
 - **P14:** belum mulai secara fitur.
 - **Risiko kepatuhan:** tool prototipe FigCraft, bukan Figma. Kalau dosen menuntut Figma secara literal, perlu konversi atau persetujuan.
-- **Risiko bukti kontribusi:** paket kontribusi P13 Bagas masih berupa ZIP di workspace dan belum diunggah. Work board sudah menyediakan kartu, tetapi bukti unggahan sebaiknya diselesaikan sebelum penilaian.
+- **Bukti kontribusi:** P13 Bagas sudah diunggah via PR #26 ke `07_Evidence/P13-BAGAS/` dan `08_Source/backend/tests/test_roles_matrix.py`; test role matrix lulus `25 passed, 5 skipped`.
