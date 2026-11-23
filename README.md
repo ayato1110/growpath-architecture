@@ -1,26 +1,44 @@
-# Bukti Kontribusi Bagas P13
+# Architecture Repository Growpath
 
-Folder ini berisi bukti kontribusi Bagas untuk P13-12, P13-13, PR14-06, dan PR14-07.
+Repositori arsitektur Kelompok 6 untuk proyek Growpath, platform advisory UMKM berbasis kecerdasan buatan. Repositori ini mengikuti struktur Architecture Repository pada panduan Sprint P13-P16.
 
-## Isi
+## Status
 
-- `P13-BAGAS-CONTRIBUTION.md` - ringkasan kontribusi.
-- `P13-BAGAS-QA.md` - checklist dan hasil test.
-- `login-1440.png` - bukti halaman login desktop.
-- `login-390.png` - bukti halaman login mobile.
-- `app-1440.png` - bukti route `/app` setelah login, desktop.
-- `app-390.png` - bukti route `/app` setelah login, mobile.
+- Fase: P13, pembekuan arsitektur dan desain sistem.
+- Fokus: lima fitur Must, yaitu data usaha, konsultasi AI, rekomendasi, log jawaban AI, dan dashboard.
+- Repositori ini berisi artefak arsitektur, bukan aplikasi produksi.
+- Aplikasi MVP akan dibangun pada P14-P15 dan diuji pada P15.
 
-## Kode dan dokumen utama
+## Struktur
 
-- `08_Source/backend/tests/test_roles_matrix.py`
-- `08_Source/docs/P13-BAGAS-CONTRIBUTION.md`
-- `03_Application/P13-App-Structure.md`
-- `06_Governance/ADR-002-application-structure.md`
-- `08_Source/README.md`
+| Folder | Isi |
+|---|---|
+| `00_Vision` | Visi, objek, pemangku kepentingan, piagam tim, ringkasan proyek |
+| `01_Business` | Value chain, solution concept, BPMN, functional decomposition |
+| `02_Data` | ERD, logical data model, kamus data |
+| `03_Application` | Modul aplikasi, API landscape, kontrak OpenAPI |
+| `04_Technology` | Topologi, deployment, SSO, API Gateway, infrastruktur |
+| `05_Opportunities` | Gap analysis, roadmap, migration plan |
+| `06_Governance` | ADR, change request log, compliance, team charter |
+| `07_Evidence` | Rencana UAT, indeks bukti, bukti lapangan |
+| `08_Source` | Repositori kode, changelog, panduan menjalankan |
+| `09_Pitch` | Pitch deck dan materi demo |
 
-## Catatan
+## Aturan
 
-- Ini bukti pekerjaan Bagas, bukan bukti UAT.
-- Live deployment belum dilakukan.
-- File topologi/hosting/NFR milik Haikal tidak dimasukkan ke folder ini.
+- Setiap artefak mencantumkan penyusun dan peninjau.
+- Perubahan lingkup harus melalui `06_Governance/CHANGE-REQUEST-LOG.md`.
+- Keputusan teknologi dicatat sebagai ADR.
+- Bukti kontribusi berupa commit, pull request, kartu papan kerja, dan notulen.
+
+## Kontribusi
+
+Setiap anggota memperbarui file peran melalui branch fitur dan pull request ke `dev`. Jangan push langsung ke `main` atau `dev`.
+
+Panduan lengkap ada di [CONTRIBUTING.md](CONTRIBUTING.md). Template pull request otomatis tersedia di `.github/pull_request_template.md`.
+
+## Sumber
+
+- `Progress Pertemuan 12 Kelompok 6 - Growpath.docx`
+- `Ringkasan Proyek Growpath - Kelompok 6.docx`
+- `Skenario_Project ASP R001.pdf`
