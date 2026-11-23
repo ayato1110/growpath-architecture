@@ -1,14 +1,41 @@
 # 08_Source
 
-Folder ini disiapkan untuk kode aplikasi, changelog, dan panduan menjalankan.
+Folder ini memuat kode aplikasi, struktur kerja, changelog, dan panduan menjalankan.
 
-Status P13: kerangka aplikasi dan repositori dibuat oleh Bagas. Kode fitur MVP dibangun P14-P15.
+Status P13: pola aplikasi, struktur folder, dan branch sudah ditetapkan. Kode fitur MVP dibangun P14-P15.
 
-## Rencana branch
+## Struktur
 
-- `main` untuk rilis.
-- `dev` untuk integrasi.
-- `feature/*` untuk fitur.
+```text
+08_Source/
+  frontend/       Next.js App Router dan TypeScript
+  backend/        FastAPI, Pydantic v2, SQLAlchemy, Alembic
+  infra/          Docker, Railway, dan script operasional
+  tests/          E2E Playwright dan fixture
+  docs/           Catatan implementasi
+  README.md
+  CHANGELOG.md
+```
+
+Dokumen lengkap: [`../03_Application/P13-App-Structure.md`](../03_Application/P13-App-Structure.md).
+
+Folder `infra`, `tests`, dan `docs` masih placeholder. SQLAlchemy, Alembic, dan Playwright menyusul di P14.
+
+## Branch
+
+- `main` untuk rilis, gate, demo, dan submission.
+- `dev` untuk integrasi harian. Semua pull request mengarah ke `dev`.
+- `feature/<topik>` untuk fitur aplikasi.
+- `docs/<topik>` untuk dokumen dan struktur.
+- `hotfix/<topik>` untuk perbaikan mendesak dari `main`, lalu kembali ke `dev`.
+
+Jangan push langsung ke `main` atau `dev`. Aturan lengkap ada di [`../CONTRIBUTING.md`](../CONTRIBUTING.md).
+
+## Batas P13 dan Session 4
+
+P13 menetapkan pola, struktur folder, kontrak API, dan branch. Session 4 mengerjakan scaffold Next.js/FastAPI, login, role, form data usaha, health check, README cara menjalankan, tes awal, dan bukti build.
+
+Kode fitur tidak ditulis di P13.
 
 ## Menjalankan aplikasi
 
@@ -63,7 +90,7 @@ Jalankan backend:
 
 macOS atau Linux memakai `.venv/bin/python`.
 
-Backend berhenti dengan pesan jelas bila `AUTH_MODE=local` dipakai tanpa `LOCAL_AUTH_SECRET`, `LOCAL_USER_EMAIL`, `LOCAL_USER_PASSWORD`, atau `LOCAL_USER_TENANT_ID`. Variabel itu sudah terisi di `.env.example`.
+Backend berhenti dengan pesan jelas bila `AUTH_MODE=local` dipakai tanpa `LOCAL_AUTH_SECRET`, tanpa `LOCAL_USERS`, atau bila `LOCAL_AUTH_SECRET` kurang dari 32 karakter. Nilainya sudah terisi di `.env.example`.
 
 ### 2. Siapkan frontend
 
@@ -158,7 +185,7 @@ npm run lint
 npm run build
 ```
 
-Tes frontend otomatis (Vitest dan Playwright sesuai TRD) belum ada di PR ini. Alur login diuji manual di browser dan lewat screenshot.
+Tes frontend otomatis (Vitest dan Playwright sesuai TRD) belum ada. Alur login diuji manual di browser dan lewat screenshot.
 
 ### Troubleshooting
 
@@ -184,7 +211,6 @@ Tes frontend otomatis (Vitest dan Playwright sesuai TRD) belum ada di PR ini. Al
 
 ### Batas scope
 
-PR ini hanya PR14-06 dan PR14-07: aplikasi lokal dengan login, role `umkm`, route `/app` terlindungi, dan README ini. Belum ada dashboard, data usaha, asesmen, skor, konsultasi, AI, atau log. Belum ada UAT dan belum ada pengukuran SUS.
+Bagian menjalankan aplikasi mencakup PR14-06 dan PR14-07: aplikasi lokal dengan login, role `umkm`, route `/app` terlindungi, dan README ini. Belum ada dashboard, data usaha, asesmen, skor, konsultasi, AI, atau log. Belum ada UAT dan belum ada pengukuran SUS.
 
 Backend menyediakan dependency `require_role` untuk endpoint yang membatasi peran. Pada PR ini endpoint yang ada, `/auth/me`, memang terbuka untuk semua peran yang sah, jadi pembatasan peran baru terpakai saat endpoint asesmen dan konsultasi datang.
-
