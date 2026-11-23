@@ -128,6 +128,9 @@ psql "$DATABASE_URL" -f 08_Source/db/seed/seed.sql
 | `LOCAL_AUTH_SECRET` | Kunci HS256 token lokal. Ganti dengan nilai acak. |
 | `LOCAL_TOKEN_TTL_MINUTES` | Umur token lokal dalam menit. |
 | `LOCAL_USERS` | Daftar akun uji dalam JSON, satu objek per peran. |
+| `DEEPSEEK_API_KEY` | API key DeepSeek untuk backend. Jangan isi di frontend. |
+| `DEEPSEEK_BASE_URL` | Base URL API DeepSeek, bawaan `https://api.deepseek.com`. |
+| `DEEPSEEK_MODEL` | Model awal, `deepseek-flash`. |
 
 ### Variabel lingkungan frontend
 

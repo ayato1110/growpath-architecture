@@ -28,8 +28,8 @@
         <mxCell id="scoring" parent="1" style="rounded=1;fillColor=#e4f3ec;strokeColor=#087f5b;whiteSpace=wrap;html=1;" value="«Application Component»&lt;br&gt;&lt;b&gt;Scoring Service&lt;/b&gt;" vertex="1">
           <mxGeometry height="60" width="130" x="190" y="380" as="geometry" />
         </mxCell>
-        <mxCell id="gemini" parent="1" style="rounded=1;fillColor=#ffffff;strokeColor=#58645c;dashed=1;whiteSpace=wrap;html=1;" value="«Technology Service»&lt;br&gt;&lt;b&gt;Gemini API&lt;/b&gt;" vertex="1">
-          <mxGeometry height="60" width="140" x="340" y="380" as="geometry" />
+        <mxCell id="gemini" parent="1" style="rounded=1;fillColor=#ffffff;strokeColor=#58645c;dashed=1;whiteSpace=wrap;html=1;" value="«Technology Service»&lt;br&gt;&lt;b&gt;DeepSeek API&lt;/b&gt;" vertex="1">
+          <mxGeometry height="50" width="150" x="420" y="380" as="geometry" />
         </mxCell>
         <mxCell id="guard" parent="1" style="rounded=1;fillColor=#e4f3ec;strokeColor=#087f5b;whiteSpace=wrap;html=1;" value="«Application Component»&lt;br&gt;&lt;b&gt;Guardrail Service&lt;/b&gt;" vertex="1">
           <mxGeometry height="60" width="150" x="555" y="380" as="geometry" />

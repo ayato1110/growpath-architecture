@@ -78,7 +78,7 @@ Tidak ada butir yang boleh ditandai lulus tanpa bukti uji.
 
 | ID | Kontrol | Rencana | Verifikasi | Status |
 |---|---|---|---|---|
-| SEC-33 | Gemini hanya dari backend | Kunci di server | Grep dan uji jaringan | P14 |
+| SEC-33 | Model AI hanya dari backend | Kunci di server | Grep dan uji jaringan | P14 |
 | SEC-34 | Prompt injection diabaikan | Instruksi pengguna tidak mengubah aturan | Uji T-05 | P14 |
 | SEC-35 | Sumber tidak boleh dikarang | Validasi `used_source_ids` terhadap konteks | Uji guardrail G-06 | P14 |
 | SEC-36 | Penafian wajib | Tampil di setiap jawaban | Snapshot UI | P14 |

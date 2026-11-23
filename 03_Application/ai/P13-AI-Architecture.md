@@ -8,7 +8,7 @@
 ## 1. Prinsip
 
 1. AI hanya menarasikan, menjawab, dan merangkum. AI tidak menghitung skor.
-2. Gemini hanya dipanggil dari backend. Kunci tidak pernah masuk browser.
+2. Model AI hanya dipanggil dari backend. Kunci tidak pernah masuk browser.
 3. Setiap jawaban punya log, versi prompt, penafian, dan batas saran.
 4. Sumber hanya boleh berasal dari konteks yang diberikan server. Model tidak boleh mengarang sitasi.
 5. Jika konteks tidak cukup, AI harus mengatakan tidak tahu, bukan mengisi dengan dugaan.
@@ -16,7 +16,7 @@
 
 ## 2. Komponen
 
-Diagram: `diagrams/arsitektur-ai.drawio`, PNG `diagrams/arsitektur-ai.png`.
+Diagram: `diagrams/P13-AI-Architecture.drawio`, PNG `diagrams/P13-AI-Architecture.png`.
 Notasi: ArchiMate 3.2 ringkas, application dan technology layer.
 
 | Komponen | Peran |
@@ -29,7 +29,7 @@ Notasi: ArchiMate 3.2 ringkas, application dan technology layer.
 | Prompt Registry | Menyimpan template prompt berversimen |
 | Scoring Service | Menghitung skor deterministik. Tidak memanggil AI |
 | Guardrail Service | Memeriksa cakupan, sumber, panjang, kepastian hukum, dan data sensitif |
-| Gemini API | Model bahasa eksternal. Dipanggil hanya dari backend |
+| DeepSeek API | Model bahasa eksternal utama. Gemini menjadi alternatif. Dipanggil hanya dari backend |
 | Supabase PostgreSQL | Menyimpan konsultasi, log, katalog, skor, dan embedding |
 | Data object | `Consultation`, `AIAnswerLog`, `KnowledgeDocument`, `KnowledgeChunk` |
 
@@ -43,7 +43,7 @@ Notasi: ArchiMate 3.2 ringkas, application dan technology layer.
 6. Context Builder mengambil profil ringkas, skor total, segmen, lima skor dimensi, dan tiga prioritas.
 7. Retrieval Service mencari maksimal 4 chunk yang relevan. Jika tidak ada chunk, konteks dokumen kosong.
 8. Prompt Registry mengambil template `growpath-consult-v1`.
-9. Consultation Service mengirim prompt ke Gemini melalui backend, dengan timeout 20 detik.
+9. Consultation Service mengirim prompt ke provider model melalui backend, dengan timeout 20 detik.
 10. Model mengembalikan JSON terstruktur.
 11. Guardrail Service memeriksa hasil.
 12. Jika lolos, server memetakan `used_source_ids` ke sumber yang benar. Jika ditolak, server membuat pesan penolakan standar.
@@ -69,7 +69,7 @@ Notasi: ArchiMate 3.2 ringkas, application dan technology layer.
 
 ## 5. Model dan versi prompt
 
-- Model tidak dikunci di P13. Model Gemini dipilih pada P14 berdasarkan harga, latensi, dan hasil uji.
+- Model tidak dikunci di P13. Provider awal P14: DeepSeek API `deepseek-flash`; Gemini menjadi alternatif. Model final dipilih berdasarkan harga, latensi, dan hasil uji.
 - Nilai `model` pada `ai_answer_log` mencatat model yang benar-benar dipanggil.
 - Prompt version pertama: `growpath-consult-v1`.
 - Prompt version disimpan di `ai_answer_log.prompt_version`.
@@ -301,7 +301,7 @@ UAT P15 menilai lima jawaban AI dengan skala 1 sampai 5. Hasilnya dilaporkan apa
 
 ## 16. Keputusan yang masih terbuka
 
-- Model Gemini final dipilih P14.
+- Model DeepSeek/Gemini final dan fallback dipilih P14.
 - Ambang relevansi retrieval belum diuji.
 - Ukuran chunk belum diuji.
 - Format umpan balik hanya dua pilihan, belum ada catatan bebas.
