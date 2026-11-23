@@ -21,7 +21,7 @@
 | Konfirmasi jadwal | 23 November 2026 pukul 23.01: “Ok, tlg kabarin lagi nanti sebelum ke sini y” |
 | Persetujuan data | Ya, untuk evaluasi akademik; tidak ada penolakan dari mitra |
 
-Data mitra diisi berdasarkan informasi yang diberikan pemilik proyek pada 23 November 2026. Mitra sudah menyatakan bersedia, tetapi belum mengunci tanggal, jam, dan tempat. Status PR14-01 tetap terbuka sampai jadwal dikonfirmasi.
+Data mitra diisi berdasarkan informasi yang diberikan pemilik proyek pada 23 November 2026. Mitra sudah mengonfirmasi jadwal UAT Sabtu, 5 Desember 2026 pukul 10.00 WIB melalui WhatsApp. Status PR14-01 selesai; pengingat H-1 tetap wajib dikirim.
 
 ## 2. Kriteria pemilihan mitra
 

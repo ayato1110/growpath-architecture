@@ -16,7 +16,7 @@
 | Repo dan papan kerja aktif, setiap anggota punya kartu atau commit | Terpenuhi dengan work board repo | `../07_Evidence/P13-WORK-BOARD.md`, repo aktif |
 | Tim Charter ditandatangani | Terpenuhi | `P13-Tim-Charter.md`, `P13-Tim-Charter-Signed.pdf` |
 
-**Keputusan:** Hijau. Gate 1 terpenuhi; konfirmasi mitra tetap menjadi PR14-01 sebelum P14.
+**Keputusan:** Hijau. Gate 1 terpenuhi; PR14-01 konfirmasi mitra juga sudah selesai dengan UAT 5 Desember 2026.
 
 ## 2. Rincian per butir
 
@@ -56,7 +56,7 @@ Terpenuhi. Charter ditandatangani lima anggota pada 23 November 2026. Bukti: `P1
 | DDL dan seed | Terpenuhi | `../08_Source/db/migrations/001_init.sql`, `../08_Source/db/seed/seed.sql` |
 | Arsitektur AI dan batasan saran | Terpenuhi | `../03_Application/ai/P13-AI-Architecture.md`, `../03_Application/ai/P13-AI-Guardrails.md` |
 | NFR | Terpenuhi | `../04_Technology/P13-NFR.md` |
-| Konfirmasi mitra | Sebagian | `../07_Evidence/P13-Partner-Confirmation.md` masih draf |
+| Konfirmasi mitra | Selesai | `../07_Evidence/P14-01/README.md`; UAT Sabtu, 5 Desember 2026 pukul 10.00 WIB |
 | Bukti kontribusi setiap anggota | Terpenuhi dengan work board | `../07_Evidence/P13-WORK-BOARD.md` |
 
 ## 4. Syarat sebelum P14
@@ -65,11 +65,11 @@ Terpenuhi. Charter ditandatangani lima anggota pada 23 November 2026. Bukti: `P1
 |---|---|---|
 | 1. Tandatangani Tim Charter oleh lima anggota | Terpenuhi | `P13-Tim-Charter-Signed.pdf` |
 | 2. Kartu papan kerja setiap anggota dan tautan artefak/PR | Terpenuhi dengan work board repo | `../07_Evidence/P13-WORK-BOARD.md` |
-| 3. Konfirmasi mitra dan jadwal UAT | Sebagian, draf | `../07_Evidence/P13-Partner-Confirmation.md` |
+| 3. Konfirmasi mitra dan jadwal UAT | Selesai | `../07_Evidence/P14-01/README.md`; UAT Sabtu, 5 Desember 2026 pukul 10.00 WIB |
 | 4. Review silang ERD, DDL, dan use case | Terpenuhi | `../07_Evidence/P13-CROSS-REVIEW.md` |
 | 5. Perbaikan temuan Tinjau jawaban | Terpenuhi | `../03_Application/ux/P13-Tinjau-Fix.md` |
 
-Gate 1 sudah **Hijau**: semua butir Definition of Done terpenuhi. Konfirmasi mitra bukan butir Gate 1; itu PR14-01 dan tetap wajib sebelum P14. Butir 2, 4, dan 5 juga sudah selesai.
+Gate 1 sudah **Hijau**: semua butir Definition of Done terpenuhi. Konfirmasi mitra sudah selesai sebagai PR14-01 dengan UAT 5 Desember 2026. Butir 2, 4, dan 5 juga sudah selesai.
 
 ## 5. Bahan presentasi 5 menit
 
@@ -87,7 +87,7 @@ Presenter ditunjuk dosen di tempat, jadi setiap anggota harus bisa menjelaskan b
 
 ## 6. Risiko yang masih dijaga
 
-- Konfirmasi mitra belum ada; ini PR14-01 dan bisa menunda UAT P15.
+- Mitra sudah mengonfirmasi UAT Sabtu, 5 Desember 2026 pukul 10.00 WIB; kirim pengingat H-1.
 - Work board harus terus diperbarui agar klaim kontribusi tetap bisa diperiksa.
 - Prototipe memakai FigCraft, bukan Figma; perlu konfirmasi dosen bila tuntutan Figma dibaca literal.
 - Review silang sudah selesai, tetapi ERD dan DDL harus dicek ulang setiap ada perubahan skema.

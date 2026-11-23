@@ -60,7 +60,7 @@ Gate 1 sudah **Hijau** karena seluruh butir Definition of Done terpenuhi:
 - Repo, work board, dan kontribusi anggota.
 - Tim Charter ditandatangani.
 
-Konfirmasi mitra belum ada, tetapi itu **PR14-01**, bukan butir Gate 1.
+Konfirmasi mitra selesai 23 November 2026; UAT Sabtu, 5 Desember 2026 pukul 10.00 WIB via WhatsApp.
 
 ## 6. Bukti
 
