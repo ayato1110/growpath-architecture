@@ -16,6 +16,7 @@
 | Review silang use case, ERD, DDL | Selesai | `07_Evidence/P13-CROSS-REVIEW.md` |
 | Kartu papan kerja P13 | Ada | `07_Evidence/P13-WORK-BOARD.md` |
 | NFR, topologi as-is/target, hosting, deployment | Ada di repo | `04_Technology/P13-NFR.md`, `P13-Topology-As-Is.png`, `P13-Topology-Target.png`, `P13-Hosting-Options.md`, `P13-Deployment-Diagram.png` |
+| QA teknologi P13 | Ada | `07_Evidence/P13-HAIKAL/P13-HAIKAL-QA.md` |
 | Data P13, DDL, seed, RLS | Ada, sudah merge | PR #15, `02_Data/`, `08_Source/db/`, bukti di folder ini |
 | Eksekusi DDL PostgreSQL (23 tabel) | Selesai | `08_Source/db/migrations/001_init.sql`, bukti di `07_Evidence/DDL.png` |
 | Eksekusi Seed Data (31 kriteria, 30 profil) | Selesai | `08_Source/db/seed/seed.sql`, bukti di `07_Evidence/SEED.png` |
