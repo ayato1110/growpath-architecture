@@ -36,7 +36,7 @@
 
 | Tuntutan halaman 20 | Status | Catatan |
 |---|---|---|
-| Konfirmasi mitra | Sebagian | Mitra Rumah Setrika bersedia; jadwal, jam, dan tempat belum disepakati |
+| Konfirmasi mitra | Sebagian | Mitra Rumah Setrika bersedia; jadwal 5 Desember 2026 menunggu konfirmasi |
 | Prototipe hi-fi clickable | Selesai | FigCraft, bukan Figma; perlu konfirmasi dosen bila literal Figma |
 | DDL | Selesai | `08_Source/db/migrations/001_init.sql` |
 | Proyek jalan di lokal: login + role | Selesai | `08_Source/`, PR #14 |
