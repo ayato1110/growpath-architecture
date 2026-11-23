@@ -8,7 +8,7 @@
 
 ## Konteks
 
-P13 membutuhkan pola aplikasi dan struktur folder yang bisa langsung dipakai Session 4. Repositori sudah memakai branch `main`, `dev`, dan branch fitur. Kode fitur belum dibangun.
+P13 membutuhkan pola aplikasi dan struktur folder yang bisa langsung dipakai P14. Repositori sudah memakai branch `main`, `dev`, dan branch fitur. Kerangka Next.js/FastAPI, login, role, health check, dan README sudah masuk; fitur MVP menyusul.
 
 ## Keputusan
 
@@ -21,15 +21,15 @@ P13 membutuhkan pola aplikasi dan struktur folder yang bisa langsung dipakai Ses
 - `tenant_id` dan `user_id` diambil dari JWT, bukan dari body request.
 - OpenAPI menjadi kontrak tipe frontend.
 - Branch `main` untuk rilis, `dev` untuk integrasi, `feature/*` atau `docs/*` untuk pekerjaan.
-- Scaffold, login, role, dan README cara menjalankan dikerjakan Session 4.
+- Scaffold, login, role, health check, dan README cara menjalankan sudah masuk pada implementasi P14.
 
 ## Konsekuensi
 
-- Session 4 harus mengikuti struktur dan batas lapisan ini.
+- P14 harus mengikuti struktur dan batas lapisan ini.
 - Frontend tidak boleh mengakses tabel Supabase langsung.
 - Setiap endpoint baru harus masuk kontrak OpenAPI.
 - Setiap perubahan masuk `dev` lewat pull request, bukan push langsung.
-- Folder `08_Source/frontend`, `backend`, `infra`, `tests`, dan `docs` menjadi titik mulai Session 4.
+- Folder `08_Source/frontend`, `backend`, `infra`, `tests`, dan `docs` menjadi titik mulai P14.
 
 ## Alternatif yang ditolak
 

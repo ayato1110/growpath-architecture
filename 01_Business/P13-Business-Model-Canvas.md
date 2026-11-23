@@ -2,7 +2,7 @@
 
 **Deliverable:** PR14-02
 **Pemilik:** Ripa Bagaskara
-**Disusun oleh:** Sesi arsitektur P13, 22 November 2026
+**Disusun oleh:** Tim Growpath P13, 22 November 2026
 **Status:** Final P13, dibekukan 22 November 2026
 
 ## Canvas

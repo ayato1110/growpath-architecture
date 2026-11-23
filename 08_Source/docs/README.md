@@ -1,6 +1,6 @@
 # Source Docs
 
-Folder ini untuk catatan implementasi Session 4.
+Folder ini untuk catatan implementasi P14.
 
 Dokumen utama:
 

@@ -2,7 +2,7 @@
 
 **Deliverable:** P13-17, P13-19
 **Pemilik:** Ripa Bagaskara
-**Disusun oleh:** Sesi arsitektur P13, 22 November 2026
+**Disusun oleh:** Tim Growpath P13, 22 November 2026
 **Status:** v1.0, desain. Belum ada panggilan model produksi.
 
 ## 1. Prinsip

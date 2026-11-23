@@ -1,13 +1,21 @@
 # 02_Data
 
-Folder ini memuat arsitektur data.
+Folder ini memuat arsitektur data P13.
 
-- `ERD - Growpath - Inti.png`
-- `ERD - Growpath - Pendukung.png`
-- `Logical Data Model - Growpath - Identitas dan Asesmen.png`
-- `Logical Data Model - Growpath - Advisory dan Tata Kelola.png`
-- `Data Dictionary - Growpath.md`
+## P13
 
-Data model penuh berisi 21 entitas. Untuk MVP, tim memilih subset tabel yang diperlukan untuk lima fitur Must.
+- `P13-31-Kriteria.md` - katalog 31 kriteria
+- `erd-3nf.md` - ERD konseptual ke logis dan bukti 3NF
+- `kamus-data-p13.md` - kamus data 23 entitas
+- `seed-data.md` - penjelasan data uji
+- `P13-Backup-Script-Wisnu-v01.sh` - backup dan verifikasi restore
+- `diagrams/erd-3nf.drawio` - sumber ERD
+- `diagrams/erd-inti.png`
+- `diagrams/erd-katalog-jawaban.png`
+- `diagrams/erd-advisory-ai.png`
+- `diagrams/erd-pendukung-fase2.png`
 
-Catatan P13: `Data Dictionary - Growpath.md` adalah versi Progress 12 (21 entitas). Acuan resmi P13–P14 adalah `kamus-data-p13.md` (23 entitas), `erd-3nf.md`, `P13-31-Kriteria.md`, `../08_Source/db/migrations/001_init.sql`, dan `../08_Source/db/seed/seed.sql`.
+DDL: `../08_Source/db/migrations/001_init.sql`.
+Seed: `../08_Source/db/seed/seed.sql`.
+
+Data uji adalah data sintetis. Skor tidak diisi di seed; skor dihitung Scoring Service.

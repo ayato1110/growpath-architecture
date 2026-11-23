@@ -2,7 +2,7 @@
 
 **Deliverables:** P13-20 dan P13-11 (bagian aplikasi)
 **Pemilik:** Mhd Farras Delvioza dan Ripa Bagaskara
-**Disusun oleh:** Sesi arsitektur P13, 22 November 2026
+**Disusun oleh:** Tim Growpath P13, 22 November 2026
 **Status:** v1.0, 15 baris
 
 ## 1. Aturan

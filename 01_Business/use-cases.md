@@ -2,7 +2,7 @@
 
 **Deliverable:** P13-06
 **Pemilik:** Mhd Farras Delvioza
-**Disusun oleh:** Sesi arsitektur P13, 22 November 2026
+**Disusun oleh:** Tim Growpath P13, 22 November 2026
 **Status:** v1.1, perbaikan aktor UC-05 dan UC-09
 
 ## 1. Aktor

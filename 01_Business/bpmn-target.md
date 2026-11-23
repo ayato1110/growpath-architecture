@@ -2,7 +2,7 @@
 
 **Deliverable:** P13-05
 **Pemilik:** Mhd Farras Delvioza
-**Disusun oleh:** Sesi arsitektur P13, 22 November 2026
+**Disusun oleh:** Tim Growpath P13, 22 November 2026
 **Status:** v1.0, dua proses utama
 
 ## 1. Standar dan sumber

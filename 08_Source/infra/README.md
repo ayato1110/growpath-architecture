@@ -11,4 +11,4 @@ Aturan utama:
 - Script operasional tidak boleh menulis data produksi tanpa persetujuan.
 - Deployment mengikuti `04_Technology/` dan `P13-Hosting-Options.md`.
 
-Implementasi dikerjakan Session 4 dan P15.
+Implementasi dikerjakan P14 dan P15.
