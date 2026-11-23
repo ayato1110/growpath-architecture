@@ -9,7 +9,7 @@
 | Peran | Tuntutan dosen | Status | Bukti |
 |---|---|---|---|
 | CEO / PO | Vision, MoSCoW, DoD, team charter | Selesai | `00_Vision/`, `06_Governance/P13-Definition-of-Done.md`, `P13-Tim-Charter-Signed.pdf` |
-| CEO / PO | PR: konfirmasi mitra, BMC | BMC selesai; mitra draf | `01_Business/P13-Business-Model-Canvas.md`, `07_Evidence/P13-Partner-Confirmation.md` |
+| CEO / PO | PR: konfirmasi mitra, BMC | BMC selesai; surat mitra siap kirim | `01_Business/P13-Business-Model-Canvas.md`, `07_Evidence/P14-01/PR14-01-Surat-Konfirmasi-Rumah-Setrika.pdf` |
 | Analyst & UI/UX | BPMN 2 proses, use case, 5–8 user story, wireframe | Selesai | `01_Business/`, `03_Application/ux/` |
 | Analyst & UI/UX | PR: prototipe hi-fi clickable | Selesai dengan FigCraft | `03_Application/ux/P13-High-Fidelity.figcraft` |
 | Database | ERD, kamus data, 3NF | Selesai | `02_Data/erd-3nf.md`, `02_Data/kamus-data-p13.md` |
@@ -36,7 +36,7 @@
 
 | Tuntutan halaman 20 | Status | Catatan |
 |---|---|---|
-| Konfirmasi mitra | Belum | Draf siap; butuh nama, jadwal, balasan |
+| Konfirmasi mitra | Sebagian | Surat Rumah Setrika siap kirim; balasan belum ada |
 | Prototipe hi-fi clickable | Selesai | FigCraft, bukan Figma; perlu konfirmasi dosen bila literal Figma |
 | DDL | Selesai | `08_Source/db/migrations/001_init.sql` |
 | Proyek jalan di lokal: login + role | Selesai | `08_Source/`, PR #14 |
@@ -59,7 +59,7 @@ Live deployment bukan PR14; itu P14/P15.
 ## 5. Kesimpulan
 
 - **P13:** selesai terhadap definisi dosen; Gate 1 Hijau.
-- **PR14:** selesai kecuali konfirmasi mitra.
+- **PR14:** selesai kecuali balasan konfirmasi mitra; surat Rumah Setrika sudah siap kirim.
 - **P14:** belum mulai secara fitur.
 - **Risiko kepatuhan:** tool prototipe FigCraft, bukan Figma. Kalau dosen menuntut Figma secara literal, perlu konversi atau persetujuan.
 - **Risiko bukti kontribusi:** paket kontribusi P13 Bagas masih berupa ZIP di workspace dan belum diunggah. Work board sudah menyediakan kartu, tetapi bukti unggahan sebaiknya diselesaikan sebelum penilaian.

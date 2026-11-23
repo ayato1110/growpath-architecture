@@ -3,25 +3,29 @@
 **Deliverable:** PR14-01
 **Pemilik:** Ripa Bagaskara
 **Disusun oleh:** Tim Growpath P13, 22 November 2026
-**Status:** Draf siap kirim, mitra belum terkonfirmasi
+**Diperbarui:** 23 November 2026
+**Status:** Siap dikirim via WhatsApp; menunggu balasan mitra
 
 ## 1. Status
 
 | Butir | Status |
 |---|---|
-| Nama mitra | Belum ada |
-| Bentuk mitra | Belum ditentukan, prioritas UMKM aktif atau institusi pembina dengan UMKM binaan |
-| Tanggal UAT | Usulan, belum disepakati |
-| Surat konfirmasi | Draf di bagian 4, belum dikirim |
-| Persetujuan data | Belum ada |
+| Nama mitra | Rumah Setrika |
+| Bentuk mitra | UMKM jasa/laundry |
+| Alamat | Jalan Lirik Kenali Asam Atas |
+| Kontak | 0819-1806-1195 (Pekerja) |
+| Email | rumahsetrika77@gmail.com |
+| Tanggal UAT | Usulan 1 atau 5 Desember 2026; menyesuaikan jadwal mitra |
+| Surat konfirmasi | PDF siap kirim via WhatsApp |
+| Persetujuan data | Ya, untuk evaluasi akademik; konfirmasi tertulis via WhatsApp menunggu |
 
-Tidak ada nama mitra di dokumen ini karena belum ada kesepakatan. Bagian nama pada surat dibiarkan kosong untuk diisi pemilik proyek.
+Data mitra diisi berdasarkan informasi yang diberikan pemilik proyek pada 23 November 2026. Belum ada balasan tertulis; status PR14-01 tetap terbuka sampai mitra mengonfirmasi.
 
 ## 2. Kriteria pemilihan mitra
 
 Prioritas 1, mitra asli:
 
-1. UMKM aktif minimal satu tahun di sektor kuliner, fashion, kriya, atau perdagangan.
+1. UMKM aktif minimal satu tahun di sektor kuliner, fashion, kriya, perdagangan, atau jasa.
 2. Pemilik bisa hadir 60 menit pada sesi UAT.
 3. Bersedia memakai data usahanya yang sebenarnya atau data yang dianonimkan.
 4. Bisa memakai browser di ponsel atau laptop.
@@ -38,7 +42,7 @@ Prioritas 2, pengguna proksi bila mitra asli berhalangan:
 | Butir | Rencana |
 |---|---|
 | Durasi | 60 menit per sesi |
-| Jumlah peserta | 2 pelaku UMKM untuk menilai lima jawaban AI, atau 3 pengguna proksi |
+| Jumlah peserta | 1-2 pelaku UMKM untuk menilai lima jawaban AI, atau 3 pengguna proksi |
 | Perangkat | Ponsel peserta dan satu laptop pendamping |
 | Koneksi | Internet peserta, cadangan hotspot |
 | Pencatatan | Catatan waktu, kesalahan, komentar, rekaman layar bila diizinkan |
@@ -47,24 +51,39 @@ Prioritas 2, pengguna proksi bila mitra asli berhalangan:
 
 ## 4. Draf surat konfirmasi
 
-> Kepada [Nama Mitra]
-> [Alamat]
+Berkas PDF siap kirim: `P14-01/PR14-01-Surat-Konfirmasi-Rumah-Setrika.pdf`.
+
+> Kepada
+> Pengelola Rumah Setrika
+> Jalan Lirik Kenali Asam Atas
+> Di tempat
 >
 > Perihal: Permohonan konfirmasi lingkup MVP dan jadwal UAT Growpath
 >
+> Dengan hormat,
+>
 > Kami dari tim Growpath, mahasiswa Program Studi Sistem Informasi, sedang mengembangkan aplikasi pendamping UMKM untuk mata kuliah Arsitektur Sistem Perusahaan. Aplikasi ini membantu pemilik usaha mengisi profil, menyelesaikan asesmen 31 kriteria, membaca skor dan rekomendasi, serta bertanya kepada asisten AI yang setiap jawabannya tercatat.
+>
+> Data mitra:
+>
+> - Nama usaha: Rumah Setrika
+> - Bidang: Jasa / Laundry
+> - Alamat: Jalan Lirik Kenali Asam Atas
+> - Kontak: 0819-1806-1195 (Pekerja)
+> - Email: rumahsetrika77@gmail.com
 >
 > Kami memohon kesediaan Bapak/Ibu untuk:
 >
 > 1. Mengonfirmasi bahwa lingkup MVP berikut sesuai kebutuhan mitra: data usaha, konsultasi AI, rekomendasi, log jawaban AI, dan dashboard.
-> 2. Menjadi peserta UAT pada minggu [tanggal usulan] selama 60 menit.
+> 2. Menjadi peserta UAT selama 60 menit. Kami mengusulkan Selasa, 1 Desember 2026 pukul 10.00 WIB atau Sabtu, 5 Desember 2026 pukul 10.00 WIB. Jika kedua tanggal belum cocok, mohon tentukan tanggal lain.
 > 3. Mengizinkan kami mencatat waktu penyelesaian tugas, kesalahan, dan komentar, tanpa merekam data pribadi yang tidak diperlukan.
 >
-> Data yang dipakai pada UAT hanya untuk evaluasi akademik. Nama mitra pada laporan akan ditulis sesuai izin yang diberikan. Kami tidak akan menampilkan testimoni, angka, atau klaim hasil tanpa persetujuan tertulis.
+> Data yang dipakai pada UAT hanya untuk evaluasi akademik. Nama mitra pada laporan akan ditulis sesuai izin yang diberikan. Kami tidak akan menampilkan testimoni, angka, atau klaim hasil tanpa persetujuan.
 >
-> Jika bersedia, mohon konfirmasi melalui [kanal kontak] paling lambat [tanggal].
+> Jika bersedia, mohon konfirmasi melalui WhatsApp ke tim Growpath paling lambat 30 November 2026. Balasan dapat berupa pesan singkat yang menyatakan persetujuan lingkup MVP, tanggal UAT yang dipilih, dan izin penggunaan data.
 >
 > Hormat kami,
+>
 > Ripa Bagaskara
 > Ketua Tim Growpath
 
@@ -72,10 +91,10 @@ Prioritas 2, pengguna proksi bila mitra asli berhalangan:
 
 | Tahap | Usulan waktu | Catatan |
 |---|---|---|
-| Konfirmasi mitra | paling lambat satu minggu sebelum P15 | Syarat Gate 1 dan PR14-01 |
+| Konfirmasi mitra | paling lambat 30 November 2026 | PR14-01; kirim PDF via WhatsApp |
 | Persiapan skenario dan kuesioner | H-7 | Farras |
 | Uji coba internal | H-3 | Satu anggota menjadi penguji |
-| Pelaksanaan UAT | Hari P15 atau H-2 | 60 menit |
+| Pelaksanaan UAT | 1 atau 5 Desember 2026, menyesuaikan | 60 menit |
 | Rekap dan skor SUS | H+1 | Laporan UAT |
 | Perbaikan temuan kritis | sebelum Gate 3 | Feature freeze setelah P15 |
 
@@ -102,10 +121,11 @@ Pertanyaan pasca tugas:
 - Mengklaim hasil UAT sebelum sesi dijalankan.
 - Menampilkan nama atau kutipan peserta tanpa izin.
 
-## 8. Syarat PR14-01 yang belum terpenuhi
+## 8. Status PR14-01
 
-- Surat konfirmasi belum dikirim.
-- Nama mitra dan tanggal UAT belum ada.
-- Persetujuan penggunaan data belum ada.
+- Surat: siap dikirim via WhatsApp, PDF di `07_Evidence/P14-01/`.
+- Nama mitra dan tanggal UAT: terisi; tanggal masih usulan, belum disepakati.
+- Persetujuan data: ya untuk evaluasi akademik; konfirmasi tertulis via WhatsApp menunggu.
+- Balasan mitra: belum ada.
 
-Gate 1 sudah **Hijau** karena butir Definition of Done terpenuhi. Tiga butir di atas adalah PR14-01 dan tetap wajib sebelum P14.
+PR14-01 belum selesai sampai mitra membalas dan menyetujui lingkup, tanggal, serta penggunaan data. Gate 1 tetap **Hijau** karena konfirmasi mitra bukan butir Gate 1.
