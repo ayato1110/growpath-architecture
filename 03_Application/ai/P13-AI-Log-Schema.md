@@ -2,7 +2,7 @@
 
 **Deliverable:** P13-17 dan P13-18
 **Pemilik:** Ripa Bagaskara dengan Wisnu Nugroho
-**Status:** v1.0, desain. Tabel mengikuti `sql/ddl.sql`.
+**Status:** v1.0, desain. Tabel mengikuti `../../08_Source/db/migrations/001_init.sql`.
 **Sumber lengkap:** `P13-AI-Architecture.md` bagian 8.
 
 ## 1. Tabel `ai_answer_log`

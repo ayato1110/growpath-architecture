@@ -56,7 +56,7 @@ Kriteria penerimaan ringkas:
 - Rencana aksi berisi 3 sampai 5 langkah dengan alasan, tindakan, dan estimasi waktu.
 - Pengguna bisa menandai langkah selesai dan statusnya tersimpan.
 
-Rujukan: US-03, US-04, US-05, UC-04 sampai UC-06, `sql/ddl.sql`.
+Rujukan: US-03, US-04, US-05, UC-04 sampai UC-06, `../08_Source/db/migrations/001_init.sql`.
 
 ### B-04 Log jawaban AI
 

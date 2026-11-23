@@ -19,7 +19,7 @@
 6. Kontrak API memakai OpenAPI di `03_Application/openapi.yaml`. Tipe frontend mengikuti kontrak itu.
 7. Skor dihitung deterministic di `services/scoring.py`. AI hanya di `services/ai.py`; router tidak memanggil model langsung.
 8. Branch: `main` untuk rilis, `dev` untuk integrasi, `feature/*` atau `docs/*` untuk pekerjaan. Semua perubahan masuk `dev` lewat pull request.
-9. P13 hanya menetapkan pola, struktur folder, dan branch. Scaffold, login, role, dan README menjalankan dikerjakan Session 4.
+9. P13 menetapkan pola, struktur folder, dan branch. Scaffold, login, role, health check, dan README sudah masuk lewat implementasi lokal; form data usaha dan fitur MVP lain masuk P14-P15.
 
 ## 2. Pohon folder
 
@@ -95,6 +95,10 @@
       test_api_contract.py
     pyproject.toml
     .env.example
+  db/
+    migrations/001_init.sql
+    seed/seed.sql
+    README.md
   infra/
     docker/
     railway/

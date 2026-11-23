@@ -2,14 +2,15 @@
 
 Folder ini memuat kode aplikasi, struktur kerja, changelog, dan panduan menjalankan.
 
-Status P13: pola aplikasi, struktur folder, dan branch sudah ditetapkan. Kode fitur MVP dibangun P14-P15.
+Status P13: pola aplikasi, struktur folder, branch, dan kerangka login/role sudah ada. Fitur MVP P14-P15 menyusul.
 
 ## Struktur
 
 ```text
 08_Source/
   frontend/       Next.js App Router dan TypeScript
-  backend/        FastAPI, Pydantic v2, SQLAlchemy, Alembic
+  backend/        FastAPI, Pydantic v2
+  db/             Migrasi dan seed PostgreSQL P13
   infra/          Docker, Railway, dan script operasional
   tests/          E2E Playwright dan fixture
   docs/           Catatan implementasi
@@ -19,7 +20,7 @@ Status P13: pola aplikasi, struktur folder, dan branch sudah ditetapkan. Kode fi
 
 Dokumen lengkap: [`../03_Application/P13-App-Structure.md`](../03_Application/P13-App-Structure.md).
 
-Folder `infra`, `tests`, dan `docs` masih placeholder. SQLAlchemy, Alembic, dan Playwright menyusul di P14.
+Folder `infra`, `tests`, dan `docs` masih placeholder. SQLAlchemy, Alembic, dan Playwright menyusul di P14. Folder `db/` memuat migrasi dan seed P13; rincian di [`db/README.md`](db/README.md).
 
 ## Branch
 
@@ -31,11 +32,9 @@ Folder `infra`, `tests`, dan `docs` masih placeholder. SQLAlchemy, Alembic, dan 
 
 Jangan push langsung ke `main` atau `dev`. Aturan lengkap ada di [`../CONTRIBUTING.md`](../CONTRIBUTING.md).
 
-## Batas P13 dan Session 4
+## Batas P13 dan implementasi lokal
 
-P13 menetapkan pola, struktur folder, kontrak API, dan branch. Session 4 mengerjakan scaffold Next.js/FastAPI, login, role, form data usaha, health check, README cara menjalankan, tes awal, dan bukti build.
-
-Kode fitur tidak ditulis di P13.
+P13 menetapkan pola, struktur folder, kontrak API, dan branch. Implementasi lokal yang sudah masuk: scaffold Next.js/FastAPI, login, role, health check, dan README cara menjalankan. Form data usaha dan fitur MVP lain masuk P14-P15.
 
 ## Menjalankan aplikasi
 
@@ -104,6 +103,17 @@ npm run dev
 macOS atau Linux memakai `cp .env.example .env.local`.
 
 Buka `http://localhost:3000`. Halaman `/` mengarah ke `/app`, dan `/app` mengarah ke `/login` selama belum ada sesi.
+
+## Database P13
+
+Skema dan seed ada di `db/`:
+
+```bash
+psql "$DATABASE_URL" -f 08_Source/db/migrations/001_init.sql
+psql "$DATABASE_URL" -f 08_Source/db/seed/seed.sql
+```
+
+`001_init.sql` menghapus objek Growpath yang ada. Jalankan hanya di database kosong atau database uji. Seed memuat data uji, bukan data produksi. Bukti eksekusi ada di `07_Evidence/DDL.png`, `07_Evidence/SEED.png`, dan uji RLS di `07_Evidence/`.
 
 ### Variabel lingkungan backend
 

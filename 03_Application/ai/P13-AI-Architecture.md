@@ -167,7 +167,7 @@ Pesan penolakan tetap disimpan sebagai `ai_answer_log` dengan status `blocked` d
 
 ## 8. Skema log
 
-Tabel `ai_answer_log` sudah didefinisikan di `sql/ddl.sql`.
+Tabel `ai_answer_log` sudah didefinisikan di `../../08_Source/db/migrations/001_init.sql`.
 
 | Kolom | Isi | Contoh |
 |---|---|---|

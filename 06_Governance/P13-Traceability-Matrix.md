@@ -15,10 +15,10 @@ Kolom bukti menunjuk file yang bisa diperiksa. Tidak ada baris yang hanya berisi
 
 | ID | Kebutuhan | Use case | User story | Tabel utama | Layar | Endpoint | Bukti |
 |---|---|---|---|---|---|---|---|
-| TR-01 | UMKM perlu menyimpan profil usahanya sekali dan memakainya sebagai konteks | UC-02 | US-01 | `tenant`, `user`, `umkm_profile` | Data usaha, Profil | `GET /me/profile`, `PUT /me/profile`, `PATCH /me/profile` | `use-cases.md`, `sql/ddl.sql` |
+| TR-01 | UMKM perlu menyimpan profil usahanya sekali dan memakainya sebagai konteks | UC-02 | US-01 | `tenant`, `user`, `umkm_profile` | Data usaha, Profil | `GET /me/profile`, `PUT /me/profile`, `PATCH /me/profile` | `use-cases.md`, `../08_Source/db/migrations/001_init.sql` |
 | TR-02 | Asesmen 31 kriteria harus bisa diselesaikan bertahap tanpa kehilangan jawaban | UC-03 | US-02 | `assessment`, `assessment_answer`, `criterion`, `dimension` | Asesmen | `POST /assessments`, `GET /assessments/{id}`, `PUT /assessments/{id}/answers` | `kamus-data-p13.md`, `bpmn-target.md` |
 | TR-03 | Pengguna harus memeriksa jawaban sebelum skor dihitung | UC-04 | US-03 | `assessment`, `assessment_answer` | Tinjau jawaban | `POST /assessments/{id}/submit` | `user-stories.md` US-03 |
-| TR-04 | Skor harus deterministik dan bisa direproduksi | UC-04, UC-05 | US-04 | `dimension_score`, `segment`, `assessment.scoring_version` | Hasil asesmen | `GET /assessments/{id}/scores` | `P13-31-KRITERIA.md`, `nfr.md` NFR-05 |
+| TR-04 | Skor harus deterministik dan bisa direproduksi | UC-04, UC-05 | US-04 | `dimension_score`, `segment`, `assessment.scoring_version` | Hasil asesmen | `GET /assessments/{id}/scores` | `../02_Data/P13-31-Kriteria.md`, `nfr.md` NFR-05 |
 | TR-05 | Rekomendasi harus berupa langkah yang bisa dikerjakan dan dilacak | UC-06 | US-05 | `roadmap`, `milestone`, `progress_log` | Rencana aksi | `GET /assessments/{id}/roadmap`, `PATCH /milestones/{id}` | `moscow-backlog.md` B-03 |
 | TR-06 | Konsultasi AI harus memakai konteks asesmen, bukan jawaban generik | UC-07 | US-06 | `consultation`, `ai_answer_log`, `knowledge_document`, `knowledge_chunk` | Konsultasi | `POST /consultations` | `ai-architecture.md` |
 | TR-07 | Setiap jawaban AI wajib punya log yang bisa dibuka lagi | UC-07, UC-08 | US-06, US-07 | `ai_answer_log` | Konsultasi, Log jawaban | `GET /consultations`, `GET /consultations/{id}` | `ai-architecture.md` bagian log schema |

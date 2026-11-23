@@ -57,7 +57,7 @@ Belum. Isi charter lengkap, tetapi kolom tanda tangan kosong. Ini tidak bisa dik
 | 8 user story dan acceptance criteria | Terpenuhi | `user-stories.md` |
 | Wireframe | Tidak dikerjakan session ini | High-fidelity FigCraft sudah ada, wireframe formal tidak dipisahkan |
 | Kamus data | Terpenuhi | `kamus-data-p13.md` |
-| DDL dan seed | Terpenuhi | `sql/ddl.sql`, `sql/seed.sql` |
+| DDL dan seed | Terpenuhi | `../08_Source/db/migrations/001_init.sql`, `../08_Source/db/seed/seed.sql` |
 | Arsitektur AI dan batasan saran | Terpenuhi | `ai-architecture.md` |
 | NFR | Terpenuhi | `nfr.md` |
 | Konfirmasi mitra | Belum | `partner-confirmation.md` masih draf |
