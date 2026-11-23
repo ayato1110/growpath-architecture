@@ -4,7 +4,7 @@
 **Pemilik:** Ripa Bagaskara
 **Disusun oleh:** Tim Growpath P13, 22 November 2026
 **Diperbarui:** 23 November 2026
-**Status:** Siap dikirim via WhatsApp; menunggu balasan mitra
+**Status:** Terkonfirmasi via WhatsApp; UAT Sabtu, 5 Desember 2026 pukul 10.00 WIB; pengingat H-1
 
 ## 1. Status
 
@@ -15,11 +15,13 @@
 | Alamat | Jalan Lirik Kenali Asam Atas |
 | Kontak | 0819-1806-1195 (Pekerja) |
 | Email | rumahsetrika77@gmail.com |
-| Tanggal UAT | Usulan 1 atau 5 Desember 2026; menyesuaikan jadwal mitra |
-| Surat konfirmasi | PDF siap kirim via WhatsApp |
-| Persetujuan data | Ya, untuk evaluasi akademik; konfirmasi tertulis via WhatsApp menunggu |
+| Tanggal UAT | Sabtu, 5 Desember 2026 pukul 10.00 WIB, terkonfirmasi via WhatsApp |
+| Surat konfirmasi | Terkirim via WhatsApp 23 November 2026 pukul 22.44 |
+| Balasan mitra | 23 November 2026 pukul 22.46: bersedia, minta dikabari waktu dan tempat |
+| Konfirmasi jadwal | 23 November 2026 pukul 23.01: “Ok, tlg kabarin lagi nanti sebelum ke sini y” |
+| Persetujuan data | Ya, untuk evaluasi akademik; tidak ada penolakan dari mitra |
 
-Data mitra diisi berdasarkan informasi yang diberikan pemilik proyek pada 23 November 2026. Belum ada balasan tertulis; status PR14-01 tetap terbuka sampai mitra mengonfirmasi.
+Data mitra diisi berdasarkan informasi yang diberikan pemilik proyek pada 23 November 2026. Mitra sudah menyatakan bersedia, tetapi belum mengunci tanggal, jam, dan tempat. Status PR14-01 tetap terbuka sampai jadwal dikonfirmasi.
 
 ## 2. Kriteria pemilihan mitra
 
@@ -91,10 +93,10 @@ Berkas PDF siap kirim: `P14-01/PR14-01-Surat-Konfirmasi-Rumah-Setrika.pdf`.
 
 | Tahap | Usulan waktu | Catatan |
 |---|---|---|
-| Konfirmasi mitra | paling lambat 30 November 2026 | PR14-01; kirim PDF via WhatsApp |
+| Konfirmasi mitra | Selesai 23 November 2026 | Jadwal 5 Desember terkonfirmasi; pengingat H-1 |
 | Persiapan skenario dan kuesioner | H-7 | Farras |
 | Uji coba internal | H-3 | Satu anggota menjadi penguji |
-| Pelaksanaan UAT | 1 atau 5 Desember 2026, menyesuaikan | 60 menit |
+| Pelaksanaan UAT | Sabtu, 5 Desember 2026 pukul 10.00 WIB | 60 menit; terkonfirmasi via WhatsApp |
 | Rekap dan skor SUS | H+1 | Laporan UAT |
 | Perbaikan temuan kritis | sebelum Gate 3 | Feature freeze setelah P15 |
 
@@ -123,9 +125,11 @@ Pertanyaan pasca tugas:
 
 ## 8. Status PR14-01
 
-- Surat: siap dikirim via WhatsApp, PDF di `07_Evidence/P14-01/`.
-- Nama mitra dan tanggal UAT: terisi; tanggal masih usulan, belum disepakati.
-- Persetujuan data: ya untuk evaluasi akademik; konfirmasi tertulis via WhatsApp menunggu.
-- Balasan mitra: belum ada.
+- Surat: terkirim via WhatsApp 23 November 2026 pukul 22.44.
+- Balasan mitra: 23 November 2026 pukul 22.46, menyatakan bersedia dan meminta dikabari waktu serta tempat.
+- Konfirmasi jadwal: 23 November 2026 pukul 23.01, mitra menjawab “Ok, tlg kabarin lagi nanti sebelum ke sini y”.
+- Jadwal: Sabtu, 5 Desember 2026 pukul 10.00 WIB di Rumah Setrika.
+- Persetujuan data: ya untuk evaluasi akademik; tidak ada penolakan dari mitra.
+- Tindak lanjut: kirim pengingat H-1 pada Jumat, 4 Desember 2026.
 
-PR14-01 belum selesai sampai mitra membalas dan menyetujui lingkup, tanggal, serta penggunaan data. Gate 1 tetap **Hijau** karena konfirmasi mitra bukan butir Gate 1.
+**PR14-01 selesai.** Gate 1 tetap **Hijau** karena konfirmasi mitra bukan butir Gate 1.

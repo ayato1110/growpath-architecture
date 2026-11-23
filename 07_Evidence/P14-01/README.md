@@ -1,6 +1,6 @@
 # PR14-01 Konfirmasi Mitra Rumah Setrika
 
-**Status:** Surat siap dikirim via WhatsApp; belum ada balasan mitra.
+**Status:** Terkonfirmasi via WhatsApp. UAT Sabtu, 5 Desember 2026 pukul 10.00 WIB; pengingat H-1.
 **Tanggal surat:** 23 November 2026
 **Pemilik:** Ripa Bagaskara
 
@@ -13,30 +13,40 @@
 | Alamat | Jalan Lirik Kenali Asam Atas |
 | Kontak | 0819-1806-1195 (Pekerja) |
 | Email | rumahsetrika77@gmail.com |
-| Tanggal UAT | Usulan 1 atau 5 Desember 2026; menyesuaikan |
-| Izin data | Ya, untuk evaluasi akademik; konfirmasi tertulis menunggu |
+| Tanggal UAT | Sabtu, 5 Desember 2026 pukul 10.00 WIB, terkonfirmasi via WhatsApp |
+| Izin data | Ya, untuk evaluasi akademik; tidak ada penolakan dari mitra |
 
 ## 2. Berkas
 
 - `PR14-01-Surat-Konfirmasi-Rumah-Setrika.pdf` - surat dua halaman, sudah ditandatangani Ripa Bagaskara.
-- `../P13-Partner-Confirmation.md` - draf Markdown dan rencana UAT.
+- `balasan/2026-11-23-2246-WhatsApp-Rumah-Setrika.png` - tangkapan layar balasan pertama.
+- `balasan/2026-11-23-2246-WhatsApp-Rumah-Setrika.md` - transkrip balasan pertama.
+- `balasan/2026-11-23-2301-WhatsApp-Rumah-Setrika.png` - tangkapan layar konfirmasi jadwal.
+- `balasan/2026-11-23-2301-WhatsApp-Rumah-Setrika.md` - transkrip konfirmasi jadwal.
+- `balasan/2026-11-23-Follow-Up-Jadwal.md` - pesan follow-up tanggal 5 Desember.
+- `../P13-Partner-Confirmation.md` - status PR14-01 dan rencana UAT.
 
-## 3. Cara mengirim
+## 3. Riwayat
 
-1. Kirim PDF lewat WhatsApp ke 0819-1806-1195.
-2. Gunakan pesan pengantar berikut:
+1. 23 November 2026 pukul 22.44: surat PDF dikirim via WhatsApp ke 0819-1806-1195.
+2. 23 November 2026 pukul 22.46: mitra membalas:
 
-> Selamat siang, saya Ripa Bagaskara dari tim Growpath, Kelompok 6 Kelas R001. Kami sedang mengerjakan aplikasi pendamping UMKM untuk mata kuliah Arsitektur Sistem Perusahaan. Kami mohon kesediaan Rumah Setrika untuk mengonfirmasi lingkup MVP dan menjadi peserta UAT selama 60 menit. Surat lengkapnya ada di lampiran. Kami mengusulkan Selasa, 1 Desember 2026 atau Sabtu, 5 Desember 2026 pukul 10.00 WIB, dan siap menyesuaikan jika waktunya kurang cocok. Terima kasih.
+> Malam, ya, silahkan. Tolong kabarkan saja untuk waktu dan tempatnya ya
 
-3. Setelah mitra membalas, simpan tangkapan layar atau ekspor percakapan di folder `balasan/`.
-4. Baru setelah ada balasan, ubah status PR14-01 menjadi selesai dan perbarui `07_Evidence/EVIDENCE-INDEX.md`.
+3. 23 November 2026 pukul 23.00: tim mengusulkan Sabtu, 5 Desember 2026 pukul 10.00 WIB.
+4. 23 November 2026 pukul 23.01: mitra membalas:
 
-## 4. Yang harus ada di balasan
+> Ok, tlg kabarin lagi nanti sebelum ke sini y
 
-- Persetujuan lingkup MVP.
-- Tanggal dan jam UAT yang dipilih.
-- Izin penggunaan data usaha dan hasil UAT untuk evaluasi akademik.
+5. Jadwal terkonfirmasi. Mitra meminta pengingat sebelum kedatangan tim.
+
+## 4. Tindak lanjut
+
+1. Kirim pengingat ke WhatsApp Rumah Setrika pada Jumat, 4 Desember 2026.
+2. Konfirmasi ulang jam 10.00 WIB dan jumlah tim yang datang.
+3. Simpan tangkapan layar pengingat di folder `balasan/`.
+4. Lanjutkan persiapan UAT P15; jangan menandai UAT selesai sebelum sesi benar-benar dijalankan.
 
 ## 5. Batas
 
-Jangan menandai PR14-01 selesai sebelum balasan mitra tersimpan. Surat ini hanya bukti kesiapan, bukan bukti konfirmasi.
+PR14-01 selesai karena mitra sudah mengonfirmasi jadwal. Ini bukan bukti UAT sudah dilaksanakan; bukti UAT baru dibuat setelah sesi 5 Desember 2026.

@@ -2,14 +2,14 @@
 
 **Tanggal:** 23 November 2026
 **Sumber:** `Skenario_Project ASP R001.txt` halaman 15, 16, 17, dan 20
-**Status:** P13 selesai; PR14 tinggal konfirmasi mitra.
+**Status:** P13 dan PR14 selesai; P14 belum mulai.
 
 ## 1. P13 job per peran
 
 | Peran | Tuntutan dosen | Status | Bukti |
 |---|---|---|---|
 | CEO / PO | Vision, MoSCoW, DoD, team charter | Selesai | `00_Vision/`, `06_Governance/P13-Definition-of-Done.md`, `P13-Tim-Charter-Signed.pdf` |
-| CEO / PO | PR: konfirmasi mitra, BMC | BMC selesai; surat mitra siap kirim | `01_Business/P13-Business-Model-Canvas.md`, `07_Evidence/P14-01/PR14-01-Surat-Konfirmasi-Rumah-Setrika.pdf` |
+| CEO / PO | PR: konfirmasi mitra, BMC | Selesai; mitra terkonfirmasi UAT 5 Desember 2026 | `01_Business/P13-Business-Model-Canvas.md`, `07_Evidence/P14-01/PR14-01-Surat-Konfirmasi-Rumah-Setrika.pdf` |
 | Analyst & UI/UX | BPMN 2 proses, use case, 5–8 user story, wireframe | Selesai | `01_Business/`, `03_Application/ux/` |
 | Analyst & UI/UX | PR: prototipe hi-fi clickable | Selesai dengan FigCraft | `03_Application/ux/P13-High-Fidelity.figcraft` |
 | Database | ERD, kamus data, 3NF | Selesai | `02_Data/erd-3nf.md`, `02_Data/kamus-data-p13.md` |
@@ -30,13 +30,13 @@
 | Repo dan papan kerja aktif | Terpenuhi dengan work board repo | `07_Evidence/P13-WORK-BOARD.md` |
 | Team charter ditandatangani | Terpenuhi | `06_Governance/P13-Tim-Charter-Signed.pdf` |
 
-**Gate 1: Hijau.** Konfirmasi mitra bukan butir Gate 1; itu PR14-01.
+**Gate 1: Hijau.** Konfirmasi mitra bukan butir Gate 1; PR14-01 sudah selesai.
 
 ## 3. PR sebelum P14
 
 | Tuntutan halaman 20 | Status | Catatan |
 |---|---|---|
-| Konfirmasi mitra | Sebagian | Surat Rumah Setrika siap kirim; balasan belum ada |
+| Konfirmasi mitra | Selesai | Rumah Setrika terkonfirmasi via WhatsApp; UAT 5 Desember 2026 pukul 10.00 WIB |
 | Prototipe hi-fi clickable | Selesai | FigCraft, bukan Figma; perlu konfirmasi dosen bila literal Figma |
 | DDL | Selesai | `08_Source/db/migrations/001_init.sql` |
 | Proyek jalan di lokal: login + role | Selesai | `08_Source/`, PR #14 |
@@ -59,7 +59,7 @@ Live deployment bukan PR14; itu P14/P15.
 ## 5. Kesimpulan
 
 - **P13:** selesai terhadap definisi dosen; Gate 1 Hijau.
-- **PR14:** selesai kecuali balasan konfirmasi mitra; surat Rumah Setrika sudah siap kirim.
+- **PR14:** selesai; konfirmasi mitra dan jadwal UAT sudah ada.
 - **P14:** belum mulai secara fitur.
 - **Risiko kepatuhan:** tool prototipe FigCraft, bukan Figma. Kalau dosen menuntut Figma secara literal, perlu konversi atau persetujuan.
 - **Risiko bukti kontribusi:** paket kontribusi P13 Bagas masih berupa ZIP di workspace dan belum diunggah. Work board sudah menyediakan kartu, tetapi bukti unggahan sebaiknya diselesaikan sebelum penilaian.
