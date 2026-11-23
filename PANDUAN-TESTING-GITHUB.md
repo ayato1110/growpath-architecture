@@ -96,7 +96,7 @@ Buat file di folder `07_Evidence` dengan nama unik.
 Contoh Farras:
 
 ```text
-07_Evidence/TEST-INTEGRASI-FARRAS.txt
+07_Evidence/TEST-INTEGRASI-NAMA.txt
 ```
 
 Isi contoh:
@@ -115,7 +115,7 @@ Bisa dibuat lewat VS Code, Notepad, atau File Explorer.
 
 ```bash
 git status
-git add "07_Evidence/TEST-INTEGRASI-FARRAS.txt"
+git add "07_Evidence/TEST-INTEGRASI-NAMA.txt"
 git commit -m "[Test] Cek integrasi Farras"
 git push -u origin test/farras-integrasi
 ```
@@ -165,7 +165,7 @@ Cek file:
 ls 07_Evidence
 ```
 
-File `TEST-INTEGRASI-FARRAS.txt` harus muncul.
+File `TEST-INTEGRASI-NAMA.txt` harus muncul.
 
 ## 9. Kalau memakai GitHub Desktop
 
@@ -186,7 +186,7 @@ File `TEST-INTEGRASI-FARRAS.txt` harus muncul.
 
 | Anggota | Branch | File |
 |---|---|---|
-| Farras | `test/farras-integrasi` | `07_Evidence/TEST-INTEGRASI-FARRAS.txt` |
+| Farras | `test/farras-integrasi` | `07_Evidence/TEST-INTEGRASI-NAMA.txt` |
 | Wisnu | `test/wisnu-integrasi` | `07_Evidence/TEST-INTEGRASI-WISNU.txt` |
 | Bagas | `test/bagas-integrasi` | `07_Evidence/TEST-INTEGRASI-BAGAS.txt` |
 | Haikal | `test/haikal-integrasi` | `07_Evidence/TEST-INTEGRASI-HAIKAL.txt` |

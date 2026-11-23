@@ -2,7 +2,7 @@
 
 **Deliverable:** P13-04
 **Pemilik:** Ripa Bagaskara
-**Disusun oleh:** Sesi arsitektur P13, 22 November 2026
+**Disusun oleh:** Tim Growpath P13, 22 November 2026
 **Status:** v1.0, tanda tangan anggota menunggu
 
 ## 1. Tujuan tim

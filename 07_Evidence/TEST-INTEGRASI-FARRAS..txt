@@ -1,5 +1,0 @@
-Tes integrasi GitHub Kelompok 6.
-Nama Mhd Farras Delvioza.
-NIM F1E124064.
-Tanggal 18 November 2026.
-Status Farras berhasil clone, membuat branch, commit, push, dan pull request.

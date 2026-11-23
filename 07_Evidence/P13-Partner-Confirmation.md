@@ -2,7 +2,7 @@
 
 **Deliverable:** PR14-01
 **Pemilik:** Ripa Bagaskara
-**Disusun oleh:** Sesi arsitektur P13, 22 November 2026
+**Disusun oleh:** Tim Growpath P13, 22 November 2026
 **Status:** Draf siap kirim, mitra belum terkonfirmasi
 
 ## 1. Status

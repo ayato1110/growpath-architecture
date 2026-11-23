@@ -13,4 +13,4 @@ Aturan utama:
 - `alembic/` mengelola migrasi.
 - `tenant_id` dan `user_id` diambil dari JWT.
 
-Scaffold dan implementasi dikerjakan Session 4.
+Scaffold FastAPI, login, role, dan health check sudah ada. Fitur P14-P15 menyusul.

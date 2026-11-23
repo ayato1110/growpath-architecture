@@ -2,7 +2,7 @@
 
 **Deliverable:** P13-09, P13-11
 **Pemilik:** Wisnu Nugroho
-**Disusun oleh:** Sesi arsitektur P13, 22 November 2026
+**Disusun oleh:** Tim Growpath P13, 22 November 2026
 **Status:** v1.0, 23 entitas
 
 ## 1. Notasi dan sumber

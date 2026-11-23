@@ -8,6 +8,14 @@
 | SUS | Belum | Dijadwalkan P15 |
 | Foto dan rekaman | Belum | Dikumpulkan P15 |
 | Login dan role lokal (PR14-06, PR14-07) | Ada, sudah merge | `07_Evidence/PR14-06/` dan `07_Evidence/PR14-06-Login-Role.md` |
+| Use case dan BPMN P13 | Ada, sudah merge | PR #9, `01_Business/` |
+| Governance, BMC, dan AI P13 | Ada, sudah merge | PR #11, `00_Vision/`, `01_Business/P13-Business-Model-Canvas.md`, `03_Application/ai/` |
+| Pola aplikasi dan struktur folder | Ada, sudah merge | PR #16, `03_Application/P13-App-Structure.md`, `06_Governance/ADR-002-application-structure.md` |
+| Wireframe, high-fidelity, dan Tinjau jawaban | Ada di repo | `03_Application/ux/`, termasuk `P13-Tinjau-Fix.md` |
+| Review silang use case, ERD, DDL | Selesai | `07_Evidence/P13-CROSS-REVIEW.md` |
+| Kartu papan kerja P13 | Ada | `07_Evidence/P13-WORK-BOARD.md` |
+| NFR, topologi target, hosting, deployment | Ada di repo | `04_Technology/P13-NFR.md`, `P13-Topology-Target.png`, `P13-Hosting-Options.md`, `P13-Deployment-Diagram.png` |
+| Data P13, DDL, seed, RLS | Ada, sudah merge | PR #15, `02_Data/`, `08_Source/db/`, bukti di folder ini |
 | Eksekusi DDL PostgreSQL (23 tabel) | Selesai | `08_Source/db/migrations/001_init.sql`, bukti di `07_Evidence/DDL.png` |
 | Eksekusi Seed Data (31 kriteria, 30 profil) | Selesai | `08_Source/db/seed/seed.sql`, bukti di `07_Evidence/SEED.png` |
 | Verifikasi jumlah baris & skor kosong | Selesai | Bukti di `07_Evidence/Verifikasi Jumlah Baris & Skor Kosong.png` (user=30, umkm_profile=30, assessment=30, assessment_answer=31, criterion=31, skor_terisi=0) |

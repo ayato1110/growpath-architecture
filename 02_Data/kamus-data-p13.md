@@ -2,19 +2,18 @@
 
 **Deliverable:** P13-10, P13-18
 **Pemilik:** Wisnu Nugroho dan Ripa Bagaskara
-**Disusun oleh:** Sesi arsitektur P13, 22 November 2026
+**Disusun oleh:** Tim Growpath P13, 22 November 2026
 **Status:** v1.0, 23 entitas
 
-## 1. Hubungan dengan kamus data lama
+## 1. Kedudukan dokumen
 
-Kamus data 21 entitas di `../../ARCHITECTURE_REPOSITORY/02_Data/Data Dictionary - Growpath.md` tetap berlaku untuk entitas yang tidak berubah. Dokumen ini:
+Dokumen ini adalah kamus data resmi P13 dan P14 untuk 23 entitas. Dokumen ini:
 
-1. Menambah dua entitas baru, `Consultation` dan `AIAnswerLog`.
-2. Mencatat perubahan kolom pada entitas lama.
-3. Menetapkan enum dan aturan null.
-4. Menjadi rujukan `../08_Source/db/migrations/001_init.sql`.
+1. Menetapkan 23 entitas, termasuk `Consultation` dan `AIAnswerLog`.
+2. Mencatat kolom, enum, dan aturan null.
+3. Menjadi rujukan `../08_Source/db/migrations/001_init.sql`.
 
-Jika ada perbedaan antara dokumen ini dan kamus lama, dokumen ini yang dipakai untuk P13 dan P14. Kamus lama diperbarui di session repo terpisah.
+Kamus lama tidak dipakai sebagai acuan P13/P14. Jika ada perbedaan, dokumen ini yang berlaku.
 
 ## 2. Konvensi
 

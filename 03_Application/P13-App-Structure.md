@@ -4,7 +4,7 @@
 
 **Deliverable:** P13-12 dan P13-13
 **Pemilik:** Bagas Adinata
-**Status:** Final P13 untuk pola dan struktur. Implementasi kode di Session 4.
+**Status:** Final P13 untuk pola dan struktur. Implementasi kode di P14.
 **Berlaku:** P13-P16
 **Keputusan terkait:** D-018, S2-2B-07, S2-2B-08
 **Sumber:** `TRD.md` bagian 4, `P13-P16-HANDOFF.md`, `CONTRIBUTING.md`
@@ -234,7 +234,7 @@ Aturan:
 7. Hapus branch setelah merge.
 8. `main` hanya diperbarui lewat PR rilis dari `dev`.
 
-## 10. Batas P13 dan Session 4
+## 10. Batas P13 dan P14
 
 Sudah diputuskan di P13:
 
@@ -244,13 +244,17 @@ Sudah diputuskan di P13:
 - Batas frontend, backend, dan Supabase.
 - Kontrak API sebagai acuan tipe.
 
-Dikerjakan Session 4:
+Sudah masuk implementasi lokal:
 
 - Scaffold Next.js dan FastAPI.
-- Login, daftar, reset kata sandi, dan role.
-- Form data usaha.
-- Health check.
+- Login, role, health check.
 - README cara menjalankan.
-- Tes awal dan bukti build.
+- Tes awal backend.
 
-Jangan menulis kode fitur di P13. Dokumen ini adalah kontrak kerja untuk Session 4.
+Berikutnya P14-P15:
+
+- Form data usaha.
+- Asesmen, skor, rencana aksi, konsultasi, log, dan dashboard.
+- Tes fitur dan bukti build fitur.
+
+Dokumen ini tetap menjadi kontrak kerja untuk P14.

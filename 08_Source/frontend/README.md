@@ -12,4 +12,4 @@ Aturan utama:
 - `lib/api.ts` adalah satu-satunya pintu ke FastAPI.
 - Browser tidak mengakses tabel Supabase langsung.
 
-Scaffold dan implementasi dikerjakan Session 4.
+Scaffold Next.js, login, dan route `/app` sudah ada. Fitur UI P14-P15 menyusul.

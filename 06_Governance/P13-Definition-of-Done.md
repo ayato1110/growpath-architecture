@@ -2,7 +2,7 @@
 
 **Deliverable:** P13-03
 **Pemilik:** Ripa Bagaskara
-**Disusun oleh:** Sesi arsitektur P13, 22 November 2026
+**Disusun oleh:** Tim Growpath P13, 22 November 2026
 **Status:** v1.0
 
 ## 1. Prinsip

@@ -2,7 +2,7 @@
 
 **Deliverable:** PR14-05
 **Pemilik:** Wisnu Nugroho
-**Disusun oleh:** Sesi arsitektur P13, 22 November 2026
+**Disusun oleh:** Tim Growpath P13, 22 November 2026
 **Status:** v1.0, data uji
 
 ## 1. Prinsip
