@@ -10,6 +10,10 @@
 | Login dan role lokal (PR14-06, PR14-07) | Ada, sudah merge | `07_Evidence/PR14-06/` dan `07_Evidence/PR14-06-Login-Role.md` |
 | Use case dan BPMN P13 | Ada, sudah merge | PR #9, `01_Business/` |
 | Governance, BMC, dan AI P13 | Ada, sudah merge | PR #11, `00_Vision/`, `01_Business/P13-Business-Model-Canvas.md`, `03_Application/ai/` |
+| Tim Charter bertanda tangan | Selesai, 23 November 2026 | `06_Governance/P13-Tim-Charter-Signed.pdf` |
+| Notulen stand-up P13 | Ada | `06_Governance/P13-Notulen-Stand-Up.md` |
+| Asumsi 31 kriteria | Ada, belum divalidasi KBUMN | `02_Data/P13-31-Kriteria-Asumsi.md` |
+| Kepatuhan P13/PR14 ke skenario dosen | Ada | `07_Evidence/P13-DOSEN-COMPLIANCE.md` |
 | Pola aplikasi dan struktur folder | Ada, sudah merge | PR #16, `03_Application/P13-App-Structure.md`, `06_Governance/ADR-002-application-structure.md` |
 | Wireframe, high-fidelity, dan Tinjau jawaban | Ada di repo | `03_Application/ux/`, termasuk `P13-Tinjau-Fix.md` |
 | Rekaman video prototipe (desktop & mobile) | Menunggu unggah | `07_Evidence/rekaman/` |

@@ -7,6 +7,7 @@ Folder ini memuat bukti P13, bukti teknis, dan rencana UAT.
 - `EVIDENCE-INDEX.md` - indeks bukti
 - `P13-CROSS-REVIEW.md` - review silang use case, ERD, dan DDL
 - `P13-WORK-BOARD.md` - kartu pekerjaan per anggota
+- `P13-DOSEN-COMPLIANCE.md` - pemetaan P13/PR14 ke skenario dosen
 - `P13-Partner-Confirmation.md` - draf konfirmasi mitra
 - `PR14-06-Login-Role.md` - bukti login dan role lokal
 - `PR14-06/` - screenshot login dan role

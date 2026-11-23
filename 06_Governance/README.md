@@ -6,8 +6,10 @@ Folder ini memuat keputusan, perubahan, dan kepatuhan.
 
 - `P13-Definition-of-Done.md`
 - `P13-Tim-Charter.md`
+- `P13-Tim-Charter-Signed.pdf` - charter bertanda tangan lima anggota, 23 November 2026
+- `P13-Notulen-Stand-Up.md` - notulen dan tindak lanjut P13
 - `P13-Traceability-Matrix.md`
-- `P13-Gate-1-Checklist.md`
+- `P13-Gate-1-Checklist.md` - status Gate 1 Hijau
 - `ADR-001-tech-stack.md`
 - `ADR-002-application-structure.md`
 - `CHANGE-REQUEST-LOG.md`

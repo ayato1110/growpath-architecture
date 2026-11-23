@@ -5,6 +5,7 @@ Folder ini memuat arsitektur data P13.
 ## P13
 
 - `P13-31-Kriteria.md` - katalog 31 kriteria
+- `P13-31-Kriteria-Asumsi.md` - asumsi bobot, poin, segmen, dan rencana validasi
 - `erd-3nf.md` - ERD konseptual ke logis dan bukti 3NF
 - `kamus-data-p13.md` - kamus data 23 entitas
 - `seed-data.md` - penjelasan data uji
