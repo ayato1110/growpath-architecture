@@ -4,7 +4,7 @@
 |---|---|---|
 | Wawancara 40 UMKM | Ada di laporan | Sampel awal, bukan nasional |
 | Responden SIGINJAI TERRA 24 | Ada di laporan | Sampel awal |
-| Konfirmasi mitra Rumah Setrika | Mitra bersedia; jadwal 5 Desember menunggu konfirmasi | `07_Evidence/P14-01/PR14-01-Surat-Konfirmasi-Rumah-Setrika.pdf`, `07_Evidence/P14-01/balasan/2026-11-23-2246-WhatsApp-Rumah-Setrika.png`, `07_Evidence/P14-01/balasan/2026-11-23-Follow-Up-Jadwal.md` |
+| Konfirmasi mitra Rumah Setrika | Terkonfirmasi: UAT 5 Desember 2026 pukul 10.00 WIB; pengingat H-1 | `07_Evidence/P14-01/PR14-01-Surat-Konfirmasi-Rumah-Setrika.pdf`, `07_Evidence/P14-01/balasan/2026-11-23-2301-WhatsApp-Rumah-Setrika.png` |
 | UAT mitra | Belum | Dijadwalkan P15 |
 | SUS | Belum | Dijadwalkan P15 |
 | Foto dan rekaman | Belum | Dikumpulkan P15 |
