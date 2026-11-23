@@ -12,6 +12,7 @@
 | Governance, BMC, dan AI P13 | Ada, sudah merge | PR #11, `00_Vision/`, `01_Business/P13-Business-Model-Canvas.md`, `03_Application/ai/` |
 | Pola aplikasi dan struktur folder | Ada, sudah merge | PR #16, `03_Application/P13-App-Structure.md`, `06_Governance/ADR-002-application-structure.md` |
 | Wireframe, high-fidelity, dan Tinjau jawaban | Ada di repo | `03_Application/ux/`, termasuk `P13-Tinjau-Fix.md` |
+| Rekaman video prototipe (desktop & mobile) | Menunggu unggah | `07_Evidence/rekaman/` |
 | Review silang use case, ERD, DDL | Selesai | `07_Evidence/P13-CROSS-REVIEW.md` |
 | Kartu papan kerja P13 | Ada | `07_Evidence/P13-WORK-BOARD.md` |
 | NFR, topologi as-is/target, hosting, deployment | Ada di repo | `04_Technology/P13-NFR.md`, `P13-Topology-As-Is.png`, `P13-Topology-Target.png`, `P13-Hosting-Options.md`, `P13-Deployment-Diagram.png` |
