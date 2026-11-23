@@ -4,7 +4,7 @@
 |---|---|---|
 | Wawancara 40 UMKM | Ada di laporan | Sampel awal, bukan nasional |
 | Responden SIGINJAI TERRA 24 | Ada di laporan | Sampel awal |
-| Konfirmasi mitra Rumah Setrika | Surat siap kirim, belum ada balasan | `07_Evidence/P14-01/PR14-01-Surat-Konfirmasi-Rumah-Setrika.pdf` |
+| Konfirmasi mitra Rumah Setrika | Mitra bersedia; jadwal belum disepakati | `07_Evidence/P14-01/PR14-01-Surat-Konfirmasi-Rumah-Setrika.pdf`, `07_Evidence/P14-01/balasan/2026-11-23-2246-WhatsApp-Rumah-Setrika.png` |
 | UAT mitra | Belum | Dijadwalkan P15 |
 | SUS | Belum | Dijadwalkan P15 |
 | Foto dan rekaman | Belum | Dikumpulkan P15 |
