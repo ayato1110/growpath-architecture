@@ -10,7 +10,7 @@
 | 05_Opportunities | Gap analysis, roadmap, migration plan | Siap |
 | 06_Governance | ADR, change request log, compliance, team charter | Sebagian, templat siap |
 | 07_Evidence | Rencana UAT, indeks bukti | Sebagian, UAT belum |
-| 08_Source | Repositori kode, changelog | Belum, mulai P14 |
+| 08_Source | Repositori kode, changelog | Sebagian, skeleton dan login jalan; fitur MVP P14 |
 | 09_Pitch | Pitch deck | Belum, mulai P15 |
 
 Catatan: status "belum" adalah pekerjaan P14-P16, bukan artefak yang diklaim selesai.
