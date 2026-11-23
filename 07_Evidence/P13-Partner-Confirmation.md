@@ -102,10 +102,10 @@ Pertanyaan pasca tugas:
 - Mengklaim hasil UAT sebelum sesi dijalankan.
 - Menampilkan nama atau kutipan peserta tanpa izin.
 
-## 8. Syarat Gate 1 yang belum terpenuhi
+## 8. Syarat PR14-01 yang belum terpenuhi
 
 - Surat konfirmasi belum dikirim.
 - Nama mitra dan tanggal UAT belum ada.
 - Persetujuan penggunaan data belum ada.
 
-Selama tiga butir ini kosong, Gate 1 tetap berstatus Kuning.
+Gate 1 sudah **Hijau** karena butir Definition of Done terpenuhi. Tiga butir di atas adalah PR14-01 dan tetap wajib sebelum P14.

@@ -3,7 +3,7 @@
 **Deliverable:** Checklist Gate 1
 **Pemilik:** Ripa Bagaskara
 **Disusun oleh:** Tim Growpath P13, 23 November 2026
-**Status penilaian:** Kuning, Go with conditions
+**Status penilaian:** Hijau, Go
 
 ## 1. Ringkasan keputusan
 
@@ -14,9 +14,9 @@
 | ERD 3NF konsisten dengan use case | Terpenuhi, review silang selesai | `../02_Data/erd-3nf.md`, `../02_Data/diagrams/erd-3nf.drawio`, `../01_Business/use-cases.md`, `../07_Evidence/P13-CROSS-REVIEW.md` |
 | Backlog MoSCoW, Must maksimal 5 | Terpenuhi | `../00_Vision/P13-MoSCoW-Backlog.md`, 5 Must |
 | Repo dan papan kerja aktif, setiap anggota punya kartu atau commit | Terpenuhi dengan work board repo | `../07_Evidence/P13-WORK-BOARD.md`, repo aktif |
-| Tim Charter ditandatangani | Belum | `P13-Tim-Charter.md` bagian tanda tangan masih kosong |
+| Tim Charter ditandatangani | Terpenuhi | `P13-Tim-Charter.md`, `P13-Tim-Charter-Signed.pdf` |
 
-**Keputusan:** Kuning. Boleh lanjut ke P14 dengan syarat di bagian 4.
+**Keputusan:** Hijau. Gate 1 terpenuhi; konfirmasi mitra tetap menjadi PR14-01 sebelum P14.
 
 ## 2. Rincian per butir
 
@@ -42,7 +42,7 @@ Terpenuhi dengan work board repo. Repo GitHub aktif dengan branch `main` dan `de
 
 ### 2.6 Tim Charter
 
-Belum. Isi charter lengkap, tetapi kolom tanda tangan kosong. Ini tidak bisa diklaim selesai sebelum ditandatangani.
+Terpenuhi. Charter ditandatangani lima anggota pada 23 November 2026. Bukti: `P13-Tim-Charter-Signed.pdf`.
 
 ## 3. Butir P13 di luar Definition of Done Gate 1
 
@@ -63,13 +63,13 @@ Belum. Isi charter lengkap, tetapi kolom tanda tangan kosong. Ini tidak bisa dik
 
 | Syarat | Status | Bukti |
 |---|---|---|
-| 1. Tandatangani Tim Charter oleh lima anggota | Belum | `P13-Tim-Charter.md` |
+| 1. Tandatangani Tim Charter oleh lima anggota | Terpenuhi | `P13-Tim-Charter-Signed.pdf` |
 | 2. Kartu papan kerja setiap anggota dan tautan artefak/PR | Terpenuhi dengan work board repo | `../07_Evidence/P13-WORK-BOARD.md` |
 | 3. Konfirmasi mitra dan jadwal UAT | Sebagian, draf | `../07_Evidence/P13-Partner-Confirmation.md` |
 | 4. Review silang ERD, DDL, dan use case | Terpenuhi | `../07_Evidence/P13-CROSS-REVIEW.md` |
 | 5. Perbaikan temuan Tinjau jawaban | Terpenuhi | `../03_Application/ux/P13-Tinjau-Fix.md` |
 
-Gate 1 tetap **Kuning** karena butir 1 belum ada dan butir 3 baru draf. Butir 2, 4, dan 5 sudah selesai. Konfirmasi mitra tetap wajib sebelum P14; draf boleh dipakai untuk P13.
+Gate 1 sudah **Hijau**: semua butir Definition of Done terpenuhi. Konfirmasi mitra bukan butir Gate 1; itu PR14-01 dan tetap wajib sebelum P14. Butir 2, 4, dan 5 juga sudah selesai.
 
 ## 5. Bahan presentasi 5 menit
 
@@ -85,11 +85,11 @@ Gate 1 tetap **Kuning** karena butir 1 belum ada dan butir 3 baru draf. Butir 2,
 
 Presenter ditunjuk dosen di tempat, jadi setiap anggota harus bisa menjelaskan bagian mana pun.
 
-## 6. Risiko bila dipaksakan Hijau
+## 6. Risiko yang masih dijaga
 
-- Kartu papan kerja kosong membuat klaim kontribusi tidak bisa dibuktikan.
-- Charter tanpa tanda tangan melemahkan kesepakatan tim.
-- Mitra tanpa konfirmasi membuat UAT P15 berisiko ditunda.
-- Review silang yang dilewati membuat ERD dan DDL berpotensi tidak sinkron saat implementasi.
+- Konfirmasi mitra belum ada; ini PR14-01 dan bisa menunda UAT P15.
+- Work board harus terus diperbarui agar klaim kontribusi tetap bisa diperiksa.
+- Prototipe memakai FigCraft, bukan Figma; perlu konfirmasi dosen bila tuntutan Figma dibaca literal.
+- Review silang sudah selesai, tetapi ERD dan DDL harus dicek ulang setiap ada perubahan skema.
 
-Karena itu status Kuning adalah penilaian yang jujur, bukan kekurangan administratif yang disembunyikan.
+Gate 1 tetap **Hijau** karena seluruh butir Definition of Done terpenuhi. Risiko di atas tidak mengubah status Gate 1, tetapi harus ditutup sebelum P14/UAT.

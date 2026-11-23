@@ -3,7 +3,7 @@
 **Deliverable:** P13-04
 **Pemilik:** Ripa Bagaskara
 **Disusun oleh:** Tim Growpath P13, 22 November 2026
-**Status:** v1.0, tanda tangan anggota menunggu
+**Status:** v1.0, ditandatangani 23 November 2026
 
 ## 1. Tujuan tim
 
@@ -94,4 +94,8 @@ CEO tidak boleh mengeluarkan anggota. Konflik yang dicatat dan diselesaikan just
 | Mhd Farras Delvioza | System Analyst dan UI/UX | | |
 | Bagas Adinata | Programmer | | |
 | Moch Haikal Ramadhan | Network / DevOps | | |
+
+> Tanda tangan lengkap ada di `P13-Tim-Charter-Signed.pdf` (23 November 2026). Tabel ini sengaja tidak memuat gambar agar Markdown tetap ringan.
+
+Status: ditandatangani 23 November 2026. Bukti: `P13-Tim-Charter-Signed.pdf`.
 
