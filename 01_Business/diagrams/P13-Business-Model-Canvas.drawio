@@ -1,0 +1,115 @@
+<mxfile host="localhost">
+  <diagram id="rp30i2wz-l16y" name="BMC P13">
+    <mxGraphModel dx="1345" dy="1230" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="rounded=0;fillColor=#2E5E8F;strokeColor=none;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="768" width="1024" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="1" style="text;align=left;verticalAlign=middle;fontSize=10;fontColor=#FFFFFF;whiteSpace=wrap;html=1;" value="GROWPATH · Model B2G: institusi membayar, UMKM memakai layanan inti gratis · Final P13" vertex="1">
+          <mxGeometry height="22" width="924" x="50" y="16" as="geometry" />
+        </mxCell>
+        <mxCell id="10" parent="1" style="rounded=1;arcSize=6;fillColor=#FFFFFF;strokeColor=none;shadow=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="340" width="180" x="50" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="20" parent="1" style="text;align=left;verticalAlign=top;fontSize=12;fontStyle=1;fontColor=#1F2937;whiteSpace=wrap;html=1;" value="&lt;b&gt;Key Partnerships&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="156" x="62" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="30" parent="1" style="text;align=left;verticalAlign=top;fontSize=10;fontColor=#374151;whiteSpace=wrap;html=1;" value="• Institusi pembina&lt;br&gt;• Penyedia cloud &amp; AI&lt;br&gt;• Kurator konten legal&lt;br&gt;• Pendamping lapangan&lt;br&gt;• Kampus / asosiasi&lt;br&gt;• UMKM" vertex="1">
+          <mxGeometry height="292" width="156" x="62" y="86" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="1" style="rounded=1;arcSize=6;fillColor=#FFFFFF;strokeColor=none;shadow=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="160" width="165" x="240" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="21" parent="1" style="text;align=left;verticalAlign=top;fontSize=12;fontStyle=1;fontColor=#1F2937;whiteSpace=wrap;html=1;" value="&lt;b&gt;Key Activities&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="141" x="252" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="31" parent="1" style="text;align=left;verticalAlign=top;fontSize=10;fontColor=#374151;whiteSpace=wrap;html=1;" value="• Jaga katalog 31 kriteria&lt;br&gt;• Kurasi dokumen rujukan&lt;br&gt;• Kembangkan platform&lt;br&gt;• Latih pendamping&lt;br&gt;• Ukur hasil &amp; laporan&lt;br&gt;• Jaga privasi data" vertex="1">
+          <mxGeometry height="112" width="141" x="252" y="86" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="1" style="rounded=1;arcSize=6;fillColor=#FFFFFF;strokeColor=none;shadow=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="170" width="165" x="240" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="22" parent="1" style="text;align=left;verticalAlign=top;fontSize=12;fontStyle=1;fontColor=#1F2937;whiteSpace=wrap;html=1;" value="&lt;b&gt;Key Resources&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="141" x="252" y="232" as="geometry" />
+        </mxCell>
+        <mxCell id="32" parent="1" style="text;align=left;verticalAlign=top;fontSize=10;fontColor=#374151;whiteSpace=wrap;html=1;" value="• Framework 31 kriteria&lt;br&gt;• Katalog &amp; versi konfigurasi&lt;br&gt;• Konten legal terkurasi&lt;br&gt;• Platform web &amp; basis data&lt;br&gt;• Tim lintas disiplin&lt;br&gt;• Relasi institusi pembina" vertex="1">
+          <mxGeometry height="122" width="141" x="252" y="256" as="geometry" />
+        </mxCell>
+        <mxCell id="13" parent="1" style="rounded=1;arcSize=6;fillColor=#FFFFFF;strokeColor=none;shadow=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="340" width="175" x="415" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="23" parent="1" style="text;align=left;verticalAlign=top;fontSize=12;fontStyle=1;fontColor=#1F2937;whiteSpace=wrap;html=1;" value="&lt;b&gt;Value Propositions&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="151" x="427" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="33" parent="1" style="text;align=left;verticalAlign=top;fontSize=10;fontColor=#374151;whiteSpace=wrap;html=1;" value="&lt;b&gt;Untuk institusi&lt;/b&gt;&lt;br&gt;• Profiling &amp; skor konsisten&lt;br&gt;• Bukti progres &amp; dampak&lt;br&gt;• Kapasitas pendamping naik&lt;br&gt;&lt;br&gt;&lt;b&gt;Untuk UMKM&lt;/b&gt;&lt;br&gt;• Tahu posisi &amp; langkah berikutnya&lt;br&gt;• Konsultasi tercatat &amp; bisa dibaca ulang&lt;br&gt;• Bahasa tenang, tidak menghakimi" vertex="1">
+          <mxGeometry height="292" width="151" x="427" y="86" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="1" style="rounded=1;arcSize=6;fillColor=#FFFFFF;strokeColor=none;shadow=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="160" width="165" x="600" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="24" parent="1" style="text;align=left;verticalAlign=top;fontStyle=1;fontColor=#1F2937;fontSize=11;whiteSpace=wrap;html=1;" value="&lt;b&gt;Customer Relationships&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="151" x="612" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="34" parent="1" style="text;align=left;verticalAlign=top;fontSize=10;fontColor=#374151;whiteSpace=wrap;html=1;" value="• Lisensi tahunan institusi&lt;br&gt;• Onboarding &amp; pelatihan&lt;br&gt;• Dukungan email saat MVP&lt;br&gt;• Laporan berkala" vertex="1">
+          <mxGeometry height="112" width="141" x="612" y="86" as="geometry" />
+        </mxCell>
+        <mxCell id="15" parent="1" style="rounded=1;arcSize=6;fillColor=#FFFFFF;strokeColor=none;shadow=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="170" width="165" x="600" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="25" parent="1" style="text;align=left;verticalAlign=top;fontSize=12;fontStyle=1;fontColor=#1F2937;whiteSpace=wrap;html=1;" value="&lt;b&gt;Channels&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="141" x="612" y="232" as="geometry" />
+        </mxCell>
+        <mxCell id="35" parent="1" style="text;align=left;verticalAlign=top;fontSize=10;fontColor=#374151;whiteSpace=wrap;html=1;" value="• Penjualan langsung ke institusi&lt;br&gt;• Program bersama institusi&lt;br&gt;• Situs produk &amp; materi pitch&lt;br&gt;• Pendamping sebagai pengguna harian" vertex="1">
+          <mxGeometry height="122" width="141" x="612" y="256" as="geometry" />
+        </mxCell>
+        <mxCell id="16" parent="1" style="rounded=1;arcSize=6;fillColor=#FFFFFF;strokeColor=none;shadow=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="340" width="180" x="775" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="26" parent="1" style="text;align=left;verticalAlign=top;fontSize=12;fontStyle=1;fontColor=#1F2937;whiteSpace=wrap;html=1;" value="&lt;b&gt;Customer Segments&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="156" x="787" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="36" parent="1" style="text;align=left;verticalAlign=top;fontSize=10;fontColor=#374151;whiteSpace=wrap;html=1;" value="• Institusi pembina UMKM&lt;br&gt;  (utama, pembayar)&lt;br&gt;• Pendamping lapangan&lt;br&gt;  (pengguna)&lt;br&gt;• UMKM&lt;br&gt;  (pengguna utama, gratis)&lt;br&gt;• Kampus / asosiasi&lt;br&gt;  (sekunder)" vertex="1">
+          <mxGeometry height="292" width="156" x="787" y="86" as="geometry" />
+        </mxCell>
+        <mxCell id="17" parent="1" style="rounded=1;arcSize=6;fillColor=#FFFFFF;strokeColor=none;shadow=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="190" width="420" x="50" y="405" as="geometry" />
+        </mxCell>
+        <mxCell id="27" parent="1" style="text;align=left;verticalAlign=top;fontSize=12;fontStyle=1;fontColor=#1F2937;whiteSpace=wrap;html=1;" value="&lt;b&gt;Cost Structure&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="396" x="62" y="417" as="geometry" />
+        </mxCell>
+        <mxCell id="37" parent="1" style="text;align=left;verticalAlign=top;fontSize=10;fontColor=#374151;whiteSpace=wrap;html=1;" value="• Infrastruktur aplikasi &amp; basis data&lt;br&gt;• Panggilan model AI&lt;br&gt;• Observability &amp; domain&lt;br&gt;• Kurasi konten &amp; aturan kriteria&lt;br&gt;• Dukungan &amp; pelatihan&lt;br&gt;• Pengembangan produk&lt;br&gt;• Biaya orang &amp; akuisisi" vertex="1">
+          <mxGeometry height="142" width="396" x="62" y="441" as="geometry" />
+        </mxCell>
+        <mxCell id="18" parent="1" style="rounded=1;arcSize=6;fillColor=#FFFFFF;strokeColor=none;shadow=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="190" width="445" x="510" y="405" as="geometry" />
+        </mxCell>
+        <mxCell id="28" parent="1" style="text;align=left;verticalAlign=top;fontSize=12;fontStyle=1;fontColor=#1F2937;whiteSpace=wrap;html=1;" value="&lt;b&gt;Revenue Streams&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="421" x="522" y="417" as="geometry" />
+        </mxCell>
+        <mxCell id="38" parent="1" style="text;align=left;verticalAlign=top;fontSize=10;fontColor=#374151;whiteSpace=wrap;html=1;" value="• Lisensi institusi per tenant / tahun&lt;br&gt;• Paket program pembinaan&lt;br&gt;• Premium UMKM (fase 2)&lt;br&gt;• Mentor bagi hasil (fase 2)&lt;br&gt;• Layanan pendampingan data (opsional)&lt;br&gt;• Harga per kontrak institusi" vertex="1">
+          <mxGeometry height="142" width="421" x="522" y="441" as="geometry" />
+        </mxCell>
+        <mxCell id="40" parent="1" style="rounded=0;fillColor=#FFFFFF;strokeColor=none;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="128" width="1024" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="41" parent="1" style="rounded=1;arcSize=50;fillColor=#2E5E8F;strokeColor=none;fontColor=#FFFFFF;fontSize=11;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" value="Created by: Ripa Bagaskara" vertex="1">
+          <mxGeometry height="38" width="190" x="50" y="665" as="geometry" />
+        </mxCell>
+        <mxCell id="42" parent="1" style="rounded=1;arcSize=50;fillColor=#2E5E8F;strokeColor=none;fontColor=#FFFFFF;fontSize=11;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" value="Date: 22 November 2026" vertex="1">
+          <mxGeometry height="38" width="190" x="260" y="665" as="geometry" />
+        </mxCell>
+        <mxCell id="43" parent="1" style="text;align=right;verticalAlign=middle;fontSize=28;fontStyle=1;fontColor=#111827;whiteSpace=wrap;html=1;" value="BUSINESS MODEL CANVAS" vertex="1">
+          <mxGeometry height="48" width="504" x="470" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="44" parent="1" style="text;align=right;verticalAlign=middle;fontSize=11;fontColor=#6B7280;whiteSpace=wrap;html=1;" value="Growpath · P13 · Final 22 November 2026" vertex="1">
+          <mxGeometry height="22" width="504" x="470" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="45" parent="1" style="text;align=left;verticalAlign=middle;fontSize=9;fontColor=#6B7280;whiteSpace=wrap;html=1;" value="Sumber: APP-DEV/p13/business-model-canvas.md" vertex="1">
+          <mxGeometry height="20" width="800" x="50" y="720" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

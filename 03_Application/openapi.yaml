@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   title: Growpath API
   version: 1.0.0
-  description: Kontrak API Growpath untuk alur inti profiling, assessment, scoring, roadmap, progress, knowledge, dashboard B2G, dan admin. Memakai REST, JSON, OpenAPI 3.1.0, serta error RFC 9457.
+  description: Kontrak API 15 endpoint MVP Growpath. Auth dan health adalah endpoint pendukung. B2G, admin, mentor, billing, dan notification tidak termasuk MVP P13.
   contact:
     name: Tim Growpath
     email: halo@growpath.id
@@ -22,64 +22,9 @@ tags:
 - name: Scoring
 - name: Roadmap
 - name: Progress
-- name: Knowledge
-- name: B2G
-- name: Admin
-- name: Mentor
-- name: Billing
-- name: Notification
 - name: System
+- name: Consultation
 paths:
-  /auth/register:
-    post:
-      tags:
-      - Auth
-      summary: Registrasi pengguna UMKM
-      description: Membuat akun, tenant platform bila belum ada, dan profil awal. Mengembalikan access token dan refresh token.
-      security: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RegisterRequest'
-      responses:
-        '201':
-          description: Dibuat
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AuthResponse'
-        '400': &id001
-          description: Request tidak valid
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '409': &id008
-          description: Konflik status atau data duplikat
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '422': &id007
-          description: Validasi gagal
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '429': &id002
-          description: Rate limit terlampaui
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '500': &id003
-          description: Kesalahan internal
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Problem'
   /auth/login:
     post:
       tags:
@@ -100,56 +45,36 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AuthResponse'
-        '400': *id001
-        '401': &id004
+        '400': &id004
+          description: Request tidak valid
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401': &id001
           description: Token tidak ada atau kedaluwarsa
           content:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/Problem'
-        '403': &id005
+        '403': &id003
           description: Peran tidak berwenang
           content:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/Problem'
-        '429': *id002
-        '500': *id003
-  /auth/refresh:
-    post:
-      tags:
-      - Auth
-      summary: Perbarui access token
-      description: Menukar refresh token yang masih valid dengan access token baru.
-      security: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RefreshRequest'
-      responses:
-        '200':
-          description: Berhasil
+        '429': &id007
+          description: Rate limit terlampaui
           content:
-            application/json:
+            application/problem+json:
               schema:
-                $ref: '#/components/schemas/AuthResponse'
-        '400': *id001
-        '401': *id004
-        '429': *id002
-        '500': *id003
-  /auth/logout:
-    post:
-      tags:
-      - Auth
-      summary: Logout
-      description: Mencabut refresh token aktif.
-      responses:
-        '204':
-          description: Tidak ada isi
-        '401': *id004
-        '500': *id003
+                $ref: '#/components/schemas/Problem'
+        '500': &id002
+          description: Kesalahan internal
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
   /auth/me:
     get:
       tags:
@@ -163,8 +88,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-        '401': *id004
-        '500': *id003
+        '401': *id001
+        '500': *id002
+  /health:
+    get:
+      tags:
+      - System
+      summary: Health check
+      description: Status API dan dependensi utama.
+      security: []
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
   /me/profile:
     get:
       tags:
@@ -178,15 +117,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UMKMProfile'
-        '401': *id004
-        '403': *id005
-        '404': &id006
+        '401': *id001
+        '403': *id003
+        '404': &id005
           description: Sumber daya tidak ditemukan
           content:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/Problem'
-        '500': *id003
+        '500': *id002
     put:
       tags:
       - Profile
@@ -205,12 +144,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UMKMProfile'
-        '400': *id001
-        '401': *id004
-        '403': *id005
-        '404': *id006
-        '422': *id007
-        '500': *id003
+        '400': *id004
+        '401': *id001
+        '403': *id003
+        '404': *id005
+        '422': &id006
+          description: Validasi gagal
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '500': *id002
     patch:
       tags:
       - Profile
@@ -229,12 +173,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UMKMProfile'
-        '400': *id001
-        '401': *id004
-        '403': *id005
-        '404': *id006
-        '422': *id007
-        '500': *id003
+        '400': *id004
+        '401': *id001
+        '403': *id003
+        '404': *id005
+        '422': *id006
+        '500': *id002
   /me/dashboard:
     get:
       tags:
@@ -249,9 +193,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UMKMDashboard'
-        '401': *id004
-        '403': *id005
-        '500': *id003
+        '401': *id001
+        '403': *id003
+        '500': *id002
   /assessments:
     post:
       tags:
@@ -271,52 +215,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AssessmentDraft'
-        '400': *id001
-        '401': *id004
-        '403': *id005
-        '409': *id008
-        '422': *id007
-        '429': *id002
-        '500': *id003
-    get:
-      tags:
-      - Assessment
-      summary: Daftar asesmen
-      description: Mengembalikan asesmen milik pengguna dengan pagination.
-      parameters:
-      - name: page
-        in: query
-        schema:
-          type: integer
-          minimum: 1
-          default: 1
-      - name: limit
-        in: query
-        schema:
-          type: integer
-          minimum: 1
-          maximum: 100
-          default: 20
-      - name: status
-        in: query
-        description: Filter status
-        schema:
-          type: string
-          enum:
-          - draft
-          - submitted
-          - scored
-          - archived
-      responses:
-        '200':
-          description: Berhasil
+        '400': *id004
+        '401': *id001
+        '403': *id003
+        '409': &id008
+          description: Konflik status atau data duplikat
           content:
-            application/json:
+            application/problem+json:
               schema:
-                $ref: '#/components/schemas/AssessmentList'
-        '401': *id004
-        '403': *id005
-        '500': *id003
+                $ref: '#/components/schemas/Problem'
+        '422': *id006
+        '429': *id007
+        '500': *id002
   /assessments/{assessment_id}:
     get:
       tags:
@@ -338,10 +248,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AssessmentDetail'
-        '401': *id004
-        '403': *id005
-        '404': *id006
-        '500': *id003
+        '401': *id001
+        '403': *id003
+        '404': *id005
+        '500': *id002
   /assessments/{assessment_id}/answers:
     put:
       tags:
@@ -369,13 +279,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AssessmentDraft'
-        '400': *id001
-        '401': *id004
-        '403': *id005
-        '404': *id006
+        '400': *id004
+        '401': *id001
+        '403': *id003
+        '404': *id005
         '409': *id008
-        '422': *id007
-        '500': *id003
+        '422': *id006
+        '500': *id002
   /assessments/{assessment_id}/submit:
     post:
       tags:
@@ -397,13 +307,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JobAccepted'
-        '400': *id001
-        '401': *id004
-        '403': *id005
-        '404': *id006
+        '400': *id004
+        '401': *id001
+        '403': *id003
+        '404': *id005
         '409': *id008
-        '422': *id007
-        '500': *id003
+        '422': *id006
+        '500': *id002
   /assessments/{assessment_id}/scores:
     get:
       tags:
@@ -425,36 +335,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScoreResult'
-        '401': *id004
-        '403': *id005
-        '404': *id006
-        '500': *id003
-  /assessments/{assessment_id}/recompute:
-    post:
-      tags:
-      - Scoring
-      summary: Hitung ulang skor
-      description: Menghitung ulang skor dengan versi aturan aktif. Hanya admin platform.
-      parameters:
-      - name: assessment_id
-        in: path
-        required: true
-        description: ID asesmen
-        schema:
-          type: string
-          format: uuid
-      responses:
-        '202':
-          description: Diterima untuk diproses
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/JobAccepted'
-        '401': *id004
-        '403': *id005
-        '404': *id006
-        '409': *id008
-        '500': *id003
+        '401': *id001
+        '403': *id003
+        '404': *id005
+        '500': *id002
   /assessments/{assessment_id}/roadmap:
     get:
       tags:
@@ -476,93 +360,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Roadmap'
-        '401': *id004
-        '403': *id005
-        '404': *id006
-        '500': *id003
-    post:
-      tags:
-      - Roadmap
-      summary: Buat roadmap
-      description: Memicu pembuatan roadmap dari skor, gap, dan konteks. Operasi asinkron.
-      parameters:
-      - name: assessment_id
-        in: path
-        required: true
-        description: ID asesmen
-        schema:
-          type: string
-          format: uuid
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RoadmapGenerateRequest'
-      responses:
-        '202':
-          description: Diterima untuk diproses
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/JobAccepted'
-        '400': *id001
-        '401': *id004
-        '403': *id005
-        '404': *id006
-        '409': *id008
-        '429': *id002
-        '500': *id003
-  /roadmaps/{roadmap_id}:
-    get:
-      tags:
-      - Roadmap
-      summary: Detail roadmap
-      description: Mengembalikan roadmap, versi, dan status.
-      parameters:
-      - name: roadmap_id
-        in: path
-        required: true
-        description: ID roadmap
-        schema:
-          type: string
-          format: uuid
-      responses:
-        '200':
-          description: Berhasil
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Roadmap'
-        '401': *id004
-        '403': *id005
-        '404': *id006
-        '500': *id003
-  /roadmaps/{roadmap_id}/milestones:
-    get:
-      tags:
-      - Roadmap
-      summary: Daftar milestone
-      description: Mengembalikan milestone berurutan.
-      parameters:
-      - name: roadmap_id
-        in: path
-        required: true
-        description: ID roadmap
-        schema:
-          type: string
-          format: uuid
-      responses:
-        '200':
-          description: Berhasil
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MilestoneList'
-        '401': *id004
-        '403': *id005
-        '404': *id006
-        '500': *id003
+        '401': *id001
+        '403': *id003
+        '404': *id005
+        '500': *id002
   /milestones/{milestone_id}:
     patch:
       tags:
@@ -590,684 +391,65 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Milestone'
-        '400': *id001
-        '401': *id004
-        '403': *id005
-        '404': *id006
-        '422': *id007
-        '500': *id003
-  /milestones/{milestone_id}/progress:
-    get:
-      tags:
-      - Progress
-      summary: Riwayat progres
-      description: Mengembalikan log progres milestone.
-      parameters:
-      - name: milestone_id
-        in: path
-        required: true
-        description: ID milestone
-        schema:
-          type: string
-          format: uuid
-      responses:
-        '200':
-          description: Berhasil
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProgressList'
-        '401': *id004
-        '403': *id005
-        '404': *id006
-        '500': *id003
+        '400': *id004
+        '401': *id001
+        '403': *id003
+        '404': *id005
+        '422': *id006
+        '500': *id002
+  /consultations:
     post:
       tags:
-      - Progress
-      summary: Catat progres
-      description: Menambah log progres append-only.
-      parameters:
-      - name: milestone_id
-        in: path
-        required: true
-        description: ID milestone
-        schema:
-          type: string
-          format: uuid
+      - Consultation
+      summary: Kirim pertanyaan konsultasi
+      description: Membuat konsultasi, memanggil layanan AI dari backend, menyimpan jawaban dan log.
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProgressRequest'
+              $ref: '#/components/schemas/ConsultationRequest'
       responses:
         '201':
-          description: Dibuat
+          description: Jawaban konsultasi
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProgressLog'
-        '400': *id001
-        '401': *id004
-        '403': *id005
-        '404': *id006
-        '422': *id007
-        '500': *id003
-  /knowledge/documents:
+                $ref: '#/components/schemas/Consultation'
+        '409':
+          description: Asesmen belum dinilai
+          content: &id009
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '422':
+          description: Pertanyaan tidak valid
+          content: *id009
+        '429':
+          description: Kuota habis
+          content: *id009
+        '502':
+          description: Model gagal, pertanyaan tetap tersimpan
+          content: *id009
     get:
       tags:
-      - Knowledge
-      summary: Daftar dokumen
-      description: Mengembalikan dokumen published yang dapat diakses tenant.
+      - Consultation
+      summary: Daftar konsultasi pengguna
       parameters:
-      - name: page
-        in: query
-        schema:
-          type: integer
-          minimum: 1
-          default: 1
-      - name: limit
-        in: query
-        schema:
-          type: integer
-          minimum: 1
-          maximum: 100
-          default: 20
-      - name: q
-        in: query
-        description: Pencarian judul
-        schema:
-          type: string
-      - name: type
-        in: query
-        description: Tipe dokumen
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Berhasil
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/KnowledgeList'
-        '401': *id004
-        '500': *id003
-  /knowledge/documents/{document_id}:
-    get:
-      tags:
-      - Knowledge
-      summary: Detail dokumen
-      description: Mengembalikan metadata dan isi ringkas dokumen.
-      parameters:
-      - name: document_id
-        in: path
-        required: true
-        description: ID dokumen
-        schema:
-          type: string
-          format: uuid
-      responses:
-        '200':
-          description: Berhasil
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/KnowledgeDocument'
-        '401': *id004
-        '404': *id006
-        '500': *id003
-  /knowledge/search:
-    post:
-      tags:
-      - Knowledge
-      summary: Cari pengetahuan
-      description: Retrieval RAG dengan sitasi. Rate limit 10 request per menit per pengguna.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/KnowledgeSearchRequest'
-      responses:
-        '200':
-          description: Berhasil
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/KnowledgeSearchResponse'
-        '400': *id001
-        '401': *id004
-        '403': *id005
-        '422': *id007
-        '429': *id002
-        '500': *id003
-  /b2g/dashboard/summary:
-    get:
-      tags:
-      - B2G
-      summary: Ringkasan dashboard B2G
-      description: Mengembalikan agregat UMKM binaan, skor rata-rata, distribusi segmen, dan progres.
-      parameters:
-      - name: period
-        in: query
-        description: Periode, format YYYY-MM
-        schema:
-          type: string
-          pattern: ^[0-9]{4}-[0-9]{2}$
-      responses:
-        '200':
-          description: Berhasil
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/B2GSummary'
-        '401': *id004
-        '403': *id005
-        '500': *id003
-  /b2g/umkm:
-    get:
-      tags:
-      - B2G
-      summary: Daftar UMKM binaan
-      description: Mengembalikan daftar agregat tanpa jawaban mentah.
-      parameters:
-      - name: page
-        in: query
-        schema:
-          type: integer
-          minimum: 1
-          default: 1
-      - name: limit
-        in: query
-        schema:
-          type: integer
-          minimum: 1
-          maximum: 100
-          default: 20
-      - name: segment
-        in: query
-        description: Filter segmen
-        schema:
-          type: string
-      - name: status
-        in: query
-        description: Filter status
-        schema:
-          type: string
-      - name: q
-        in: query
-        description: Cari nama usaha
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Berhasil
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/B2GUMKMList'
-        '401': *id004
-        '403': *id005
-        '500': *id003
-  /b2g/umkm/{umkm_profile_id}:
-    get:
-      tags:
-      - B2G
-      summary: Detail agregat UMKM
-      description: Mengembalikan riwayat skor, segmen, progres, dan jumlah sesi mentor. Tidak memuat jawaban mentah.
-      parameters:
-      - name: umkm_profile_id
-        in: path
-        required: true
-        description: ID profil UMKM
-        schema:
-          type: string
-          format: uuid
-      responses:
-        '200':
-          description: Berhasil
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/B2GUMKMDetail'
-        '401': *id004
-        '403': *id005
-        '404': *id006
-        '500': *id003
-  /b2g/reports:
-    get:
-      tags:
-      - B2G
-      summary: Daftar laporan
-      description: Mengembalikan laporan yang pernah dibuat tenant.
-      parameters:
-      - name: page
-        in: query
-        schema:
-          type: integer
-          minimum: 1
-          default: 1
-      - name: limit
-        in: query
-        schema:
-          type: integer
-          minimum: 1
-          maximum: 100
-          default: 20
-      responses:
-        '200':
-          description: Berhasil
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ReportList'
-        '401': *id004
-        '403': *id005
-        '500': *id003
-    post:
-      tags:
-      - B2G
-      summary: Buat laporan
-      description: Memicu pembuatan laporan agregat. Operasi asinkron.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ReportCreateRequest'
-      responses:
-        '202':
-          description: Diterima untuk diproses
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Report'
-        '400': *id001
-        '401': *id004
-        '403': *id005
-        '409': *id008
-        '422': *id007
-        '429': *id002
-        '500': *id003
-  /b2g/reports/{report_id}:
-    get:
-      tags:
-      - B2G
-      summary: Status laporan
-      description: Mengembalikan status dan file_url bila siap.
-      parameters:
-      - name: report_id
-        in: path
-        required: true
-        description: ID laporan
-        schema:
-          type: string
-          format: uuid
-      responses:
-        '200':
-          description: Berhasil
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Report'
-        '401': *id004
-        '403': *id005
-        '404': *id006
-        '500': *id003
-  /admin/tenants:
-    get:
-      tags:
-      - Admin
-      summary: Daftar tenant
-      description: Hanya admin platform.
-      parameters:
-      - name: page
-        in: query
-        schema:
-          type: integer
-          minimum: 1
-          default: 1
-      - name: limit
-        in: query
-        schema:
-          type: integer
-          minimum: 1
-          maximum: 100
-          default: 20
-      responses:
-        '200':
-          description: Berhasil
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TenantList'
-        '401': *id004
-        '403': *id005
-        '500': *id003
-    post:
-      tags:
-      - Admin
-      summary: Buat tenant
-      description: Membuat institusi B2G baru.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/TenantCreateRequest'
-      responses:
-        '201':
-          description: Dibuat
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Tenant'
-        '400': *id001
-        '401': *id004
-        '403': *id005
-        '409': *id008
-        '422': *id007
-        '500': *id003
-  /admin/users:
-    get:
-      tags:
-      - Admin
-      summary: Daftar pengguna
-      description: Admin platform melihat semua; admin B2G hanya tenant sendiri.
-      parameters:
-      - name: page
-        in: query
-        schema:
-          type: integer
-          minimum: 1
-          default: 1
-      - name: limit
-        in: query
-        schema:
-          type: integer
-          minimum: 1
-          maximum: 100
-          default: 20
-      - name: role
-        in: query
-        description: Filter peran
-        schema:
-          type: string
-      - name: status
-        in: query
-        description: Filter status
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Berhasil
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserList'
-        '401': *id004
-        '403': *id005
-        '500': *id003
-  /admin/criteria:
-    get:
-      tags:
-      - Admin
-      summary: Daftar kriteria
-      description: Mengembalikan 31 kriteria dan bobotnya.
-      responses:
-        '200':
-          description: Berhasil
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CriterionList'
-        '401': *id004
-        '403': *id005
-        '500': *id003
-    post:
-      tags:
-      - Admin
-      summary: Tambah kriteria
-      description: Menambah kriteria baru. Hanya admin platform.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CriterionRequest'
-      responses:
-        '201':
-          description: Dibuat
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Criterion'
-        '400': *id001
-        '401': *id004
-        '403': *id005
-        '409': *id008
-        '422': *id007
-        '500': *id003
-  /admin/knowledge/documents:
-    post:
-      tags:
-      - Admin
-      summary: Unggah dokumen pengetahuan
-      description: Mendaftarkan dokumen dan memicu chunking serta embedding.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/KnowledgeDocumentRequest'
-      responses:
-        '201':
-          description: Dibuat
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/KnowledgeDocument'
-        '400': *id001
-        '401': *id004
-        '403': *id005
-        '409': *id008
-        '422': *id007
-        '500': *id003
-  /admin/knowledge/documents/{document_id}/publish:
-    post:
-      tags:
-      - Admin
-      summary: Publikasikan dokumen
-      description: Mengubah status menjadi published dan memicu indeks RAG.
-      parameters:
-      - name: document_id
-        in: path
-        required: true
-        description: ID dokumen
-        schema:
-          type: string
-          format: uuid
-      responses:
-        '202':
-          description: Diterima untuk diproses
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/JobAccepted'
-        '401': *id004
-        '403': *id005
-        '404': *id006
-        '409': *id008
-        '500': *id003
-  /admin/audit-logs:
-    get:
-      tags:
-      - Admin
-      summary: Daftar audit log
-      description: Hanya admin platform. Filter berdasarkan aktor, aksi, dan tanggal.
-      parameters:
-      - name: page
-        in: query
-        schema:
-          type: integer
-          minimum: 1
-          default: 1
-      - name: limit
-        in: query
-        schema:
-          type: integer
-          minimum: 1
-          maximum: 100
-          default: 20
-      - name: actor_user_id
-        in: query
-        description: ID aktor
-        schema:
-          type: string
-      - name: action
-        in: query
-        description: Aksi
-        schema:
-          type: string
       - name: from
         in: query
-        description: Tanggal awal
         schema:
           type: string
+          format: date-time
       - name: to
         in: query
-        description: Tanggal akhir
         schema:
           type: string
-      responses:
-        '200':
-          description: Berhasil
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AuditList'
-        '401': *id004
-        '403': *id005
-        '500': *id003
-  /mentors:
-    get:
-      tags:
-      - Mentor
-      summary: Daftar mentor
-      description: Fase 2. Mengembalikan mentor aktif dan keahliannya.
-      responses:
-        '200':
-          description: Berhasil
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MentorList'
-        '401': *id004
-        '403': *id005
-        '500': *id003
-  /mentor-sessions:
-    get:
-      tags:
-      - Mentor
-      summary: Daftar sesi mentor
-      description: Fase 2. Sesi milik pengguna atau mentor.
-      responses:
-        '200':
-          description: Berhasil
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MentorSessionList'
-        '401': *id004
-        '403': *id005
-        '500': *id003
-    post:
-      tags:
-      - Mentor
-      summary: Pesan sesi mentor
-      description: Fase 2. Membuat permintaan sesi pada slot yang tersedia.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MentorSessionRequest'
-      responses:
-        '201':
-          description: Dibuat
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MentorSession'
-        '400': *id001
-        '401': *id004
-        '403': *id005
-        '409': *id008
-        '422': *id007
-        '500': *id003
-  /subscriptions:
-    get:
-      tags:
-      - Billing
-      summary: Daftar langganan
-      description: Fase 2. Admin B2G melihat langganan tenant sendiri.
-      responses:
-        '200':
-          description: Berhasil
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SubscriptionList'
-        '401': *id004
-        '403': *id005
-        '500': *id003
-    post:
-      tags:
-      - Billing
-      summary: Buat langganan
-      description: Fase 2. Membuat langganan tenant atau pengguna.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SubscriptionRequest'
-      responses:
-        '201':
-          description: Dibuat
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Subscription'
-        '400': *id001
-        '401': *id004
-        '403': *id005
-        '409': *id008
-        '422': *id007
-        '500': *id003
-  /invoices:
-    get:
-      tags:
-      - Billing
-      summary: Daftar invoice
-      description: Fase 2. Invoice milik tenant.
-      responses:
-        '200':
-          description: Berhasil
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InvoiceList'
-        '401': *id004
-        '403': *id005
-        '500': *id003
-  /notifications:
-    get:
-      tags:
-      - Notification
-      summary: Daftar notifikasi
-      description: Notifikasi milik pengguna aktif.
-      parameters:
+          format: date-time
+      - name: dimension
+        in: query
+        schema:
+          type: string
       - name: page
         in: query
         schema:
@@ -1279,56 +461,71 @@ paths:
         schema:
           type: integer
           minimum: 1
-          maximum: 100
+          maximum: 50
           default: 20
       responses:
         '200':
-          description: Berhasil
+          description: Daftar konsultasi
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotificationList'
-        '401': *id004
-        '500': *id003
-  /notifications/{notification_id}/read:
-    patch:
+                $ref: '#/components/schemas/ConsultationList'
+  /consultations/{consultation_id}:
+    get:
       tags:
-      - Notification
-      summary: Tandai sudah dibaca
-      description: Mengubah status menjadi read.
+      - Consultation
+      summary: Detail konsultasi
       parameters:
-      - name: notification_id
+      - name: consultation_id
         in: path
         required: true
-        description: ID notifikasi
         schema:
           type: string
           format: uuid
       responses:
         '200':
-          description: Berhasil
+          description: Detail konsultasi
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Notification'
-        '401': *id004
-        '403': *id005
-        '404': *id006
-        '500': *id003
-  /health:
-    get:
+                $ref: '#/components/schemas/Consultation'
+        '403':
+          description: Bukan milik pengguna
+          content: *id009
+        '404':
+          description: Tidak ditemukan
+          content: *id009
+  /consultations/{consultation_id}/feedback:
+    post:
       tags:
-      - System
-      summary: Health check
-      description: Status API dan dependensi utama.
-      security: []
+      - Consultation
+      summary: Umpan balik jawaban
+      parameters:
+      - name: consultation_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeedbackRequest'
       responses:
         '200':
-          description: Berhasil
+          description: Status umpan balik
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Health'
+                $ref: '#/components/schemas/Consultation'
+        '409':
+          description: Belum ada jawaban
+          content: *id009
+        '422':
+          description: Nilai tidak valid
+          content: *id009
 components:
   securitySchemes:
     bearerAuth:
@@ -2854,3 +2051,96 @@ components:
       required:
       - status
       - version
+    ConsultationRequest:
+      type: object
+      required:
+      - assessment_id
+      - question
+      properties:
+        assessment_id:
+          type: string
+          format: uuid
+        question:
+          type: string
+          minLength: 3
+          maxLength: 1000
+    ConsultationAnswer:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        answer:
+          type: string
+        sources:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        status:
+          type: string
+          enum:
+          - succeeded
+          - blocked
+          - failed
+        model:
+          type: string
+        prompt_version:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    Consultation:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        assessment_id:
+          type: string
+          format: uuid
+        question:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - processing
+          - completed
+          - failed
+        answer:
+          $ref: '#/components/schemas/ConsultationAnswer'
+        feedback:
+          type:
+          - string
+          - 'null'
+          enum:
+          - helpful
+          - not_helpful
+          - null
+        created_at:
+          type: string
+          format: date-time
+    ConsultationList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Consultation'
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+    FeedbackRequest:
+      type: object
+      required:
+      - value
+      properties:
+        value:
+          type: string
+          enum:
+          - helpful
+          - not_helpful
