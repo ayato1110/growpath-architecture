@@ -11,14 +11,14 @@ Tahap awal memakai stack gratis/hemat:
 
 | Komponen | Pilihan awal | Biaya |
 |---|---|---:|
-| Frontend Next.js | Render Free | 0 dolar AS |
+| Frontend Next.js | Vercel Hobby | 0 dolar AS |
 | Backend FastAPI | Render Free | 0 dolar AS |
 | Database, Auth, Storage | Supabase Free | 0 dolar AS |
 | DNS dan TLS | Cloudflare Free | 0 dolar AS |
 | Error monitoring | Sentry Free | 0 dolar AS |
 | Model AI | DeepSeek API `deepseek-flash` | Bayar per token |
 
-Vercel Hobby tidak dipakai karena paket Hobby dibatasi untuk penggunaan personal/non-komersial. Growpath disiapkan sebagai produk, jadi jangan bergantung pada Vercel Hobby.
+Vercel Hobby dipakai karena proyek ini akademik dan non-komersial. Jangan memonetisasi aplikasi selama masih di Hobby. Kalau nanti dikomersialkan, pindah ke Vercel Pro.
 
 ## 2. Dua opsi biaya
 
@@ -26,8 +26,8 @@ Vercel Hobby tidak dipakai karena paket Hobby dibatasi untuk penggunaan personal
 
 | Layanan | Paket | Biaya |
 |---|---|---:|
-| Render web service frontend | Free | 0 |
-| Render web service backend | Free | 0 |
+| Vercel frontend | Hobby | 0 |
+| Render backend | Free | 0 |
 | Supabase | Free | 0 |
 | Cloudflare | Free | 0 |
 | Sentry | Free | 0 |
@@ -35,6 +35,8 @@ Vercel Hobby tidak dipakai karena paket Hobby dibatasi untuk penggunaan personal
 
 Konsekuensi:
 
+- Vercel Hobby hanya untuk penggunaan personal/non-komersial. Proyek akademik ini memenuhi syarat selama tidak dimonetisasi.
+- Vercel Hobby memiliki batas bandwidth, build, dan function invocation.
 - Render Free tidur setelah 15 menit tanpa traffic dan butuh sekitar 1 menit untuk bangun.
 - Render Free memberi 750 instance hours per workspace per bulan.
 - Supabase Free berhenti setelah 1 minggu tanpa aktivitas.
@@ -47,21 +49,22 @@ Konsekuensi:
 
 | Layanan | Paket | Biaya |
 |---|---|---:|
-| Render frontend | Starter | 7 dolar AS |
+| Vercel frontend | Hobby | 0 |
 | Render backend | Starter | 7 dolar AS |
 | Supabase | Pro | 25 dolar AS |
 | Cloudflare | Free | 0 |
 | Sentry | Free | 0 |
 | DeepSeek API | Pay as you go | Sekitar 0,0007 dolar AS per konsultasi |
 
-Perkiraan tetap: **39 dolar AS per bulan** sebelum biaya AI.
+Perkiraan tetap: **32 dolar AS per bulan** sebelum biaya AI.
 
 Kelebihan:
 
-- Render tidak tidur.
+- Render backend tidak tidur.
 - Supabase tidak pause.
 - Backup harian 7 hari.
 - Lebih aman untuk UAT dan demo.
+- Vercel Hobby tetap dipakai karena UAT akademik non-komersial. Kalau perlu Vercel Pro, tambah 20 dolar AS per bulan.
 
 ## 3. Biaya AI DeepSeek
 
@@ -102,14 +105,14 @@ Alternatif tanpa biaya AI: Gemini Free Tier. Namun ketentuan free tier dapat mem
 ```text
 Browser
   -> Cloudflare Free (DNS, TLS)
-  -> Render Free: Next.js
+  -> Vercel Hobby: Next.js
   -> Render Free: FastAPI
   -> Supabase Free: PostgreSQL, Auth, Storage
   -> DeepSeek API
   -> Sentry Free
 ```
 
-- Frontend dan backend berjalan sebagai dua web service Render.
+- Frontend berjalan di Vercel Hobby; backend di Render Free.
 - Supabase menyimpan data, auth, dan storage.
 - DeepSeek hanya dipanggil dari backend.
 - Service role key dan `DEEPSEEK_API_KEY` tidak masuk browser.
@@ -137,8 +140,9 @@ Naik ke Opsi 2 sebelum:
 ## 8. Checklist deploy
 
 - [ ] Buat dua proyek Supabase Free: development dan UAT.
-- [ ] Buat dua web service Render: frontend dan backend.
-- [ ] Isi env di Render, bukan di repo.
+- [ ] Buat proyek Vercel Hobby untuk frontend.
+- [ ] Buat web service Render untuk backend.
+- [ ] Isi env di Vercel/Render, bukan di repo.
 - [ ] Set `DEEPSEEK_API_KEY` hanya di backend.
 - [ ] Jalankan `08_Source/db/migrations/001_init.sql` dan `08_Source/db/seed/seed.sql`.
 - [ ] Aktifkan health check.
@@ -152,4 +156,4 @@ Naik ke Opsi 2 sebelum:
 - <https://render.com/docs/free>, diakses 23 November 2026.
 - <https://render.com/pricing>, diakses 23 November 2026.
 - <https://api-docs.deepseek.com/quick_start/pricing>, diakses 23 November 2026.
-- <https://vercel.com/docs/plans/hobby>, diakses 23 November 2026, untuk alasan tidak memakai Hobby.
+- <https://vercel.com/docs/plans/hobby>, diakses 23 November 2026, untuk batas Hobby non-komersial.
