@@ -9,7 +9,7 @@
 | Butir Gate 2 | Status | Bukti |
 |---|---|---|
 | Demo 2 fitur Must end-to-end dengan database nyata | Belum dijalankan | Menunggu `DATABASE_URL` Supabase |
-| ADR tech stack tertulis dan disetujui CEO | Sebagian | ADR-002 sudah ada; ADR tech stack P14 menyusul |
+| ADR tech stack tertulis dan disetujui CEO | Ada, menunggu persetujuan CEO | `06_Governance/ADR-001-tech-stack.md` revisi 27 November 2026 |
 | Topologi dan deployment final, staging | Belum | Rencana Vercel Hobby + Render Free + Supabase |
 | Change Request dari Kartu Kejutan terdokumentasi | Belum | Bergantung skenario kelas |
 | Tidak ada anggota dengan nol kontribusi | Belum diverifikasi | Cek commit dan PR saat penutupan |

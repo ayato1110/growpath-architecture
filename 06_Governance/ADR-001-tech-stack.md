@@ -1,32 +1,43 @@
 # ADR-001 Pilihan Teknologi MVP
 
-- Status: Proposed.
-- Tanggal: 18 November 2026.
+- Status: Proposed, menunggu persetujuan CEO.
+- Tanggal: 18 November 2026. Revisi P14: 27 November 2026.
 - Pemilik: Ripa Bagaskara.
 - Peninjau: Wisnu Nugroho, Bagas Adinata, Moch Haikal Ramadhan.
 
 ## Konteks
 
-Tim perlu membangun MVP lima fitur dalam empat pekan. Teknologi harus cepat dipakai, mudah di-deploy, dan tidak menambah beban operasional.
+Tim perlu membangun MVP lima fitur dalam empat pekan. Teknologi harus cepat dipakai, mudah di-deploy, dan tidak menambah beban operasional. Sejak P13, dua keputusan berubah: model AI awal memakai DeepSeek API, dan hosting awal memakai Vercel Hobby serta Render Free, bukan Railway.
 
 ## Keputusan
 
-- Backend memakai FastAPI.
-- Database, autentikasi, dan storage memakai Supabase.
-- Frontend memakai React atau Next.js.
-- Model AI memakai Gemini.
-- Deployment awal memakai Railway.
-- Edge dan keamanan memakai Cloudflare bila waktu memungkinkan.
-- Observability memakai Sentry.
+| Lapisan | Pilihan | Catatan |
+|---|---|---|
+| Frontend | Next.js 16 App Router, TypeScript, Tailwind CSS 4 | Token warna dari `APP-DEV/DESIGN.md`, server component untuk data |
+| Backend | FastAPI, Pydantic v2 | Semua mutasi data lewat backend |
+| Akses data | SQLAlchemy 2 dan psycopg 3 | Repository layer, tanpa auto-create tabel |
+| Database | Supabase PostgreSQL dan pgvector | DDL di `08_Source/db/migrations`, view laporan di `002_p14.sql` |
+| Autentikasi | Supabase Auth; `AUTH_MODE=local` untuk pengembangan | Token HS256 lokal hanya saat `APP_ENV=development` |
+| AI | DeepSeek API `deepseek-flash`, Gemini sebagai alternatif | Tidak dipakai untuk skor atau prioritas |
+| Hosting | Vercel Hobby (frontend), Render Free (backend), Supabase (database) | Proyek akademik non-komersial; Vercel Pro bila dikomersialkan |
+| Observability | Sentry | Ditambahkan saat staging |
+| Edge dan keamanan | Cloudflare bila waktu memungkinkan | Bukan syarat Gate 2 |
+
+Rujukan keputusan: D-009, D-043 sampai D-046, S2-2B-07, S2-2B-09, S2-2B-10.
 
 ## Konsekuensi
 
+- Skor dan rekomendasi deterministik; AI hanya untuk narasi pada P15.
 - Tim harus menjaga kontrak API dan skema data.
 - Vendor dapat diganti karena akses data dan AI dibungkus lapisan aplikasi.
 - Biaya dan kuota AI harus dipantau.
+- Render Free tidur setelah tidak dipakai; demo Gate 2 harus membangunkan backend lebih dulu.
 
 ## Alternatif yang ditolak
 
 - Membangun seluruh 12 modul dan 49 endpoint pada MVP.
 - Dedicated API Gateway pada MVP.
 - Multi-tenant B2G penuh pada MVP.
+- Railway berbayar sebagai hosting awal.
+- Gemini sebagai model utama sebelum kuota dan biaya diuji.
+- ORM auto-create tabel sebagai pengganti migrasi SQL.
