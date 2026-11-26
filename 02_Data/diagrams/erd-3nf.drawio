@@ -1,0 +1,233 @@
+<mxfile host="localhost" pages="4">
+  <diagram id="pame29ti-oexj" name="Inti">
+    <mxGraphModel dx="769" dy="703" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="tenant" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="&lt;b&gt;Tenant&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;slug&lt;br&gt;name&lt;br&gt;type&lt;br&gt;status&lt;br&gt;FK plan_id" vertex="1">
+          <mxGeometry height="140" width="200" x="30" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="user" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;FK tenant_id&lt;br&gt;email&lt;br&gt;full_name&lt;br&gt;role&lt;br&gt;status" vertex="1">
+          <mxGeometry height="140" width="200" x="290" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="profile" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="&lt;b&gt;UMKMProfile&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;FK user_id (unik)&lt;br&gt;FK tenant_id&lt;br&gt;business_name&lt;br&gt;sector&lt;br&gt;completeness_pct" vertex="1">
+          <mxGeometry height="140" width="200" x="550" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="segment" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="&lt;b&gt;Segment&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;code&lt;br&gt;name&lt;br&gt;min_score&lt;br&gt;max_score" vertex="1">
+          <mxGeometry height="140" width="200" x="30" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="assessment" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="&lt;b&gt;Assessment&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;FK tenant_id&lt;br&gt;FK umkm_profile_id&lt;br&gt;FK segment_id&lt;br&gt;status&lt;br&gt;total_score&lt;br&gt;scoring_version" vertex="1">
+          <mxGeometry height="150" width="200" x="290" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="dscore" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="&lt;b&gt;DimensionScore&lt;/b&gt;&lt;br&gt;PK assessment_id&lt;br&gt;PK dimension_id&lt;br&gt;raw_score&lt;br&gt;weighted_score&lt;br&gt;is_scored" vertex="1">
+          <mxGeometry height="140" width="200" x="550" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="r1" edge="1" parent="1" source="tenant" style="edgeStyle=orthogonalEdgeStyle;startArrow=ERmandOne;endArrow=ERmany;startSize=10;endSize=10;strokeColor=#58645c;html=1;" target="user">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r2" edge="1" parent="1" source="user" style="edgeStyle=orthogonalEdgeStyle;startArrow=ERmandOne;endArrow=ERzeroToOne;startSize=10;endSize=10;strokeColor=#58645c;html=1;" target="profile">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r3" edge="1" parent="1" source="profile" style="edgeStyle=orthogonalEdgeStyle;startArrow=ERmandOne;endArrow=ERmany;startSize=10;endSize=10;strokeColor=#58645c;exitX=0.5;exitY=1;entryX=0.5;entryY=0;html=1;" target="assessment">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r4" edge="1" parent="1" source="segment" style="edgeStyle=orthogonalEdgeStyle;startArrow=ERmandOne;endArrow=ERmany;startSize=10;endSize=10;strokeColor=#58645c;html=1;entryX=0;entryY=0.46667;entryDx=0;entryDy=0;" target="assessment">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r5" edge="1" parent="1" source="assessment" style="edgeStyle=orthogonalEdgeStyle;startArrow=ERmandOne;endArrow=ERmany;startSize=10;endSize=10;strokeColor=#58645c;html=1;exitX=1;exitY=0.46667;exitDx=0;exitDy=0;" target="dscore">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" style="text;align=left;verticalAlign=top;fontSize=10;fontColor=#58645c;whiteSpace=wrap;html=1;" value="ERD 3NF, notasi crow&#39;s foot (IE). Satu Assessment punya 1 sampai 6 DimensionScore. Tabel lengkap ada di kamus-data-p13.md." vertex="1">
+          <mxGeometry height="40" width="720" x="30" y="450" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="uoqmdrmc-e6a4" name="Katalog dan Jawaban">
+    <mxGraphModel page="1" grid="1" gridSize="10">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="assessment" value="&lt;b&gt;Assessment&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;FK umkm_profile_id&lt;br&gt;status&lt;br&gt;scoring_version" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="40" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="answer" value="&lt;b&gt;AssessmentAnswer&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;FK assessment_id&lt;br&gt;FK criterion_id&lt;br&gt;raw_value (jsonb)&lt;br&gt;score" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="40" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="criterion" value="&lt;b&gt;Criterion&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;FK dimension_id&lt;br&gt;code&lt;br&gt;input_type&lt;br&gt;weight&lt;br&gt;scoring_rule (jsonb)" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="40" width="200" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="dimension" value="&lt;b&gt;Dimension&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;code&lt;br&gt;name&lt;br&gt;is_scored&lt;br&gt;order_no" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="250" width="200" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="r1" style="edgeStyle=orthogonalEdgeStyle;startArrow=ERmandOne;endArrow=ERmany;startSize=10;endSize=10;strokeColor=#58645c;html=1;" edge="1" parent="1" source="assessment" target="answer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r2" style="edgeStyle=orthogonalEdgeStyle;startArrow=ERmandOne;endArrow=ERmany;startSize=10;endSize=10;strokeColor=#58645c;html=1;exitX=0;exitY=0.46667;exitDx=0;exitDy=0;" edge="1" parent="1" source="criterion" target="answer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r3" style="edgeStyle=orthogonalEdgeStyle;startArrow=ERmandOne;endArrow=ERmany;startSize=10;endSize=10;strokeColor=#58645c;exitX=0.5;exitY=0;entryX=0.5;entryY=1;html=1;" edge="1" parent="1" source="dimension" target="criterion">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note" value="Katalog berversi. Satu jawaban per kriteria per asesmen. Poin opsi disimpan di scoring_rule, bukan tabel terpisah." style="text;align=left;verticalAlign=top;fontSize=10;fontColor=#58645c;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="450" width="720" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="9xaiuwgw-vcry" name="Advisory dan AI">
+    <mxGraphModel dx="769" dy="703" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="assessment" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="&lt;b&gt;Assessment&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;FK umkm_profile_id&lt;br&gt;total_score&lt;br&gt;FK segment_id" vertex="1">
+          <mxGeometry height="130" width="200" x="30" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="roadmap" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="&lt;b&gt;Roadmap&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;FK assessment_id&lt;br&gt;version&lt;br&gt;status&lt;br&gt;generated_by" vertex="1">
+          <mxGeometry height="140" width="200" x="290" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="milestone" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="&lt;b&gt;Milestone&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;FK roadmap_id&lt;br&gt;order_no&lt;br&gt;title&lt;br&gt;status&lt;br&gt;due_date" vertex="1">
+          <mxGeometry height="140" width="200" x="550" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="consultation" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="&lt;b&gt;Consultation&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;FK tenant_id&lt;br&gt;FK user_id&lt;br&gt;FK assessment_id&lt;br&gt;question&lt;br&gt;status" vertex="1">
+          <mxGeometry height="140" width="200" x="30" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="ailog" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="&lt;b&gt;AIAnswerLog&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;FK consultation_id&lt;br&gt;model&lt;br&gt;prompt_version&lt;br&gt;answer&lt;br&gt;status&lt;br&gt;feedback" vertex="1">
+          <mxGeometry height="150" width="200" x="290" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="progress" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="&lt;b&gt;ProgressLog&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;FK milestone_id&lt;br&gt;FK user_id&lt;br&gt;progress_pct&lt;br&gt;note&lt;br&gt;logged_at" vertex="1">
+          <mxGeometry height="140" width="200" x="550" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="kdoc" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="&lt;b&gt;KnowledgeDocument&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;title&lt;br&gt;source_url&lt;br&gt;status&lt;br&gt;version&lt;br&gt;effective_date" vertex="1">
+          <mxGeometry height="140" width="200" x="30" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="kchunk" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="&lt;b&gt;KnowledgeChunk&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;FK document_id&lt;br&gt;chunk_index&lt;br&gt;content&lt;br&gt;embedding (vector)" vertex="1">
+          <mxGeometry height="140" width="200" x="290" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="r1" edge="1" parent="1" source="assessment" style="edgeStyle=orthogonalEdgeStyle;startArrow=ERmandOne;endArrow=ERmany;startSize=10;endSize=10;strokeColor=#58645c;html=1;entryX=0;entryY=0.46429;entryDx=0;entryDy=0;" target="roadmap">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r2" edge="1" parent="1" source="roadmap" style="edgeStyle=orthogonalEdgeStyle;startArrow=ERmandOne;endArrow=ERmany;startSize=10;endSize=10;strokeColor=#58645c;html=1;" target="milestone">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r3" edge="1" parent="1" source="milestone" style="edgeStyle=orthogonalEdgeStyle;startArrow=ERmandOne;endArrow=ERmany;startSize=10;endSize=10;strokeColor=#58645c;exitX=0.5;exitY=1;entryX=0.5;entryY=0;html=1;" target="progress">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r4" edge="1" parent="1" source="assessment" style="edgeStyle=orthogonalEdgeStyle;startArrow=ERmandOne;endArrow=ERmany;startSize=10;endSize=10;strokeColor=#58645c;exitX=0.5;exitY=1;entryX=0.5;entryY=0;html=1;" target="consultation">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r5" edge="1" parent="1" source="consultation" style="edgeStyle=orthogonalEdgeStyle;startArrow=ERmandOne;endArrow=ERmany;startSize=10;endSize=10;strokeColor=#58645c;html=1;entryX=0;entryY=0.46667;entryDx=0;entryDy=0;" target="ailog">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r6" edge="1" parent="1" source="kdoc" style="edgeStyle=orthogonalEdgeStyle;startArrow=ERmandOne;endArrow=ERmany;startSize=10;endSize=10;strokeColor=#58645c;html=1;" target="kchunk">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r7" edge="1" parent="1" source="kchunk" style="edgeStyle=orthogonalEdgeStyle;startArrow=none;endArrow=open;dashed=1;strokeColor=#58645c;exitX=0.5;exitY=0;entryX=0.5;entryY=1;html=1;" target="ailog" value="sumber">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" style="text;align=left;verticalAlign=top;fontSize=10;fontColor=#58645c;whiteSpace=wrap;html=1;" value="Rujukan sumber di AIAnswerLog disimpan sebagai jsonb, bukan foreign key, karena satu jawaban dapat memakai beberapa chunk." vertex="1">
+          <mxGeometry height="40" width="720" x="30" y="600" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="tmjencyb-i58p" name="Pendukung Fase 2">
+    <mxGraphModel dx="1678" dy="757" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="tenant" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="&lt;b&gt;Tenant&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;slug&lt;br&gt;type&lt;br&gt;status" vertex="1">
+          <mxGeometry height="120" width="200" x="30" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="user" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;FK tenant_id&lt;br&gt;email&lt;br&gt;role" vertex="1">
+          <mxGeometry height="120" width="200" x="290" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="sub" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="&lt;b&gt;Subscription&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;FK tenant_id&lt;br&gt;FK user_id&lt;br&gt;FK plan_id&lt;br&gt;status&lt;br&gt;period_end" vertex="1">
+          <mxGeometry height="140" width="200" x="550" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="plan" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="&lt;b&gt;Plan&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;code&lt;br&gt;audience&lt;br&gt;price_monthly&lt;br&gt;quota_umkm" vertex="1">
+          <mxGeometry height="130" width="200" x="30" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="invoice" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="&lt;b&gt;Invoice&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;FK subscription_id&lt;br&gt;number&lt;br&gt;amount&lt;br&gt;status" vertex="1">
+          <mxGeometry height="130" width="200" x="290" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="mentor" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="&lt;b&gt;MentorSession&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;FK tenant_id&lt;br&gt;FK umkm_profile_id&lt;br&gt;FK mentor_id&lt;br&gt;status" vertex="1">
+          <mxGeometry height="140" width="200" x="550" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="report" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="&lt;b&gt;Report&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;FK tenant_id&lt;br&gt;type&lt;br&gt;period_start&lt;br&gt;status" vertex="1">
+          <mxGeometry height="130" width="200" x="30" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="notif" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="&lt;b&gt;Notification&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;FK tenant_id&lt;br&gt;FK user_id&lt;br&gt;channel&lt;br&gt;status" vertex="1">
+          <mxGeometry height="130" width="200" x="290" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="audit" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#58645c;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontSize=10;whiteSpace=wrap;html=1;" value="&lt;b&gt;AuditLog&lt;/b&gt;&lt;br&gt;PK id&lt;br&gt;FK tenant_id&lt;br&gt;FK actor_user_id&lt;br&gt;action&lt;br&gt;created_at" vertex="1">
+          <mxGeometry height="130" width="200" x="550" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="r1" edge="1" parent="1" source="tenant" style="edgeStyle=orthogonalEdgeStyle;startArrow=ERmandOne;endArrow=ERmany;startSize=10;endSize=10;strokeColor=#58645c;html=1;" target="user">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r2" edge="1" parent="1" source="tenant" style="edgeStyle=orthogonalEdgeStyle;startArrow=ERmandOne;endArrow=ERmany;startSize=10;endSize=10;strokeColor=#58645c;exitX=0.5;exitY=1;entryX=0;entryY=0.6;html=1;" target="sub">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="130" y="215" />
+              <mxPoint x="535" y="215" />
+              <mxPoint x="535" y="124" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r3" edge="1" parent="1" source="user" style="edgeStyle=orthogonalEdgeStyle;startArrow=ERmandOne;endArrow=ERzeroToOne;startSize=10;endSize=10;strokeColor=#58645c;exitX=0.5;exitY=0;entryX=0.75;entryY=0;html=1;" target="sub">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="390" y="20" />
+              <mxPoint x="700" y="20" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r4" edge="1" parent="1" source="plan" style="edgeStyle=orthogonalEdgeStyle;startArrow=ERmandOne;endArrow=ERmany;startSize=10;endSize=10;strokeColor=#58645c;exitX=0.5;exitY=0;entryX=0.25;entryY=1;html=1;" target="sub">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="130" y="230" />
+              <mxPoint x="600" y="230" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r5" edge="1" parent="1" source="sub" style="edgeStyle=orthogonalEdgeStyle;startArrow=ERmandOne;endArrow=ERmany;startSize=10;endSize=10;strokeColor=#58645c;exitX=1;exitY=0.5;entryX=0.5;entryY=1;html=1;" target="invoice">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="770" y="110" />
+              <mxPoint x="770" y="420" />
+              <mxPoint x="390" y="420" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r6" edge="1" parent="1" source="user" style="edgeStyle=orthogonalEdgeStyle;startArrow=ERmandOne;endArrow=ERmany;startSize=10;endSize=10;strokeColor=#58645c;exitX=1;exitY=0.4;entryX=0;entryY=0.5;html=1;" target="mentor">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="525" y="88" />
+              <mxPoint x="525" y="320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r7" edge="1" parent="1" source="user" style="edgeStyle=orthogonalEdgeStyle;startArrow=ERmandOne;endArrow=ERmany;startSize=10;endSize=10;strokeColor=#58645c;exitX=1;exitY=0.75;entryX=1;entryY=0.5;html=1;" target="notif">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="505" y="130" />
+              <mxPoint x="505" y="525" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r8" edge="1" parent="1" source="tenant" style="edgeStyle=orthogonalEdgeStyle;startArrow=ERmandOne;endArrow=ERmany;startSize=10;endSize=10;strokeColor=#58645c;exitX=0;exitY=0.5;entryX=0;entryY=0.5;html=1;" target="report">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="10" y="100" />
+              <mxPoint x="10" y="525" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="note" parent="1" style="text;align=left;verticalAlign=top;fontSize=10;fontColor=#58645c;whiteSpace=wrap;html=1;" value="Entitas pendukung fase 2. Semua foreign key tetap ada di DDL. Gambar menampilkan relasi utama agar terbaca." vertex="1">
+          <mxGeometry height="40" width="720" x="30" y="600" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
