@@ -28,6 +28,10 @@ class Settings(BaseSettings):
     supabase_anon_key: str | None = None
     supabase_jwt_secret: str | None = None
 
+    database_url: str = ""
+    db_pool_size: int = 5
+    db_max_overflow: int = 5
+
     local_auth_secret: str = ""
     local_token_ttl_minutes: int = 60
     local_users: list[LocalAccount] = []

@@ -197,6 +197,21 @@ paths:
         '403': *id003
         '500': *id002
   /assessments:
+    get:
+      tags:
+      - Assessment
+      summary: Daftar asesmen pengguna
+      description: Mengembalikan asesmen milik profil pengguna, terbaru lebih dulu.
+      responses:
+        '200':
+          description: Berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssessmentList'
+        '401': *id001
+        '403': *id003
+        '500': *id002
     post:
       tags:
       - Assessment
@@ -301,12 +316,12 @@ paths:
           type: string
           format: uuid
       responses:
-        '202':
-          description: Diterima untuk diproses
+        '200':
+          description: Skor dihitung
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/JobAccepted'
+                $ref: '#/components/schemas/ScoreResult'
         '400': *id004
         '401': *id001
         '403': *id003
@@ -727,37 +742,53 @@ components:
           type: string
         owner_name:
           type: string
+        gender:
+          type:
+          - string
+          - 'null'
+          enum:
+          - male
+          - female
+          - undisclosed
+          - null
+        age:
+          type:
+          - integer
+          - 'null'
+          minimum: 15
+          maximum: 100
+        whatsapp:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+          format: email
+        address:
+          type:
+          - string
+          - 'null'
         sector:
           type: string
           enum:
           - kuliner
           - fashion
+          - kriya
+          - pertanian
+          - perdagangan
+          - jasa
+          - teknologi
+          - kesehatan
+          - pendidikan
           - lainnya
-        city:
-          type: string
-        province:
-          type: string
         established_year:
           type: integer
           minimum: 1900
           maximum: 2100
         operation_months:
           type: integer
-          minimum: 0
-        monthly_revenue_band:
-          type:
-          - string
-          - 'null'
-          enum:
-          - <1jt
-          - 1-5jt
-          - 5-25jt
-          - '>25jt'
-          - null
-        employees_count:
-          type:
-          - integer
-          - 'null'
           minimum: 0
         business_description:
           type:
@@ -774,8 +805,8 @@ components:
       - business_name
       - owner_name
       - sector
-      - city
-      - province
+      - established_year
+      - operation_months
     ProfileRequest:
       type: object
       properties:
@@ -785,18 +816,38 @@ components:
         owner_name:
           type: string
           maxLength: 120
+        gender:
+          type: string
+          enum:
+          - male
+          - female
+          - undisclosed
+        age:
+          type: integer
+          minimum: 15
+          maximum: 100
+        whatsapp:
+          type: string
+          pattern: '^(\+62|62|0)[0-9]{8,14}$'
+        email:
+          type: string
+          format: email
+        address:
+          type: string
+          maxLength: 500
         sector:
           type: string
           enum:
           - kuliner
           - fashion
+          - kriya
+          - pertanian
+          - perdagangan
+          - jasa
+          - teknologi
+          - kesehatan
+          - pendidikan
           - lainnya
-        city:
-          type: string
-          maxLength: 80
-        province:
-          type: string
-          maxLength: 80
         established_year:
           type: integer
           minimum: 1900
@@ -804,24 +855,14 @@ components:
         operation_months:
           type: integer
           minimum: 0
-        monthly_revenue_band:
-          type: string
-          enum:
-          - <1jt
-          - 1-5jt
-          - 5-25jt
-          - '>25jt'
-        employees_count:
-          type: integer
-          minimum: 0
+          maximum: 1200
         business_description:
           type: string
+          maxLength: 1000
       required:
       - business_name
       - owner_name
       - sector
-      - city
-      - province
       - established_year
       - operation_months
     UMKMDashboard:
@@ -935,6 +976,10 @@ components:
       properties:
         assessment:
           $ref: '#/components/schemas/Assessment'
+        criteria:
+          type: array
+          items:
+            $ref: '#/components/schemas/Criterion'
         answers:
           type: array
           items:
@@ -999,8 +1044,31 @@ components:
           - enum
           - number
           - text
+          - multi_select
         weight:
           type: number
+        dimension_code:
+          type: string
+        dimension_name:
+          type: string
+        order_no:
+          type: integer
+        options:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              label:
+                type: string
+            required:
+            - code
+            - label
+        unit:
+          type:
+          - string
+          - 'null'
         is_active:
           type: boolean
         version:
@@ -1039,6 +1107,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DimensionScore'
+        criteria_answered:
+          type: integer
+        criteria_total:
+          type: integer
       required:
       - assessment_id
       - total_score
@@ -1212,6 +1284,9 @@ components:
           - in_progress
           - done
           - skipped
+        note:
+          type: string
+          maxLength: 500
       required:
       - status
     ProgressRequest:

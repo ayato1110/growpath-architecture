@@ -2,10 +2,13 @@ from uuid import UUID
 
 from fastapi import Depends
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from sqlalchemy.orm import Session
 
 from app.core.config import Settings, get_settings
+from app.core.db import get_db
 from app.core.errors import ApiError
 from app.core.security import decode_access_token
+from app.repositories.users import ensure_identity
 from app.schemas.auth import ROLES, Role, User
 
 bearer_scheme = HTTPBearer(auto_error=False)
@@ -61,3 +64,11 @@ def require_role(*roles: Role):
         return user
 
     return guard
+
+
+def get_umkm_user(
+    user: User = Depends(require_role("umkm")),
+    session: Session = Depends(get_db),
+) -> User:
+    ensure_identity(session, user)
+    return user

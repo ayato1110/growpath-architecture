@@ -104,16 +104,31 @@ macOS atau Linux memakai `cp .env.example .env.local`.
 
 Buka `http://localhost:3000`. Halaman `/` mengarah ke `/app`, dan `/app` mengarah ke `/login` selama belum ada sesi.
 
-## Database P13
+## Database
 
-Skema dan seed ada di `db/`:
+Skema, seed, dan view laporan ada di `db/`:
 
 ```bash
 psql "$DATABASE_URL" -f 08_Source/db/migrations/001_init.sql
 psql "$DATABASE_URL" -f 08_Source/db/seed/seed.sql
+psql "$DATABASE_URL" -f 08_Source/db/migrations/002_p14.sql
 ```
 
-`001_init.sql` menghapus objek Growpath yang ada. Jalankan hanya di database kosong atau database uji. Seed memuat data uji, bukan data produksi. Bukti eksekusi ada di `07_Evidence/DDL.png`, `07_Evidence/SEED.png`, dan uji RLS di `07_Evidence/`.
+`001_init.sql` menghapus objek Growpath yang ada. Jalankan hanya di database kosong atau database uji. Seed memuat data uji, bukan data produksi. Bukti eksekusi ada di `07_Evidence/DDL.png`, `07_Evidence/SEED.png`, dan uji RLS di `07_Evidence/`. `002_p14.sql` menambah view `v_assessment_report` untuk laporan asesmen dan progres roadmap.
+
+Supabase memakai connection string pooler dengan `sslmode=require`. Untuk lokal, isi `DATABASE_URL` di `backend/.env`; backend menolak endpoint data dengan 503 bila variabel ini kosong, tetapi login dan health check tetap berjalan.
+
+## Alur P14
+
+Dua fitur Must yang berjalan: data usaha dan rekomendasi.
+
+1. Masuk, lalu isi `/app/data-usaha` (10 field demografi).
+2. `/app/asesmen` membuat draf, menilai aspek Psikografi dan Pasar.
+3. `/app/asesmen/{id}/tinjau` memeriksa jawaban sebelum menghitung.
+4. `/app/hasil/{id}` menampilkan skor, segmen, dan cakupan kriteria.
+5. `/app/rencana/{id}` menampilkan tiga langkah prioritas dan statusnya.
+
+Skor dihitung di `backend/app/services/scoring.py` dengan aturan tetap. Rekomendasi dibuat di `backend/app/services/recommendation.py` dari tiga kriteria terendah. AI tidak dipanggil untuk skor maupun prioritas.
 
 ### Variabel lingkungan backend
 
@@ -125,6 +140,9 @@ psql "$DATABASE_URL" -f 08_Source/db/seed/seed.sql
 | `SUPABASE_URL` | URL proyek Supabase, dipakai untuk JWKS dan login. |
 | `SUPABASE_ANON_KEY` | Anon key, dipakai backend saat `AUTH_MODE=supabase`. |
 | `SUPABASE_JWT_SECRET` | Opsional, cadangan HS256 untuk proyek Supabase lama. |
+| `DATABASE_URL` | Connection string PostgreSQL/Supabase untuk data usaha, asesmen, skor, dan roadmap. |
+| `DB_POOL_SIZE` | Jumlah koneksi tetap, bawaan 5. |
+| `DB_MAX_OVERFLOW` | Koneksi tambahan di atas pool, bawaan 5. |
 | `LOCAL_AUTH_SECRET` | Kunci HS256 token lokal. Ganti dengan nilai acak. |
 | `LOCAL_TOKEN_TTL_MINUTES` | Umur token lokal dalam menit. |
 | `LOCAL_USERS` | Daftar akun uji dalam JSON, satu objek per peran. |

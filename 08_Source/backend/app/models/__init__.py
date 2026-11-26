@@ -1,0 +1,31 @@
+from app.models.entities import (
+    Assessment,
+    AssessmentAnswer,
+    Base,
+    Criterion,
+    Dimension,
+    DimensionScore,
+    Milestone,
+    ProgressLog,
+    Roadmap,
+    Segment,
+    Tenant,
+    UmkmProfile,
+    User,
+)
+
+__all__ = [
+    "Assessment",
+    "AssessmentAnswer",
+    "Base",
+    "Criterion",
+    "Dimension",
+    "DimensionScore",
+    "Milestone",
+    "ProgressLog",
+    "Roadmap",
+    "Segment",
+    "Tenant",
+    "UmkmProfile",
+    "User",
+]
