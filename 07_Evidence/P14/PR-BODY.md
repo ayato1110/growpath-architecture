@@ -7,6 +7,13 @@
 - Database Supabase: PK, FK, unique, check, index, dan view `v_assessment_report`.
 - OpenAPI diselaraskan: profil memakai 10 field PRD/DDL, `GET /assessments`, submit mengembalikan `ScoreResult`.
 
+## Staging
+
+- Frontend: https://growpath-staging.vercel.app
+- Backend: https://growpath-api.vercel.app (Vercel Functions, dilindungi; frontend memakai bypass header server-side)
+- Database: Supabase PostgreSQL 17.12
+- Smoke test staging: 15 lulus, 0 gagal, 2 skip (`smoke-report-staging.json`)
+
 ## Bukti
 
 - `07_Evidence/P14/smoke-report.json`: 15 lulus, 0 gagal, 2 skip.
