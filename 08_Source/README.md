@@ -147,7 +147,7 @@ Skor dihitung di `backend/app/services/scoring.py` dengan aturan tetap. Rekomend
 | `LOCAL_TOKEN_TTL_MINUTES` | Umur token lokal dalam menit. |
 | `LOCAL_USERS` | Daftar akun uji dalam JSON, satu objek per peran. |
 | `GEMINI_API_KEY` | API key Gemini untuk konsultasi AI. Jangan isi di frontend. |
-| `GEMINI_MODEL` | Model utama, bawaan `gemini-3.8-flash`. |
+| `GEMINI_MODEL` | Model utama, bawaan `gemini-3.5-flash-lite`. |
 | `GEMINI_BASE_URL` | Base URL Gemini API. |
 | `AI_DAILY_QUOTA` | Kuota konsultasi per pengguna per hari, bawaan 10. |
 | `AI_BURST_LIMIT` | Batas pertanyaan per menit, bawaan 3. |

@@ -11,11 +11,18 @@
 | Kuesioner SUS 10 butir | Ada | `SUS-KUESIONER.md` |
 | Backup dan restore | Sebagian | Drill logical 23 tabel, 250 baris, 0 selisih di `BACKUP-DRILL.txt`; `pg_dump` dan restore penuh belum |
 | Transaksi proses kritis | Ada | Submit asesmen memakai satu commit; perlu tes rollback |
-| Konsultasi AI dan log jawaban | Ada, menunggu API key | `services/ai.py`, endpoint `/consultations`, UI konsultasi dan log; Gemini 3.8 Flash |
+| Konsultasi AI dan log jawaban | Ada, teruji lokal + staging | `services/ai.py`, `/consultations`, UI konsultasi dan log; Gemini 3.5 Flash-Lite; bukti `AI-PROBE-LOCAL.json`, `AI-PROBE-STAGING.json`, `screenshots-staging/` |
 | Dokumentasi route/endpoint | Sebagian | OpenAPI diperbarui; daftar route per role belum |
 | TCO 12 bulan | Belum | Menunggu deploy staging |
 | Staging | Selesai | https://growpath-staging.vercel.app dan https://growpath-api.vercel.app |
 | MVP hampir lengkap | Sebagian | 4 dari 5 Must ada; dashboard belum |
+
+## Bukti AI
+
+- `AI-PROBE-LOCAL.json`: enam probe (konteks, skor, hukum, data sensitif, luar konteks, prompt injection).
+- `AI-PROBE-STAGING.json`: jawaban live dari staging dan umpan balik.
+- `screenshots-staging/01-konsultasi-jawaban.png` dan `02-log.png`.
+- Model `gemini-3.5-flash-lite`; 3.8/3.6 Flash timeout dan 3.7 Flash 503 pada free tier saat diuji.
 
 ## Urutan berikutnya
 
