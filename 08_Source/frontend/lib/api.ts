@@ -1,5 +1,8 @@
 import type {
   Assessment,
+  Consultation,
+  ConsultationList,
+  FeedbackValue,
   AssessmentDetail,
   AssessmentDraft,
   AssessmentList,
@@ -211,3 +214,58 @@ export function updateMilestone(
 }
 
 export type { Assessment };
+
+
+export function createConsultation(
+  token: string,
+  assessmentId: string,
+  question: string,
+): Promise<Consultation> {
+  return request<Consultation>(
+    "/consultations",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ assessment_id: assessmentId, question }),
+    },
+    token,
+  );
+}
+
+export function listConsultations(
+  token: string,
+  limit = 50,
+): Promise<ConsultationList> {
+  return request<ConsultationList>(
+    `/consultations?limit=${limit}`,
+    undefined,
+    token,
+  );
+}
+
+export function getConsultation(
+  token: string,
+  consultationId: string,
+): Promise<Consultation> {
+  return request<Consultation>(
+    `/consultations/${consultationId}`,
+    undefined,
+    token,
+  );
+}
+
+export function sendFeedback(
+  token: string,
+  consultationId: string,
+  value: FeedbackValue,
+): Promise<Consultation> {
+  return request<Consultation>(
+    `/consultations/${consultationId}/feedback`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ value }),
+    },
+    token,
+  );
+}

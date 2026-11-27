@@ -8,6 +8,10 @@ from app.models import UmkmProfile
 from app.schemas.profile import ProfileRequest
 
 
+def get_by_id(session: Session, profile_id: UUID) -> UmkmProfile | None:
+    return session.get(UmkmProfile, profile_id)
+
+
 def get_by_user(session: Session, tenant_id: UUID, user_id: UUID) -> UmkmProfile | None:
     return session.scalar(
         select(UmkmProfile).where(

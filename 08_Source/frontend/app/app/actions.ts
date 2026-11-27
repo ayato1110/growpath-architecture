@@ -6,13 +6,19 @@ import { redirect } from "next/navigation";
 import {
   ApiError,
   createAssessment,
+  createConsultation,
   saveAnswers,
   saveProfile,
+  sendFeedback,
   submitAssessment,
   updateMilestone,
 } from "@/lib/api";
 import { getSessionToken } from "@/lib/auth";
-import type { MilestoneStatus, ProfileInput } from "@/types/api";
+import type {
+  FeedbackValue,
+  MilestoneStatus,
+  ProfileInput,
+} from "@/types/api";
 
 export type FormState = { error?: string; ok?: boolean };
 
@@ -157,4 +163,34 @@ export async function updateMilestoneAction(
   }
   revalidatePath(`/app/rencana/${assessmentId}`);
   return { ok: true };
+}
+
+
+export async function askConsultationAction(
+  assessmentId: string,
+  _state: FormState,
+  formData: FormData,
+): Promise<FormState> {
+  const token = await requireToken();
+  const question = text(formData, "question");
+  try {
+    const consultation = await createConsultation(
+      token,
+      assessmentId,
+      question,
+    );
+    redirect(`/app/konsultasi/${consultation.id}`);
+  } catch (error) {
+    return { error: messageOf(error) };
+  }
+}
+
+export async function feedbackAction(
+  consultationId: string,
+  value: FeedbackValue,
+): Promise<void> {
+  const token = await requireToken();
+  await sendFeedback(token, consultationId, value);
+  revalidatePath(`/app/konsultasi/${consultationId}`);
+  revalidatePath("/app/log");
 }

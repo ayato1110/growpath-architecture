@@ -9,6 +9,7 @@ from sqlalchemy import (
     DateTime,
     ForeignKey,
     Identity,
+    Integer,
     Numeric,
     SmallInteger,
     String,
@@ -76,6 +77,17 @@ milestone_status = ENUM(
     "pending", "in_progress", "done", "skipped",
     name="milestone_status",
     create_type=False,
+)
+consultation_status = ENUM(
+    "pending", "processing", "completed", "failed",
+    name="consultation_status",
+    create_type=False,
+)
+ai_log_status = ENUM(
+    "succeeded", "blocked", "failed", name="ai_log_status", create_type=False
+)
+feedback_value = ENUM(
+    "helpful", "not_helpful", name="feedback_value", create_type=False
 )
 
 
@@ -255,3 +267,44 @@ class ProgressLog(Base):
     note: Mapped[str | None] = mapped_column(Text)
     evidence_url: Mapped[str | None] = mapped_column(Text)
     logged_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+class Consultation(Base):
+    __tablename__ = "consultation"
+
+    id: Mapped[UUID] = mapped_column(Uuid, primary_key=True)
+    tenant_id: Mapped[UUID] = mapped_column(ForeignKey("tenant.id", ondelete="CASCADE"))
+    user_id: Mapped[UUID] = mapped_column(ForeignKey("user.id", ondelete="CASCADE"))
+    assessment_id: Mapped[UUID] = mapped_column(
+        ForeignKey("assessment.id", ondelete="RESTRICT")
+    )
+    question: Mapped[str] = mapped_column(Text)
+    status: Mapped[str] = mapped_column(consultation_status, default="pending")
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
+
+
+class AIAnswerLog(Base):
+    __tablename__ = "ai_answer_log"
+
+    id: Mapped[UUID] = mapped_column(Uuid, primary_key=True)
+    consultation_id: Mapped[UUID] = mapped_column(
+        ForeignKey("consultation.id", ondelete="CASCADE")
+    )
+    model: Mapped[str] = mapped_column(String(80))
+    prompt_version: Mapped[str] = mapped_column(String(32))
+    answer: Mapped[str | None] = mapped_column(Text)
+    sources: Mapped[list] = mapped_column(JSONB, default=list)
+    guardrail_result: Mapped[dict] = mapped_column(JSONB, default=dict)
+    token_count: Mapped[int | None] = mapped_column(Integer)
+    latency_ms: Mapped[int | None] = mapped_column(Integer)
+    status: Mapped[str] = mapped_column(ai_log_status)
+    feedback: Mapped[str | None] = mapped_column(feedback_value)
+    feedback_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )

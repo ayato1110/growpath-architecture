@@ -32,6 +32,14 @@ class Settings(BaseSettings):
     db_pool_size: int = 5
     db_max_overflow: int = 5
 
+    gemini_api_key: str = ""
+    gemini_model: str = "gemini-3.8-flash"
+    gemini_base_url: str = "https://generativelanguage.googleapis.com/v1beta"
+    ai_daily_quota: int = 10
+    ai_burst_limit: int = 3
+    ai_timeout_seconds: float = 20.0
+    ai_max_answer_words: int = 180
+
     local_auth_secret: str = ""
     local_token_ttl_minutes: int = 60
     local_users: list[LocalAccount] = []

@@ -15,4 +15,5 @@
 - P14 database: `db/migrations/002_p14.sql` (view `v_assessment_report`), `db/verify_p14.sql`, dan pemetaan akun lokal ke tabel `user`.
 - P14 staging: `render.yaml` dan `04_Technology/P14-Staging-Deployment.md`.
 - P14 bukti: 15 test case, skrip smoke test, audit kontribusi, dan checklist Gate 2 di `07_Evidence/P14/`.
-- Fitur Must ketiga dan keempat dibangun setelah P14.
+- P15: konsultasi AI Gemini 3.8 Flash, guardrail, kuota 10/hari, log jawaban, dan umpan balik.
+- Fitur dashboard dibangun setelah ini.

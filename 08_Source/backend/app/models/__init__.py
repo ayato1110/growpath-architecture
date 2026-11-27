@@ -1,7 +1,9 @@
 from app.models.entities import (
+    AIAnswerLog,
     Assessment,
     AssessmentAnswer,
     Base,
+    Consultation,
     Criterion,
     Dimension,
     DimensionScore,
@@ -15,9 +17,11 @@ from app.models.entities import (
 )
 
 __all__ = [
+    "AIAnswerLog",
     "Assessment",
     "AssessmentAnswer",
     "Base",
+    "Consultation",
     "Criterion",
     "Dimension",
     "DimensionScore",

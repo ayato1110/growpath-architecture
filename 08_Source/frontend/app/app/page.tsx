@@ -117,6 +117,16 @@ export default async function AppHomePage() {
           <p className="label">Asesmen</p>
           <p className="muted mt-1">Psikografi dan Pasar, dua belas kriteria.</p>
         </Link>
+        <Link className="sheet block p-5" href="/app/konsultasi">
+          <p className="label">Konsultasi</p>
+          <p className="muted mt-1">
+            Tanya dari data usaha dan hasil asesmen Anda.
+          </p>
+        </Link>
+        <Link className="sheet block p-5" href="/app/log">
+          <p className="label">Log jawaban</p>
+          <p className="muted mt-1">Pertanyaan, jawaban, dan sumbernya.</p>
+        </Link>
         {latest && latest.status === "scored" ? (
           <Link className="sheet block p-5" href={`/app/rencana/${latest.id}`}>
             <p className="label">Rencana aksi</p>

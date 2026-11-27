@@ -11,11 +11,11 @@
 | Kuesioner SUS 10 butir | Ada | `SUS-KUESIONER.md` |
 | Backup dan restore | Sebagian | Drill logical 23 tabel, 250 baris, 0 selisih di `BACKUP-DRILL.txt`; `pg_dump` dan restore penuh belum |
 | Transaksi proses kritis | Ada | Submit asesmen memakai satu commit; perlu tes rollback |
-| Fitur Must 3 dan 4 | Belum | Konsultasi AI dan log jawaban |
+| Konsultasi AI dan log jawaban | Ada, menunggu API key | `services/ai.py`, endpoint `/consultations`, UI konsultasi dan log; Gemini 3.8 Flash |
 | Dokumentasi route/endpoint | Sebagian | OpenAPI diperbarui; daftar route per role belum |
 | TCO 12 bulan | Belum | Menunggu deploy staging |
 | Staging | Selesai | https://growpath-staging.vercel.app dan https://growpath-api.vercel.app |
-| MVP hampir lengkap | Belum | 2 dari 5 Must berjalan |
+| MVP hampir lengkap | Sebagian | 4 dari 5 Must ada; dashboard belum |
 
 ## Urutan berikutnya
 

@@ -1,6 +1,8 @@
 from app.models import (
+    AIAnswerLog,
     Assessment,
     AssessmentAnswer,
+    Consultation,
     Criterion,
     Dimension,
     DimensionScore,
@@ -15,6 +17,7 @@ from app.schemas.assessment import (
     DimensionScoreOut,
     SegmentOut,
 )
+from app.schemas.consultation import ConsultationAnswerOut, ConsultationOut
 from app.schemas.plan import MilestoneOut
 
 
@@ -89,4 +92,29 @@ def milestone_out(row: Milestone) -> MilestoneOut:
         due_date=row.due_date,
         status=row.status,
         completed_at=row.completed_at,
+    )
+
+
+def consultation_out(
+    row: Consultation, log: AIAnswerLog | None
+) -> ConsultationOut:
+    answer = None
+    if log is not None and log.status != "failed":
+        answer = ConsultationAnswerOut(
+            id=log.id,
+            answer=log.answer or "",
+            sources=list(log.sources or []),
+            status=log.status,
+            model=log.model,
+            prompt_version=log.prompt_version,
+            created_at=log.created_at,
+        )
+    return ConsultationOut(
+        id=row.id,
+        assessment_id=row.assessment_id,
+        question=row.question,
+        status=row.status,
+        answer=answer,
+        feedback=log.feedback if log is not None else None,
+        created_at=row.created_at,
     )

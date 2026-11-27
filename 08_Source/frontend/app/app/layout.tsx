@@ -9,6 +9,8 @@ const NAV = [
   { href: "/app", label: "Beranda" },
   { href: "/app/data-usaha", label: "Data usaha" },
   { href: "/app/asesmen", label: "Asesmen" },
+  { href: "/app/konsultasi", label: "Konsultasi" },
+  { href: "/app/log", label: "Log" },
 ];
 
 export default async function AppLayout({

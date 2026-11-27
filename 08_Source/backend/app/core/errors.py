@@ -7,13 +7,19 @@ from fastapi.responses import JSONResponse
 
 class ApiError(Exception):
     def __init__(
-        self, status: int, code: str, title: str, detail: str | None = None
+        self,
+        status: int,
+        code: str,
+        title: str,
+        detail: str | None = None,
+        extra: dict[str, object] | None = None,
     ) -> None:
         super().__init__(title)
         self.status = status
         self.code = code
         self.title = title
         self.detail = detail
+        self.extra = extra or {}
 
 
 def problem_response(
@@ -22,6 +28,7 @@ def problem_response(
     title: str,
     detail: str | None = None,
     errors: list[dict[str, str]] | None = None,
+    extra: dict[str, object] | None = None,
 ) -> JSONResponse:
     body: dict[str, object] = {
         "type": "about:blank",
@@ -34,6 +41,8 @@ def problem_response(
         body["detail"] = detail
     if errors:
         body["errors"] = errors
+    if extra:
+        body.update(extra)
     return JSONResponse(
         status_code=status, content=body, media_type="application/problem+json"
     )
@@ -42,7 +51,9 @@ def problem_response(
 def register_error_handlers(app: FastAPI) -> None:
     @app.exception_handler(ApiError)
     async def handle_api_error(_request: Request, exc: ApiError) -> JSONResponse:
-        return problem_response(exc.status, exc.code, exc.title, exc.detail)
+        return problem_response(
+            exc.status, exc.code, exc.title, exc.detail, extra=exc.extra
+        )
 
     @app.exception_handler(RequestValidationError)
     async def handle_validation_error(

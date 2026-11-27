@@ -18,7 +18,7 @@ Tim perlu membangun MVP lima fitur dalam empat pekan. Teknologi harus cepat dipa
 | Akses data | SQLAlchemy 2 dan psycopg 3 | Repository layer, tanpa auto-create tabel |
 | Database | Supabase PostgreSQL dan pgvector | DDL di `08_Source/db/migrations`, view laporan di `002_p14.sql` |
 | Autentikasi | Supabase Auth; `AUTH_MODE=local` untuk pengembangan | Token HS256 lokal hanya saat `APP_ENV=development` |
-| AI | DeepSeek API `deepseek-flash`, Gemini sebagai alternatif | Tidak dipakai untuk skor atau prioritas |
+| AI | Gemini 3.8 Flash (`gemini-3.8-flash`), DeepSeek sebagai cadangan | Tidak dipakai untuk skor atau prioritas (D-050) |
 | Hosting | Vercel Hobby (frontend), Render Free (backend), Supabase (database) | Proyek akademik non-komersial; Supabase staging di Seoul; Vercel Pro bila dikomersialkan |
 
 Catatan P14: backend staging memakai Vercel Functions karena Render Free meminta verifikasi kartu kredit (D-049). Render tetap opsi produksi.

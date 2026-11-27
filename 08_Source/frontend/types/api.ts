@@ -178,3 +178,41 @@ export type Roadmap = {
 };
 
 export type AssessmentList = { items: Assessment[] };
+
+
+export type ConsultationAnswerStatus = "succeeded" | "blocked" | "failed";
+export type ConsultationStatus = "pending" | "processing" | "completed" | "failed";
+export type FeedbackValue = "helpful" | "not_helpful";
+
+export type ConsultationSource = {
+  source_id?: string;
+  label?: string;
+  [key: string]: unknown;
+};
+
+export type ConsultationAnswer = {
+  id: string;
+  answer: string;
+  sources: ConsultationSource[];
+  status: ConsultationAnswerStatus;
+  model: string;
+  prompt_version: string;
+  created_at: string;
+};
+
+export type Consultation = {
+  id: string;
+  assessment_id: string;
+  question: string;
+  status: ConsultationStatus;
+  answer: ConsultationAnswer | null;
+  feedback: FeedbackValue | null;
+  created_at: string;
+};
+
+export type ConsultationList = {
+  items: Consultation[];
+  page: number;
+  limit: number;
+  total: number;
+};

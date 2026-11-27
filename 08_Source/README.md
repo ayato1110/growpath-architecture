@@ -146,9 +146,14 @@ Skor dihitung di `backend/app/services/scoring.py` dengan aturan tetap. Rekomend
 | `LOCAL_AUTH_SECRET` | Kunci HS256 token lokal. Ganti dengan nilai acak. |
 | `LOCAL_TOKEN_TTL_MINUTES` | Umur token lokal dalam menit. |
 | `LOCAL_USERS` | Daftar akun uji dalam JSON, satu objek per peran. |
-| `DEEPSEEK_API_KEY` | API key DeepSeek untuk backend. Jangan isi di frontend. |
+| `GEMINI_API_KEY` | API key Gemini untuk konsultasi AI. Jangan isi di frontend. |
+| `GEMINI_MODEL` | Model utama, bawaan `gemini-3.8-flash`. |
+| `GEMINI_BASE_URL` | Base URL Gemini API. |
+| `AI_DAILY_QUOTA` | Kuota konsultasi per pengguna per hari, bawaan 10. |
+| `AI_BURST_LIMIT` | Batas pertanyaan per menit, bawaan 3. |
+| `DEEPSEEK_API_KEY` | Cadangan. Jangan isi di frontend. |
 | `DEEPSEEK_BASE_URL` | Base URL API DeepSeek, bawaan `https://api.deepseek.com`. |
-| `DEEPSEEK_MODEL` | Model awal, `deepseek-flash`. |
+| `DEEPSEEK_MODEL` | Model cadangan, `deepseek-flash`. |
 
 ### Variabel lingkungan frontend
 
