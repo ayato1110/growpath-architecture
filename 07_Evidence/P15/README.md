@@ -14,6 +14,7 @@
 | Fitur Must 3 dan 4 | Belum | Konsultasi AI dan log jawaban |
 | Dokumentasi route/endpoint | Sebagian | OpenAPI diperbarui; daftar route per role belum |
 | TCO 12 bulan | Belum | Menunggu deploy staging |
+| Staging | Selesai | https://growpath-staging.vercel.app dan https://growpath-api.vercel.app |
 | MVP hampir lengkap | Belum | 2 dari 5 Must berjalan |
 
 ## Urutan berikutnya

@@ -8,9 +8,9 @@
 
 | Butir Gate 2 | Status | Bukti |
 |---|---|---|
-| Demo 2 fitur Must end-to-end dengan database nyata | Terbukti lokal + Supabase | `smoke-report.json` (15 lulus, 2 skip), `screenshots/`, `db-verify.txt`; demo kelas belum |
+| Demo 2 fitur Must end-to-end dengan database nyata | Terbukti lokal + staging | `smoke-report.json`, `smoke-report-staging.json` (15 lulus, 2 skip), `screenshots/`, `screenshots-staging/`; demo kelas belum |
 | ADR tech stack tertulis dan disetujui CEO | Lulus | `06_Governance/ADR-001-tech-stack.md`, Accepted 27 November 2026 |
-| Topologi dan deployment final, staging | Sebagian | Database Supabase aktif; `04_Technology/P14-Staging-Deployment.md`, `render.yaml`; Render/Vercel belum deploy |
+| Topologi dan deployment final, staging | Lulus | Frontend https://growpath-staging.vercel.app, backend https://growpath-api.vercel.app, database Supabase |
 | Change Request dari Kartu Kejutan terdokumentasi | Belum | Bergantung skenario kelas |
 | Tidak ada anggota dengan nol kontribusi | Lulus | `07_Evidence/P14/CONTRIBUTION-AUDIT.md` |
 
@@ -30,7 +30,9 @@ Jangan mengubah status menjadi selesai tanpa bukti eksekusi dan tangkapan layar.
 | Skrip smoke test | `08_Source/tests/p14_smoke.py` |
 | Verifikasi skema | `08_Source/db/verify_p14.sql` |
 | Checklist Gate 2 | `07_Evidence/P14/GATE-2-CHECKLIST.md` |
-| Hasil smoke test | `07_Evidence/P14/smoke-report.json` |
+| Hasil smoke test lokal | `07_Evidence/P14/smoke-report.json` |
+| Hasil smoke test staging | `07_Evidence/P14/smoke-report-staging.json` |
+| Screenshot staging | `07_Evidence/P14/screenshots-staging/` 5 gambar |
 | Verifikasi database | `07_Evidence/P14/db-verify.txt` |
 | Screenshot alur | `07_Evidence/P14/screenshots/` 14 gambar desktop + mobile 390 |
 | Log eksekusi | `07_Evidence/P14/EXECUTION-LOG.md` |

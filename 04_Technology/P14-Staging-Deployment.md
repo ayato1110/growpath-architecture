@@ -4,7 +4,19 @@
 **Status:** rencana final, belum dieksekusi. Eksekusi menunggu kredensial Supabase dan akun Vercel/Render.  
 **Rujukan:** ADR-001 (Accepted), D-046, `P13-Hosting-Options.md`.
 
-## 1. Pilihan final
+## 0. Realisasi 27 November 2026
+
+| Komponen | Realisasi | Catatan |
+|---|---|---|
+| Frontend | https://growpath-staging.vercel.app | Vercel Hobby, root `08_Source/frontend`, deploy dari branch `staging` |
+| Backend | https://growpath-api.vercel.app | Vercel Functions Python 3.12, root `08_Source/backend`, entrypoint `app/main.py` |
+| Database | Supabase PostgreSQL 17.12, Seoul | Sama dengan database verifikasi P14 |
+| Protection | Vercel Authentication aktif di backend; frontend memakai shareable link | Frontend server mengirim `x-vercel-protection-bypass` ke backend |
+| Render | Tidak dipakai | Render meminta verifikasi kartu kredit; keputusan dicatat D-049 |
+
+Deploy dilakukan lewat Vercel CLI dari branch `staging`, bukan dari `main`, agar kode P14 yang dipakai. Dependency backend memakai `requirements.txt`; `pyproject.toml` dihapus agar Vercel tidak mengabaikan requirements.
+
+## 1. Pilihan final (rencana awal)
 
 | Komponen | Layanan | Region | Catatan |
 |---|---|---|---|

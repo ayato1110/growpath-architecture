@@ -1,16 +1,16 @@
 # P14 · Gate 2 Build Review Checklist
 
 **Tanggal:** 27 November 2026  
-**Status keseluruhan:** **Siap demo lokal** — database Supabase aktif; staging Render/Vercel dan demo kelas belum.  
+**Status keseluruhan:** **Siap demo** — database Supabase aktif, staging Vercel aktif; demo tatap muka di kelas belum.  
 **Aturan:** jangan menandai butir lulus tanpa bukti eksekusi.
 
 ## Definition of Done dosen
 
 | No | Butir | Status | Bukti yang sudah ada | Kekurangan |
 |---:|---|---|---|---|
-| 1 | Demo langsung 2 fitur Must end-to-end dengan database nyata | Terbukti lokal + Supabase | `smoke-report.json`, 14 screenshot, `db-verify.txt` | Demo tatap muka di kelas |
+| 1 | Demo langsung 2 fitur Must end-to-end dengan database nyata | Terbukti lokal + staging | `smoke-report.json`, `smoke-report-staging.json`, 19 screenshot, `db-verify.txt` | Demo tatap muka di kelas |
 | 2 | ADR tech stack tertulis dan disetujui CEO | Lulus | `06_Governance/ADR-001-tech-stack.md`, Accepted 27 November 2026 | - |
-| 3 | Topologi + deployment diagram final, versi awal ter-deploy ke staging | Sebagian | Database Supabase aktif; `04_Technology/P14-Staging-Deployment.md`, `render.yaml` | Deploy backend Render dan frontend Vercel |
+| 3 | Topologi + deployment diagram final, versi awal ter-deploy ke staging | Lulus | Frontend https://growpath-staging.vercel.app, backend https://growpath-api.vercel.app, database Supabase | Perbarui diagram region Seoul |
 | 4 | Change Request dari Kartu Kejutan terdokumentasi dengan keputusan | Belum | `06_Governance/CHANGE-REQUEST-LOG.md` | CR dari skenario kelas belum ada |
 | 5 | Tidak ada anggota dengan nol kontribusi | Lulus | `07_Evidence/P14/CONTRIBUTION-AUDIT.md` | Perbarui setelah PR P14 merge |
 
@@ -25,8 +25,8 @@
 | Lint backend | `ruff check app tests` | Lulus lokal |
 | Lint frontend | `npm run lint` | Lulus lokal |
 | Build frontend | `npm run build` | Lulus lokal |
-| Screenshot alur | Data usaha → asesmen → tinjau → hasil → rencana | 14 gambar desktop + mobile 390 di `screenshots/` |
-| Health check staging | `GET /health` | Belum |
+| Screenshot alur | Data usaha → asesmen → tinjau → hasil → rencana | 14 lokal + 5 staging di `screenshots/` dan `screenshots-staging/` |
+| Health check staging | `GET /health` dengan bypass | Lulus, `{"status":"ok"}` |
 | Log dan error bersih | Konsol browser dan log Render | Konsol lokal bersih; log Render belum |
 
 ## Hasil eksekusi 27 November 2026

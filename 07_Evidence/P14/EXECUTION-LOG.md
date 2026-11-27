@@ -68,3 +68,19 @@ Ringkasan database ada di `db-verify.txt`. Tangkapan layar ada di `screenshots/`
 - Kredensial database dan akun uji tidak ditulis di dokumen ini.
 - TC-03 lulus pada run pertama (profil kosong menjawab 404); pada run berikutnya di-skip karena profil sudah ada.
 - TC-07 belum dijalankan otomatis; butuh akun UMKM tanpa profil dan pemeriksaan redirect di UI.
+
+
+## Staging Vercel 27 November 2026
+
+- Frontend: https://growpath-staging.vercel.app
+- Backend: https://growpath-api.vercel.app
+- Database: Supabase PostgreSQL 17.12 (Seoul)
+- Deploy dari branch `staging` lewat Vercel CLI, bukan dari `main`.
+- Backend memakai Vercel Functions Python 3.12 dengan entrypoint `app/main.py`.
+- `pyproject.toml` dihapus dan diganti `ruff.toml` + `pytest.ini` karena Vercel mengabaikan `requirements.txt` bila `pyproject.toml` ada tanpa daftar dependency.
+- Backend dilindungi Vercel Authentication; frontend server mengirim header `x-vercel-protection-bypass` dari environment `VERCEL_BYPASS_SECRET`.
+- Frontend dibuka untuk publik lewat shareable link Hobby.
+- Smoke test staging: 15 lulus, 0 gagal, 2 skip (`smoke-report-staging.json`).
+- Screenshot staging: `screenshots-staging/`.
+
+Catatan: setelah redeploy frontend, setelan shareable link mungkin perlu diaktifkan ulang. Jangan menaruh nilai bypass di repo.

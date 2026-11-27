@@ -20,6 +20,8 @@ Tim perlu membangun MVP lima fitur dalam empat pekan. Teknologi harus cepat dipa
 | Autentikasi | Supabase Auth; `AUTH_MODE=local` untuk pengembangan | Token HS256 lokal hanya saat `APP_ENV=development` |
 | AI | DeepSeek API `deepseek-flash`, Gemini sebagai alternatif | Tidak dipakai untuk skor atau prioritas |
 | Hosting | Vercel Hobby (frontend), Render Free (backend), Supabase (database) | Proyek akademik non-komersial; Supabase staging di Seoul; Vercel Pro bila dikomersialkan |
+
+Catatan P14: backend staging memakai Vercel Functions karena Render Free meminta verifikasi kartu kredit (D-049). Render tetap opsi produksi.
 | Observability | Sentry | Ditambahkan saat staging |
 | Edge dan keamanan | Cloudflare bila waktu memungkinkan | Bukan syarat Gate 2 |
 
