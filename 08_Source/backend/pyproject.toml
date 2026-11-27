@@ -9,3 +9,6 @@ testpaths = ["tests"]
 filterwarnings = [
     "ignore:Using `httpx` with `starlette.testclient` is deprecated:DeprecationWarning",
 ]
+
+[tool.vercel]
+entrypoint = "app.main:app"
