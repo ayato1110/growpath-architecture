@@ -10,7 +10,7 @@
 |---|---|---|---|
 | Frontend | Vercel Hobby | Singapore (fra1 terdekat) | Proyek akademik non-komersial |
 | Backend | Render Free, Python 3.12 | Singapore | Tidur setelah idle; bangunkan sebelum demo |
-| Database | Supabase PostgreSQL 15 + pgvector | Singapore | Session pooler port 5432 |
+| Database | Supabase PostgreSQL 17 + pgvector | Northeast Asia (Seoul), ap-northeast-2 | Session pooler port 5432; region mengikuti pilihan Asia-Pacific saat provisioning |
 | AI | DeepSeek API | - | Tidak dipakai P14; disiapkan untuk P15 |
 | Observability | Sentry | - | Ditambahkan setelah staging hidup |
 
@@ -46,7 +46,7 @@ Jangan menaruh `DATABASE_URL`, service role key, atau API key DeepSeek di fronte
 ## 3. Langkah deploy
 
 1. **Database**
-   - Buat atau dapatkan project Supabase.
+   - Project Supabase `growpath` sudah dibuat pada 27 November 2026 (ref `xckzrccbxxkisrbtrdmx`, region Seoul).
    - Jalankan `001_init.sql`, `seed.sql`, `002_p14.sql` lewat SQL Editor atau `psql`.
    - Verifikasi dengan `db/verify_p14.sql`.
 2. **Backend**
@@ -64,7 +64,7 @@ Jangan menaruh `DATABASE_URL`, service role key, atau API key DeepSeek di fronte
 
 ## 4. IP plan
 
-Vercel, Render, dan Supabase memakai egress bersama dan **tidak memberi IP statis** pada paket gratis. Karena itu:
+Vercel dan Render memakai region Singapura; database Supabase memakai Seoul. Ketiganya memakai egress bersama dan **tidak memberi IP statis** pada paket gratis. Karena itu:
 
 - Tidak ada allowlist IP untuk mitra atau kampus.
 - Akses database dibatasi connection string, TLS, dan RLS, bukan IP.

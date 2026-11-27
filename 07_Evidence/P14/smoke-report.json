@@ -1,0 +1,96 @@
+{
+  "base_url": "http://127.0.0.1:8001",
+  "finished_at": "2026-11-27T06:59:28.526762+00:00",
+  "summary": {
+    "lulus": 15,
+    "gagal": 0,
+    "skip": 2
+  },
+  "cases": [
+    {
+      "id": "TC-00",
+      "status": "lulus",
+      "detail": "Health check merespons ok."
+    },
+    {
+      "id": "TC-01",
+      "status": "lulus",
+      "detail": "Login UMKM berhasil dan token diterima."
+    },
+    {
+      "id": "TC-03",
+      "status": "skip",
+      "detail": "Profil sudah ada; state kosong tidak berlaku."
+    },
+    {
+      "id": "TC-05",
+      "status": "lulus",
+      "detail": "WhatsApp tidak valid ditolak."
+    },
+    {
+      "id": "TC-06",
+      "status": "lulus",
+      "detail": "Sektor tidak valid ditolak."
+    },
+    {
+      "id": "TC-04",
+      "status": "lulus",
+      "detail": "Profil tersimpan, kelengkapan 100.0%."
+    },
+    {
+      "id": "TC-08",
+      "status": "lulus",
+      "detail": "Draf berisi 12 kriteria: Psikografi 3, Pasar 9."
+    },
+    {
+      "id": "TC-09",
+      "status": "lulus",
+      "detail": "Tiga jawaban Psikografi tersimpan."
+    },
+    {
+      "id": "TC-10",
+      "status": "lulus",
+      "detail": "Opsi tidak dikenal ditolak 422."
+    },
+    {
+      "id": "TC-11",
+      "status": "lulus",
+      "detail": "Submit belum lengkap ditolak dan menyebut kriteria kurang."
+    },
+    {
+      "id": "TC-12",
+      "status": "lulus",
+      "detail": "Skor 47.92 dan segmen Branding Enthusiasts konsisten."
+    },
+    {
+      "id": "TC-13",
+      "status": "lulus",
+      "detail": "Skor 47,92 masuk segmen 2 sesuai ambang."
+    },
+    {
+      "id": "TC-14",
+      "status": "lulus",
+      "detail": "Hasil menampilkan 12 dari 31 kriteria dan 2 dimensi."
+    },
+    {
+      "id": "TC-15",
+      "status": "lulus",
+      "detail": "Tiga langkah sesuai tiga kriteria terendah."
+    },
+    {
+      "id": "TC-15b",
+      "status": "lulus",
+      "detail": "Status langkah selesai tersimpan setelah muat ulang."
+    },
+    {
+      "id": "TC-02",
+      "status": "lulus",
+      "detail": "Peran non-UMKM ditolak 403."
+    },
+    {
+      "id": "TC-07",
+      "status": "skip",
+      "detail": "Butuh akun tanpa profil; verifikasi manual."
+    }
+  ]
+}

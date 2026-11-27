@@ -39,6 +39,7 @@ def create_roadmap(
         generated_by="rule",
     )
     session.add(roadmap)
+    session.flush()
     for plan in plans:
         session.add(
             Milestone(

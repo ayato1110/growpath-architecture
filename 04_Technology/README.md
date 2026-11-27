@@ -18,4 +18,4 @@ Folder ini memuat arsitektur teknologi P13.
 
 Topologi as-is adalah versi generik: UMKM datang ke rumah binaan, mengisi formulir, data direkap lembaga, lalu konsultasi atau pelatihan on-site. Detail lokasi menyesuaikan setelah mitra dikonfirmasi.
 
-Teknologi utama: Cloudflare, Vercel Hobby, Render, Supabase, DeepSeek API, dan Sentry. Region aplikasi dan data di Singapura.
+Teknologi utama: Cloudflare, Vercel Hobby, Render, Supabase, DeepSeek API, dan Sentry. Region aplikasi di Singapura; database staging Supabase memakai Seoul (ap-northeast-2).

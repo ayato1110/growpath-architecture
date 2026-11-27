@@ -65,31 +65,32 @@ def submit_assessment(
             session, assessment, dimension_scores, total, segment[0]
         )
 
-        if plan_repo.get_active_roadmap(session, assessment.id) is None:
-            plans = build_plan(
-                [
-                    CriterionScore(
-                        criterion_id=criterion.id,
-                        code=criterion.code,
-                        question=criterion.question,
-                        dimension_name=dimension.name,
-                        score=float(answers[criterion.id].score),
-                        order_no=criterion.order_no,
-                    )
-                    for criterion, dimension in criteria_rows
-                ],
-                scored_on=date.today(),
-            )
-            plan_repo.create_roadmap(
-                session,
-                assessment.tenant_id,
-                assessment.id,
-                title="Rencana prioritas 30 hari",
-                summary=build_summary(
-                    plans, [dimension.name for _, dimension in criteria_rows]
-                ),
-                plans=plans,
-            )
+    if plan_repo.get_active_roadmap(session, assessment.id) is None:
+        plans = build_plan(
+            [
+                CriterionScore(
+                    criterion_id=criterion.id,
+                    code=criterion.code,
+                    question=criterion.question,
+                    dimension_name=dimension.name,
+                    score=float(answers[criterion.id].score),
+                    order_no=criterion.order_no,
+                )
+                for criterion, dimension in criteria_rows
+                if criterion.id in answers
+            ],
+            scored_on=date.today(),
+        )
+        plan_repo.create_roadmap(
+            session,
+            assessment.tenant_id,
+            assessment.id,
+            title="Rencana prioritas 30 hari",
+            summary=build_summary(
+                plans, [dimension.name for _, dimension in criteria_rows]
+            ),
+            plans=plans,
+        )
 
     return build_result(session, assessment)
 

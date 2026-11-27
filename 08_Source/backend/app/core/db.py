@@ -9,6 +9,15 @@ from app.core.config import get_settings
 from app.core.errors import ApiError
 
 
+def _sqlalchemy_url(database_url: str) -> str:
+    """Paksa driver psycopg 3 untuk URL postgres biasa."""
+    if database_url.startswith("postgresql://"):
+        return "postgresql+psycopg://" + database_url[len("postgresql://") :]
+    if database_url.startswith("postgres://"):
+        return "postgresql+psycopg://" + database_url[len("postgres://") :]
+    return database_url
+
+
 @lru_cache
 def get_engine(database_url: str, pool_size: int, max_overflow: int) -> Engine:
     if not database_url:
@@ -19,7 +28,7 @@ def get_engine(database_url: str, pool_size: int, max_overflow: int) -> Engine:
             "DATABASE_URL belum diisi di environment backend.",
         )
     return create_engine(
-        database_url,
+        _sqlalchemy_url(database_url),
         pool_pre_ping=True,
         pool_size=pool_size,
         max_overflow=max_overflow,

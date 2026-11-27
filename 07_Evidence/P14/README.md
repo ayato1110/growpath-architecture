@@ -8,9 +8,9 @@
 
 | Butir Gate 2 | Status | Bukti |
 |---|---|---|
-| Demo 2 fitur Must end-to-end dengan database nyata | Belum dijalankan | Menunggu `DATABASE_URL` Supabase |
+| Demo 2 fitur Must end-to-end dengan database nyata | Terbukti lokal + Supabase | `smoke-report.json` (15 lulus, 2 skip), `screenshots/`, `db-verify.txt`; demo kelas belum |
 | ADR tech stack tertulis dan disetujui CEO | Lulus | `06_Governance/ADR-001-tech-stack.md`, Accepted 27 November 2026 |
-| Topologi dan deployment final, staging | Sebagian | `04_Technology/P14-Staging-Deployment.md`, `render.yaml`; belum deploy |
+| Topologi dan deployment final, staging | Sebagian | Database Supabase aktif; `04_Technology/P14-Staging-Deployment.md`, `render.yaml`; Render/Vercel belum deploy |
 | Change Request dari Kartu Kejutan terdokumentasi | Belum | Bergantung skenario kelas |
 | Tidak ada anggota dengan nol kontribusi | Lulus | `07_Evidence/P14/CONTRIBUTION-AUDIT.md` |
 
@@ -30,6 +30,10 @@ Jangan mengubah status menjadi selesai tanpa bukti eksekusi dan tangkapan layar.
 | Skrip smoke test | `08_Source/tests/p14_smoke.py` |
 | Verifikasi skema | `08_Source/db/verify_p14.sql` |
 | Checklist Gate 2 | `07_Evidence/P14/GATE-2-CHECKLIST.md` |
+| Hasil smoke test | `07_Evidence/P14/smoke-report.json` |
+| Verifikasi database | `07_Evidence/P14/db-verify.txt` |
+| Screenshot alur | `07_Evidence/P14/screenshots/` 7 gambar |
+| Log eksekusi | `07_Evidence/P14/EXECUTION-LOG.md` |
 
 ## Keputusan yang dipakai
 

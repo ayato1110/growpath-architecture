@@ -95,28 +95,27 @@ def upsert_answers(
     if not answers:
         return
     now = datetime.now(UTC)
+    statement = insert(AssessmentAnswer).values(
+        [
+            {
+                "assessment_id": assessment_id,
+                "criterion_id": criterion_id,
+                "raw_value": score.raw_value,
+                "numeric_value": score.numeric_value,
+                "score": score.score,
+                "answered_at": now,
+            }
+            for criterion_id, score in answers
+        ]
+    )
     session.execute(
-        insert(AssessmentAnswer)
-        .values(
-            [
-                {
-                    "assessment_id": assessment_id,
-                    "criterion_id": criterion_id,
-                    "raw_value": score.raw_value,
-                    "numeric_value": score.numeric_value,
-                    "score": score.score,
-                    "answered_at": now,
-                }
-                for criterion_id, score in answers
-            ]
-        )
-        .on_conflict_do_update(
+        statement.on_conflict_do_update(
             constraint="assessment_answer_unique",
             set_={
-                "raw_value": insert.excluded.raw_value,
-                "numeric_value": insert.excluded.numeric_value,
-                "score": insert.excluded.score,
-                "answered_at": insert.excluded.answered_at,
+                "raw_value": statement.excluded.raw_value,
+                "numeric_value": statement.excluded.numeric_value,
+                "score": statement.excluded.score,
+                "answered_at": statement.excluded.answered_at,
             },
         )
     )
