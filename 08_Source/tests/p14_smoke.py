@@ -20,6 +20,7 @@ from pathlib import Path
 import httpx
 
 BASE_URL = os.getenv("API_BASE_URL", "http://127.0.0.1:8000").rstrip("/")
+BYPASS = os.getenv("VERCEL_BYPASS_SECRET", "")
 
 PROFILE = {
     "business_name": "Puding Coklat Pak Hambali",
@@ -105,7 +106,14 @@ def main() -> int:
         print("SMOKE_EMAIL dan SMOKE_PASSWORD wajib diisi.", file=sys.stderr)
         return 2
 
-    runner = Runner(httpx.Client(timeout=30.0, follow_redirects=True))
+    client_headers = (
+        {"x-vercel-protection-bypass": BYPASS} if BYPASS else {}
+    )
+    runner = Runner(
+        httpx.Client(
+            timeout=30.0, follow_redirects=True, headers=client_headers
+        )
+    )
     client = runner.client
     headers: dict[str, str] = {}
 

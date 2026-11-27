@@ -15,6 +15,7 @@ import type {
 } from "@/types/api";
 
 const API_BASE_URL = process.env.BACKEND_URL ?? "http://127.0.0.1:8000";
+const PROTECTION_BYPASS = process.env.VERCEL_BYPASS_SECRET;
 
 export class ApiError extends Error {
   constructor(
@@ -52,6 +53,9 @@ async function request<T>(
   const response = await fetch(`${API_BASE_URL}${path}`, {
     ...init,
     headers: {
+      ...(PROTECTION_BYPASS
+        ? { "x-vercel-protection-bypass": PROTECTION_BYPASS }
+        : {}),
       ...authHeaders(token),
       ...(init?.headers ?? {}),
     },
