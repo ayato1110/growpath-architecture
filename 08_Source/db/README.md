@@ -15,6 +15,8 @@ Dari root repo:
 ```bash
 psql "$DATABASE_URL" -f 08_Source/db/migrations/001_init.sql
 psql "$DATABASE_URL" -f 08_Source/db/seed/seed.sql
+psql "$DATABASE_URL" -f 08_Source/db/migrations/002_p14.sql
+psql "$DATABASE_URL" -f 08_Source/db/verify_p14.sql
 ```
 
 Aturan:
