@@ -49,6 +49,18 @@ Ringkasan database ada di `db-verify.txt`. Tangkapan layar ada di `screenshots/`
 | Submit 500, milestone melanggar foreign key | Milestone di-insert sebelum roadmap di-flush | `session.flush()` setelah menambah roadmap |
 | Asesmen sudah `scored` tetapi roadmap tidak dibuat | Pembuatan roadmap hanya di dalam blok scoring | Roadmap dipastikan ada di luar blok, termasuk saat submit ulang |
 
+## Uji UI end-to-end dan mobile 390px
+
+- Playwright membuka aplikasi, login, mengisi data usaha, menjawab 12 pertanyaan, menghitung skor, dan membuka rencana.
+- Bug ditemukan: skor 0 dianggap belum dijawab karena pengecekan memakai nilai falsy. Diperbaiki menjadi `score === null`.
+- Setelah perbaikan, halaman tinjau menampilkan 12 dari 12, tombol hitung aktif, dan submit mengembalikan 200.
+- Screenshot mobile 390px: `10-mobile-beranda.png` sampai `16-mobile-rencana.png`.
+
+## Backup dan transaksi
+
+- Drill backup/restore logis: 23 tabel, 250 baris, 0 selisih, rollback transaksi OK. Bukti di `07_Evidence/P15/BACKUP-DRILL.txt`.
+- Submit asesmen diubah menjadi satu transaksi: skor, segmen, dan roadmap di-commit bersama; gagal di tengah akan rollback.
+
 ## Catatan
 
 - Port 8000 dipakai `php.exe` milik proyek lain; backend P14 memakai 8001 pada pengujian ini.

@@ -1,0 +1,30 @@
+Tabel: 23
+  OK   ai_answer_log                0 baris
+  OK   assessment                  34 baris
+  OK   assessment_answer           79 baris
+  OK   audit_log                    0 baris
+  OK   consultation                 0 baris
+  OK   criterion                   31 baris
+  OK   dimension                    6 baris
+  OK   dimension_score              8 baris
+  OK   invoice                      0 baris
+  OK   knowledge_chunk              1 baris
+  OK   knowledge_document           1 baris
+  OK   mentor_session               0 baris
+  OK   milestone                   12 baris
+  OK   notification                 0 baris
+  OK   plan                         3 baris
+  OK   progress_log                 2 baris
+  OK   report                       0 baris
+  OK   roadmap                      4 baris
+  OK   segment                      4 baris
+  OK   subscription                 0 baris
+  OK   tenant                       3 baris
+  OK   umkm_profile                31 baris
+  OK   user                        31 baris
+
+Total baris sumber   : 250
+Total baris restore  : 250
+Tabel berbeda        : 0
+Uji rollback transaksi: OK
+Schema drill dibersihkan.

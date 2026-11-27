@@ -32,7 +32,7 @@ Jangan mengubah status menjadi selesai tanpa bukti eksekusi dan tangkapan layar.
 | Checklist Gate 2 | `07_Evidence/P14/GATE-2-CHECKLIST.md` |
 | Hasil smoke test | `07_Evidence/P14/smoke-report.json` |
 | Verifikasi database | `07_Evidence/P14/db-verify.txt` |
-| Screenshot alur | `07_Evidence/P14/screenshots/` 7 gambar |
+| Screenshot alur | `07_Evidence/P14/screenshots/` 14 gambar desktop + mobile 390 |
 | Log eksekusi | `07_Evidence/P14/EXECUTION-LOG.md` |
 
 ## Keputusan yang dipakai

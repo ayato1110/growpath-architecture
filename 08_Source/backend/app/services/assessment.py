@@ -18,6 +18,7 @@ def submit_assessment(
     criteria_rows: list[tuple[Criterion, Dimension]],
     answers,
 ) -> ScoreResult:
+    changed = False
     if assessment.status != "scored":
         missing = [
             criterion.code
@@ -62,8 +63,14 @@ def submit_assessment(
 
         assessment_repo.clear_scores(session, assessment.id)
         assessment_repo.save_scores(
-            session, assessment, dimension_scores, total, segment[0]
+            session,
+            assessment,
+            dimension_scores,
+            total,
+            segment[0],
+            commit=False,
         )
+        changed = True
 
     if plan_repo.get_active_roadmap(session, assessment.id) is None:
         plans = build_plan(
@@ -90,7 +97,12 @@ def submit_assessment(
                 plans, [dimension.name for _, dimension in criteria_rows]
             ),
             plans=plans,
+            commit=False,
         )
+        changed = True
+
+    if changed:
+        session.commit()
 
     return build_result(session, assessment)
 

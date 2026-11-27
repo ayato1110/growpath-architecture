@@ -27,6 +27,7 @@ def create_roadmap(
     title: str,
     summary: str,
     plans: list[MilestonePlan],
+    commit: bool = True,
 ) -> Roadmap:
     roadmap = Roadmap(
         id=uuid4(),
@@ -53,8 +54,11 @@ def create_roadmap(
                 status="pending",
             )
         )
-    session.commit()
-    session.refresh(roadmap)
+    if commit:
+        session.commit()
+        session.refresh(roadmap)
+    else:
+        session.flush()
     return roadmap
 
 

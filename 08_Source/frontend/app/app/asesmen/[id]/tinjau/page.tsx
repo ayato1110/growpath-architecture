@@ -51,9 +51,10 @@ export default async function TinjauPage({
   const answers = new Map(
     detail.answers.map((item) => [item.criterion_id, item]),
   );
-  const unanswered = detail.criteria.filter(
-    (criterion) => !answers.get(criterion.id)?.score,
-  );
+  const unanswered = detail.criteria.filter((criterion) => {
+    const answer = answers.get(criterion.id);
+    return answer === undefined || answer.score === null;
+  });
   const dimensions = Array.from(
     new Map(
       detail.criteria.map((criterion) => [criterion.dimension_code, criterion]),
@@ -96,20 +97,24 @@ export default async function TinjauPage({
               </Link>
             </div>
             <dl className="mt-4 grid gap-4">
-              {criteria.map((criterion) => (
-                <div key={criterion.id}>
-                  <dt className="label">{criterion.question}</dt>
-                  <dd
-                    className={
-                      answers.get(criterion.id)?.score
-                        ? "value mt-1"
-                        : "value mt-1 text-[var(--negative)]"
-                    }
-                  >
-                    {answerLabel(criterion, answers.get(criterion.id))}
-                  </dd>
-                </div>
-              ))}
+              {criteria.map((criterion) => {
+                const answer = answers.get(criterion.id);
+                const answered = answer !== undefined && answer.score !== null;
+                return (
+                  <div key={criterion.id}>
+                    <dt className="label">{criterion.question}</dt>
+                    <dd
+                      className={
+                        answered
+                          ? "value mt-1"
+                          : "value mt-1 text-[var(--negative)]"
+                      }
+                    >
+                      {answerLabel(criterion, answer)}
+                    </dd>
+                  </div>
+                );
+              })}
             </dl>
           </section>
         );

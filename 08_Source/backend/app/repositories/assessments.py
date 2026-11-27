@@ -163,6 +163,7 @@ def save_scores(
     dimension_scores: list[tuple[Dimension, float]],
     total_score: float,
     segment_id: int,
+    commit: bool = True,
 ) -> None:
     now = datetime.now(UTC)
     for dimension, score in dimension_scores:
@@ -181,7 +182,10 @@ def save_scores(
     assessment.segment_id = segment_id
     assessment.submitted_at = assessment.submitted_at or now
     assessment.scored_at = now
-    session.commit()
+    if commit:
+        session.commit()
+    else:
+        session.flush()
 
 
 def get_dimension_scores(
