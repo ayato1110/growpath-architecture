@@ -12,6 +12,10 @@ Folder ini memuat arsitektur teknologi P13.
 - `P13-Topology-Target.png` - topologi target
 - `P13-Deployment-Diagram.png` - deployment
 
+## P14
+
+- `P14-Staging-Deployment.md` - pilihan hosting final, variabel lingkungan, langkah deploy, IP plan, dan rollback.
+
 Topologi as-is adalah versi generik: UMKM datang ke rumah binaan, mengisi formulir, data direkap lembaga, lalu konsultasi atau pelatihan on-site. Detail lokasi menyesuaikan setelah mitra dikonfirmasi.
 
 Teknologi utama: Cloudflare, Vercel Hobby, Render, Supabase, DeepSeek API, dan Sentry. Region aplikasi dan data di Singapura.

@@ -1,0 +1,38 @@
+services:
+  - type: web
+    name: growpath-api
+    runtime: python
+    plan: free
+    region: singapore
+    rootDir: 08_Source/backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    autoDeploy: false
+    envVars:
+      - key: APP_ENV
+        value: staging
+      - key: AUTH_MODE
+        value: local
+      - key: PYTHON_VERSION
+        value: 3.12.5
+      - key: DB_POOL_SIZE
+        value: "5"
+      - key: DB_MAX_OVERFLOW
+        value: "5"
+      - key: LOCAL_AUTH_SECRET
+        generateValue: true
+      - key: LOCAL_USERS
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+      - key: SUPABASE_JWT_SECRET
+        sync: false
+      - key: DEEPSEEK_API_KEY
+        sync: false

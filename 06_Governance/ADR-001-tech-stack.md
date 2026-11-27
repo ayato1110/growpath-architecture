@@ -1,7 +1,7 @@
 # ADR-001 Pilihan Teknologi MVP
 
-- Status: Proposed, menunggu persetujuan CEO.
-- Tanggal: 18 November 2026. Revisi P14: 27 November 2026.
+- Status: **Accepted**. Disetujui CEO Ripa Bagaskara, 27 November 2026.
+- Tanggal: 18 November 2026. Revisi dan persetujuan P14: 27 November 2026.
 - Pemilik: Ripa Bagaskara.
 - Peninjau: Wisnu Nugroho, Bagas Adinata, Moch Haikal Ramadhan.
 

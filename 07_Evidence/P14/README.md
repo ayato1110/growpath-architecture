@@ -9,10 +9,10 @@
 | Butir Gate 2 | Status | Bukti |
 |---|---|---|
 | Demo 2 fitur Must end-to-end dengan database nyata | Belum dijalankan | Menunggu `DATABASE_URL` Supabase |
-| ADR tech stack tertulis dan disetujui CEO | Ada, menunggu persetujuan CEO | `06_Governance/ADR-001-tech-stack.md` revisi 27 November 2026 |
-| Topologi dan deployment final, staging | Belum | Rencana Vercel Hobby + Render Free + Supabase |
+| ADR tech stack tertulis dan disetujui CEO | Lulus | `06_Governance/ADR-001-tech-stack.md`, Accepted 27 November 2026 |
+| Topologi dan deployment final, staging | Sebagian | `04_Technology/P14-Staging-Deployment.md`, `render.yaml`; belum deploy |
 | Change Request dari Kartu Kejutan terdokumentasi | Belum | Bergantung skenario kelas |
-| Tidak ada anggota dengan nol kontribusi | Belum diverifikasi | Cek commit dan PR saat penutupan |
+| Tidak ada anggota dengan nol kontribusi | Lulus | `07_Evidence/P14/CONTRIBUTION-AUDIT.md` |
 
 Jangan mengubah status menjadi selesai tanpa bukti eksekusi dan tangkapan layar.
 
@@ -27,6 +27,9 @@ Jangan mengubah status menjadi selesai tanpa bukti eksekusi dan tangkapan layar.
 | UI data usaha, asesmen, hasil, rencana | `08_Source/frontend/app/app/` |
 | Tes unit skor dan rekomendasi | `08_Source/backend/tests/test_scoring.py` |
 | 15 test case black-box | `07_Evidence/P14/TEST-CASES-P14.md` |
+| Skrip smoke test | `08_Source/tests/p14_smoke.py` |
+| Verifikasi skema | `08_Source/db/verify_p14.sql` |
+| Checklist Gate 2 | `07_Evidence/P14/GATE-2-CHECKLIST.md` |
 
 ## Keputusan yang dipakai
 
