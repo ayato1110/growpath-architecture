@@ -32,3 +32,15 @@ Rujukan:
 - `02_Data/kamus-data-p13.md`
 - `02_Data/seed-data.md`
 - `02_Data/P13-31-Kriteria.md`
+
+
+## Tanpa psql
+
+Mesin tanpa `psql` dapat memakai runner Python:
+
+```bash
+pip install -r 08_Source/db/requirements-tools.txt
+python 08_Source/db/run_sql.py 08_Source/db/migrations/001_init.sql 08_Source/db/seed/seed.sql 08_Source/db/migrations/002_p14.sql 08_Source/db/verify_p14.sql --yes
+```
+
+`DATABASE_URL` dibaca dari environment. `001_init.sql` menghapus tabel Growpath, jadi jangan jalankan tanpa `--yes` di database berisi data.
