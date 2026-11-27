@@ -173,16 +173,18 @@ export async function askConsultationAction(
 ): Promise<FormState> {
   const token = await requireToken();
   const question = text(formData, "question");
+  let consultation;
   try {
-    const consultation = await createConsultation(
-      token,
-      assessmentId,
-      question,
-    );
-    redirect(`/app/konsultasi/${consultation.id}`);
+    consultation = await createConsultation(token, assessmentId, question);
   } catch (error) {
+    if (error instanceof ApiError && error.status === 503) {
+      return {
+        error: "Layanan AI belum siap. Coba lagi setelah konfigurasi selesai.",
+      };
+    }
     return { error: messageOf(error) };
   }
+  redirect(`/app/konsultasi/${consultation.id}`);
 }
 
 export async function feedbackAction(
