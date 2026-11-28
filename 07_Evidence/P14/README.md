@@ -36,6 +36,8 @@ Jangan mengubah status menjadi selesai tanpa bukti eksekusi dan tangkapan layar.
 | Verifikasi database | `07_Evidence/P14/db-verify.txt` |
 | Screenshot alur | `07_Evidence/P14/screenshots/` 14 gambar desktop + mobile 390 |
 | Log eksekusi | `07_Evidence/P14/EXECUTION-LOG.md` |
+| Cek UI vs prototipe | `07_Evidence/P14/UI-CHECK.md` |
+| Diagram deployment final | `04_Technology/P14-Deployment-Diagram.png` |
 
 ## Keputusan yang dipakai
 

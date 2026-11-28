@@ -9,11 +9,11 @@
 | Jadwal UAT terkonfirmasi | Ada | Rumah Setrika, 5 Desember 2026, 10.00 WIB |
 | Skenario UAT berbasis tugas | Ada | `UAT-PLAN.md`, tujuh tugas |
 | Kuesioner SUS 10 butir | Ada | `SUS-KUESIONER.md` |
-| Backup dan restore | Sebagian | Drill logical 23 tabel, 250 baris, 0 selisih di `BACKUP-DRILL.txt`; `pg_dump` dan restore penuh belum |
+| Backup dan restore | Selesai (logis) | `backup_restore.py` diuji: backup semua tabel, restore ke schema terpisah, 0 selisih di `BACKUP-SCRIPT.txt`; `pg_dump` tidak dipakai |
 | Transaksi proses kritis | Ada | Submit asesmen memakai satu commit; perlu tes rollback |
 | Konsultasi AI dan log jawaban | Ada, teruji lokal + staging | `services/ai.py`, `/consultations`, UI konsultasi dan log; Gemini 3.5 Flash-Lite; bukti `AI-PROBE-LOCAL.json`, `AI-PROBE-STAGING.json`, `screenshots-staging/` |
 | Dokumentasi route/endpoint | Sebagian | OpenAPI diperbarui; daftar route per role belum |
-| TCO 12 bulan | Belum | Menunggu deploy staging |
+| TCO 12 bulan | Ada | `04_Technology/P15-TCO.md` |
 | Staging | Selesai | https://growpath-staging.vercel.app dan https://growpath-api.vercel.app |
 | MVP hampir lengkap | Sebagian | 4 dari 5 Must ada; dashboard belum |
 

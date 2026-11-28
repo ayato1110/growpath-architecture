@@ -25,7 +25,7 @@ P14 menyelesaikan dua dari lima Must: **data usaha** dan **rekomendasi**. Skor d
 | 23 entitas, 31 kriteria, 4 segmen | Terpasang di Supabase, terverifikasi | Tidak ada | Jaga migrasi | Wisnu |
 | PK, FK, unique, check, index | 126 PK, 68 FK, 73 unique, 97 check, 56 index | Tidak ada | Lampirkan bukti | Wisnu |
 | View laporan | `v_assessment_report` aktif | Belum dipakai di UI | Pakai untuk dashboard P15 | Wisnu |
-| Backup dan restore terbukti | Drill logical copy 23 tabel, 250 baris, 0 selisih | `pg_dump` belum tersedia; restore penuh belum diuji | Uji `pg_dump`/restore penuh sebelum P15 | Wisnu |
+| Backup dan restore terbukti | Skrip backup/restore logis diuji, 0 selisih | Restore penuh cluster belum | Skrip tersedia; jadwalkan backup sebelum UAT | Wisnu |
 | Transaksi proses kritis | Submit asesmen sudah satu transaksi | Perlu uji kegagalan di tengah | Tambah tes rollback | Bagas |
 | Pemisahan data uji dan produksi | Seed P13 dan data uji ada di database staging | Belum ada kebijakan retensi | Bersihkan data uji sebelum demo, catat asal data | Wisnu |
 | RLS | Aktif di DDL, backend memakai role owner | RLS belum diuji dari role terbatas | Uji role aplikasi terbatas di P15 | Wisnu, Haikal |
@@ -52,7 +52,7 @@ P14 menyelesaikan dua dari lima Must: **data usaha** dan **rekomendasi**. Skor d
 | Topologi dan deployment diagram | Dokumen staging ada; diagram P13 memakai label Singapura | Region database Seoul | Perbarui diagram atau beri catatan | Haikal |
 | Keamanan staging | Checklist ada; CORS belum diisi untuk domain Vercel | Deploy belum | Isi env dan uji HTTPS | Haikal |
 | Observability | Sentry belum dipasang | Belum ada error tracking | Pasang Sentry saat staging | Haikal |
-| TCO 12 bulan | Belum | Belum ada angka | Susun estimasi Render, Vercel, Supabase, DeepSeek | Haikal |
+| TCO 12 bulan | Ada | `04_Technology/P15-TCO.md` | Perbarui bila harga berubah | Haikal |
 | Kinerja | Belum diukur | LCP, waktu submit, latensi DB belum ada | Ukur saat staging | Haikal |
 
 ## 5. People dan process

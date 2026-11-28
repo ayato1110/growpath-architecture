@@ -1,0 +1,55 @@
+<mxfile host="localhost">
+  <diagram id="hby9p5mt-zb9j" name="Deployment Final">
+    <mxGraphModel dx="783" dy="653" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="text;fontSize=18;fontStyle=1;align=left;verticalAlign=middle;fontColor=#16211b;whiteSpace=wrap;html=1;" value="P14 · Deployment Final" vertex="1">
+          <mxGeometry height="30" width="720" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="1" style="rounded=1;fillColor=#ffffff;strokeColor=#c7cec7;fontColor=#16211b;whiteSpace=wrap;html=1;" value="&lt;b&gt;Browser UMKM&lt;/b&gt;&lt;br&gt;HTTPS" vertex="1">
+          <mxGeometry height="70" width="140" x="40" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="4" parent="1" style="rounded=1;fillColor=#ffffff;strokeColor=#c7cec7;fontColor=#16211b;whiteSpace=wrap;html=1;" value="&lt;b&gt;Vercel Edge&lt;/b&gt;&lt;br&gt;DNS, TLS, CDN" vertex="1">
+          <mxGeometry height="70" width="150" x="230" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="5" parent="1" style="rounded=1;fillColor=#e4f3ec;strokeColor=#087f5b;fontColor=#16211b;whiteSpace=wrap;html=1;" value="&lt;b&gt;Next.js Frontend&lt;/b&gt;&lt;br&gt;Vercel · sin1" vertex="1">
+          <mxGeometry height="80" width="160" x="430" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="6" parent="1" style="rounded=1;fillColor=#e4f3ec;strokeColor=#087f5b;fontColor=#16211b;whiteSpace=wrap;html=1;" value="&lt;b&gt;FastAPI Backend&lt;/b&gt;&lt;br&gt;Vercel Functions · sin1" vertex="1">
+          <mxGeometry height="80" width="160" x="430" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="7" parent="1" style="rounded=1;fillColor=#f7f8f5;strokeColor=#527a67;fontColor=#16211b;whiteSpace=wrap;html=1;" value="&lt;b&gt;Supabase PostgreSQL&lt;/b&gt;&lt;br&gt;Seoul · ap-northeast-2" vertex="1">
+          <mxGeometry height="80" width="130" x="650" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="8" parent="1" style="rounded=1;fillColor=#ffffff;strokeColor=#c7cec7;fontColor=#16211b;whiteSpace=wrap;html=1;" value="&lt;b&gt;Gemini API&lt;/b&gt;&lt;br&gt;3.5 Flash-Lite" vertex="1">
+          <mxGeometry height="70" width="130" x="650" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="9" parent="1" style="rounded=1;fillColor=#ffffff;strokeColor=#c7cec7;fontColor=#16211b;whiteSpace=wrap;html=1;" value="&lt;b&gt;Sentry&lt;/b&gt;&lt;br&gt;error monitoring" vertex="1">
+          <mxGeometry height="70" width="150" x="230" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="10" edge="1" parent="1" source="3" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#58645c;fontColor=#58645c;fontSize=11;exitX=1;exitY=0.5;entryX=0;entryY=0.5;html=1;" target="4" value="HTTPS">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="11" edge="1" parent="1" source="4" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#58645c;fontColor=#58645c;fontSize=11;exitX=1;exitY=0.25;entryX=0;entryY=0.5;html=1;" target="5" value="routing">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="12" edge="1" parent="1" source="5" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#58645c;fontColor=#58645c;fontSize=11;exitX=0.5;exitY=1;entryX=0.5;entryY=0;html=1;" target="6" value="REST + bypass header">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="13" edge="1" parent="1" source="6" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#58645c;fontColor=#58645c;fontSize=11;exitX=1;exitY=0.5;entryX=0;entryY=0.5;html=1;" target="7" value="SQL / TLS">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="14" edge="1" parent="1" source="6" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#58645c;fontColor=#58645c;fontSize=11;exitX=0.5;exitY=1;entryX=0.5;entryY=0;html=1;" target="8" value="HTTPS">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="15" edge="1" parent="1" source="6" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;dashed=1;strokeColor=#8a5a12;fontColor=#8a5a12;fontSize=11;exitX=0;exitY=0.75;entryX=1;entryY=0.5;html=1;" target="9" value="error">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="16" parent="1" style="text;align=left;verticalAlign=top;fontSize=12;fontColor=#58645c;whiteSpace=wrap;html=1;" value="Staging: frontend growpath-staging.vercel.app · backend growpath-api.vercel.app · database Supabase Seoul. Tidak ada IP statis; Vercel memakai egress bersama. Backend dilindungi Vercel Authentication; frontend server mengirim header bypass. Sentry direncanakan." vertex="1">
+          <mxGeometry height="90" width="740" x="40" y="450" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

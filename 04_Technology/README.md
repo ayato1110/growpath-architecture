@@ -15,6 +15,8 @@ Folder ini memuat arsitektur teknologi P13.
 ## P14
 
 - `P14-Staging-Deployment.md` - pilihan hosting final, variabel lingkungan, langkah deploy, IP plan, dan rollback.
+- `P14-Deployment-Diagram.drawio` dan `.png` - diagram deployment final P14.
+- `P15-TCO.md` - estimasi biaya infrastruktur 12 bulan.
 
 Topologi as-is adalah versi generik: UMKM datang ke rumah binaan, mengisi formulir, data direkap lembaga, lalu konsultasi atau pelatihan on-site. Detail lokasi menyesuaikan setelah mitra dikonfirmasi.
 

@@ -1,0 +1,55 @@
+GROWPATH BACKUP/RESTORE
+Waktu: 2026-11-28T07:58:47Z
+
+== BACKUP ==
+  ai_answer_log                 7 baris
+  assessment                   36 baris
+  assessment_answer           103 baris
+  audit_log                     0 baris
+  consultation                  7 baris
+  criterion                    31 baris
+  dimension                     6 baris
+  dimension_score              12 baris
+  invoice                       0 baris
+  knowledge_chunk               1 baris
+  knowledge_document            1 baris
+  mentor_session                0 baris
+  milestone                    18 baris
+  notification                  0 baris
+  plan                          3 baris
+  progress_log                  4 baris
+  report                        0 baris
+  roadmap                       6 baris
+  segment                       4 baris
+  subscription                  0 baris
+  tenant                        3 baris
+  umkm_profile                 31 baris
+  user                         31 baris
+Backup selesai: C:\Users\ASUS\AppData\Local\Temp\growpath-backup-20261128
+
+== RESTORE ==
+  OK   ai_answer_log                 7 baris
+  OK   assessment                   36 baris
+  OK   assessment_answer           103 baris
+  OK   audit_log                     0 baris
+  OK   consultation                  7 baris
+  OK   criterion                    31 baris
+  OK   dimension                     6 baris
+  OK   dimension_score              12 baris
+  OK   invoice                       0 baris
+  OK   knowledge_chunk               1 baris
+  OK   knowledge_document            1 baris
+  OK   mentor_session                0 baris
+  OK   milestone                    18 baris
+  OK   notification                  0 baris
+  OK   plan                          3 baris
+  OK   progress_log                  4 baris
+  OK   report                        0 baris
+  OK   roadmap                       6 baris
+  OK   segment                       4 baris
+  OK   subscription                  0 baris
+  OK   tenant                        3 baris
+  OK   umkm_profile                 31 baris
+  OK   user                         31 baris
+Schema restore dibersihkan.
+Tabel berbeda: 0
