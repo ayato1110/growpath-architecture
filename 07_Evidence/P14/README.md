@@ -37,6 +37,8 @@ Jangan mengubah status menjadi selesai tanpa bukti eksekusi dan tangkapan layar.
 | Screenshot alur | `07_Evidence/P14/screenshots/` 14 gambar desktop + mobile 390 |
 | Log eksekusi | `07_Evidence/P14/EXECUTION-LOG.md` |
 | Cek UI vs prototipe | `07_Evidence/P14/UI-CHECK.md` |
+| Skrip demo Gate 2 | `07_Evidence/P14/GATE-2-DEMO-SCRIPT.md` |
+| Template Change Request | `06_Governance/CHANGE-REQUEST-TEMPLATE.md` |
 | Diagram deployment final | `04_Technology/P14-Deployment-Diagram.png` |
 
 ## Keputusan yang dipakai

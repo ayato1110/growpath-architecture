@@ -22,6 +22,7 @@
 - `AI-PROBE-LOCAL.json`: enam probe (konteks, skor, hukum, data sensitif, luar konteks, prompt injection).
 - `AI-PROBE-STAGING.json`: jawaban live dari staging dan umpan balik.
 - `screenshots-staging/01-konsultasi-jawaban.png` dan `02-log.png`.
+- Formulir UAT cetak: `UAT-FORMS.md` (persetujuan, daftar hadir, tugas, SUS, tindak lanjut).
 - Model `gemini-3.5-flash-lite`; 3.8/3.6 Flash timeout dan 3.7 Flash 503 pada free tier saat diuji.
 
 ## Urutan berikutnya
